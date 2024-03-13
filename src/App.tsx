@@ -1,26 +1,26 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import "./index.css";
 
-function App() {
+import { useSearchImages } from "./requesters/searchImages";
+import { Loading } from "./components/Loading";
+import { ImageGallery } from "./components/ImageGallery";
+import {SearchForm} from "./components/SearchForm";
+import {ErrorMessage} from "./components/ErrorMessage";
+
+export default function App() {
+  const { searchForExpression, images, isLoading, error } = useSearchImages();
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+      <div className="App">
+        <h1>NASA Images</h1>
+        <SearchForm searchForExpression={searchForExpression} />
+        {error && <ErrorMessage error={error} />}
+        {isLoading ? (
+            <Loading />
+        ) : images ? (
+            <ImageGallery images={images} />
+        ) : (
+            "Type anything in the search field"
+        )}
+      </div>
   );
 }
-
-export default App;
