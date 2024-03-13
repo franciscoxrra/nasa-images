@@ -1,9 +1,8 @@
-import styled from '@emotion/styled'
-import { Image } from "../requesters/searchImages";
+import styled from "@emotion/styled"
+import { Image } from "../requesters/searchImages"
 
 const Container = styled.div`
     label: ImageGallery;
-
 
     display: flex;
     flex-wrap: wrap;
@@ -24,19 +23,17 @@ const Container = styled.div`
 `
 
 interface ImageGalleryProps {
-    images: Image[];
+    images: Image[]
 }
 
-export const ImageGallery = ({ images }: ImageGalleryProps) => {
-    return (
-        <Container>
-            {images.length === 0
-                ? "Nothing found... try something else"
-                : images.map((image) => (
-                    <div key={image.id}>
-                        <img src={image.href}  alt={image.title}/>
-                    </div>
-                ))}
-        </Container>
-    );
-};
+export const ImageGallery = ({ images }: ImageGalleryProps) => (
+    <Container>
+        {images.length === 0
+            ? "Nothing found... try something else"
+            : images.map((image) => (
+                  <div key={image.id}>
+                      <img src={image.href} alt={image.title} />
+                  </div>
+              ))}
+    </Container>
+)

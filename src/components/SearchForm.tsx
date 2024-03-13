@@ -1,28 +1,31 @@
-import {ChangeEventHandler, FormEventHandler, useCallback, useState} from "react";
+import {
+    ChangeEventHandler,
+    FormEventHandler,
+    useCallback,
+    useState
+} from "react"
 
 interface SearchFormProps {
-    searchForExpression: (expression:string) => void
+    searchForExpression: (expression: string) => void
 }
 
-export const SearchForm = ({
-    searchForExpression
-}:SearchFormProps) => {
-    const [fieldValue, setFieldValue] = useState("");
+export const SearchForm = ({ searchForExpression }: SearchFormProps) => {
+    const [fieldValue, setFieldValue] = useState("")
 
     const fieldOnChange = useCallback<ChangeEventHandler<HTMLInputElement>>(
         (event) => {
-            setFieldValue(event.target.value);
+            setFieldValue(event.target.value)
         },
         []
-    );
+    )
 
     const formOnSubmit = useCallback<FormEventHandler<HTMLFormElement>>(
         (event) => {
-            event.preventDefault();
-            searchForExpression(fieldValue);
+            event.preventDefault()
+            searchForExpression(fieldValue)
         },
         [fieldValue, searchForExpression]
-    );
+    )
 
     return (
         <form onSubmit={formOnSubmit}>
