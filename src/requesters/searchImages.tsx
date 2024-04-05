@@ -1,4 +1,5 @@
-import { useCallback, useState } from "react"
+import React, { useCallback, useState } from "react"
+import { nasaImagesQueryParam, nasaImagesSearchUrl } from "../util/constants"
 
 interface ImagesRaw {
     collection?: {
@@ -39,10 +40,10 @@ const searchImages = async (
         setImages(null)
     } else {
         try {
+            const url = new URL(nasaImagesSearchUrl)
+            url.searchParams.set(nasaImagesQueryParam, encodeURI(fieldValue))
             setIsLoading(true)
-            const fetchResponse = await fetch(
-                `https://images-api.nasa.gov/search?q=${encodeURI(fieldValue)}`
-            )
+            const fetchResponse = await fetch(url.href)
             const json: ImagesRaw = await fetchResponse.json()
             const images =
                 json.collection?.items.reduce((acc: Image[], item) => {

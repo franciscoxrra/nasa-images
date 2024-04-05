@@ -18,6 +18,15 @@
     "typescript": "^4.4.2",
     "web-vitals": "^2.1.0"
   },
+  "devDependencies": {
+    "@stylistic/eslint-plugin-js": "^1.6.3",
+    "babel-eslint": "^10.1.0",
+    "eslint": "^8.57.0",
+    "eslint-config-prettier": "^9.1.0",
+    "husky": "^9.0.11",
+    "lint-staged": "^15.2.2",
+    "prettier": "^3.2.5"
+  },
   "scripts": {
     "prestart": "yarn lint",
     "start": "react-scripts start",
@@ -62,14 +71,5 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  },
-  "devDependencies": {
-    "@stylistic/eslint-plugin-js": "^1.6.3",
-    "babel-eslint": "^10.1.0",
-    "eslint": "^8.57.0",
-    "eslint-config-prettier": "^9.1.0",
-    "husky": "^9.0.11",
-    "lint-staged": "^15.2.2",
-    "prettier": "^3.2.5"
   }
 }
