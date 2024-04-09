@@ -3,11 +3,11 @@ import { Reducer } from "react"
 import { PrefixAction } from "../util"
 
 interface HistoryState {
-    previousSearchTerms: string[]
+    previousSearchExpressions: string[]
 }
 
 const initialState: HistoryState = {
-    previousSearchTerms: emptyArray
+    previousSearchExpressions: emptyArray
 }
 
 type HistoryAction<Type, Payload = undefined> = PrefixAction<
@@ -30,9 +30,9 @@ export const historyReducer: Reducer<HistoryState, HistoryReducerAction> = (
         case "history/add":
             return {
                 ...state,
-                previousSearchTerms: [
+                previousSearchExpressions: [
                     action.payload,
-                    ...state.previousSearchTerms.slice(0, 4)
+                    ...state.previousSearchExpressions.slice(0, 4)
                 ]
             }
         case "history/reset":

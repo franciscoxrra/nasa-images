@@ -82,13 +82,13 @@ export const useSearchImages = () => {
     const [isLoading, setIsLoading] = useState(false)
     const [error, setError] = useState<Error | null>(null)
 
-    const setSearchTerm = useCallback((term: string) => {
+    const searchForExpression = useCallback((expression: string) => {
         setError(null)
-        searchImages(term, setImages, setIsLoading, setError)
+        searchImages(expression, setImages, setIsLoading, setError)
     }, [])
 
     return {
-        searchForExpression: setSearchTerm,
+        searchForExpression,
         images,
         isLoading,
         error
