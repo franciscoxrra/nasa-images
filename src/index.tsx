@@ -3,11 +3,27 @@ import ReactDOM from "react-dom/client"
 import "./index.css"
 import App from "./App"
 import reportWebVitals from "./reportWebVitals"
+import { Provider } from "react-redux"
+import { store } from "./reducers/store"
+
+// TODO add saver and analytics to redux
+// TODO (redux) look into enhancers,
+// TODO add router
+// TODO modal system
+// TODO pagination
+// TODO grid layout
+// TODO Helmet
+// TODO GlobalStyles, ThemeProvider
+// TODO ErrorBoundary, ErrorFatal
+// TODO Sentry setup
 
 const root = ReactDOM.createRoot(document.getElementById("root") as HTMLElement)
+
 root.render(
     <React.StrictMode>
-        <App />
+        <Provider store={store}>
+            <App />
+        </Provider>
     </React.StrictMode>
 )
 

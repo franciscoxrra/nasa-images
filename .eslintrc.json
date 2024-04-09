@@ -7,12 +7,15 @@
     "arrow-body-style": ["warn", "as-needed"],
     "no-unused-vars": "off",
     "no-useless-escape": "warn",
+    "no-var": "warn",
+    "prefer-const": "warn",
     "@typescript-eslint/no-unused-vars": [
       "warn",
       {
         "vars": "all",
         "args": "after-used",
         "argsIgnorePattern": "^_",
+        "varsIgnorePattern": "^_",
         "ignoreRestSiblings": false
       }
     ]
