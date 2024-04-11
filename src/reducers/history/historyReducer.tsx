@@ -1,8 +1,9 @@
 import { emptyArray } from "../../util/structure"
 import { Reducer } from "react"
 import { PrefixAction } from "../util"
+import { State } from "../store"
 
-interface HistoryState {
+export interface HistoryState {
     previousSearchExpressions: string[]
 }
 
@@ -28,16 +29,20 @@ export const historyReducer: Reducer<HistoryState, HistoryReducerAction> = (
 ) => {
     switch (action.type) {
         case "history/add":
-            return {
-                ...state,
-                previousSearchExpressions: [
-                    action.payload,
-                    ...state.previousSearchExpressions.slice(0, 4)
-                ]
-            }
+            return action.payload
+                ? {
+                      ...state,
+                      previousSearchExpressions: [
+                          action.payload,
+                          ...state.previousSearchExpressions.slice(0, 4)
+                      ]
+                  }
+                : state
         case "history/reset":
             return initialState
         default:
             return state
     }
 }
+
+export const selectHistory = (state: State) => state.history

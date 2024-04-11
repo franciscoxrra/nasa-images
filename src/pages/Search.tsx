@@ -3,12 +3,31 @@ import { SearchForm } from "../components/SearchForm"
 import { ErrorMessage } from "../components/ErrorMessage"
 import { Loading } from "../components/Loading"
 import { ImageGallery } from "../components/ImageGallery"
+import { useDispatchAddToHistory } from "../reducers/actions/history"
+import { useCallback } from "react"
+import { useSelector } from "react-redux"
+import { selectHistory } from "../reducers/history/historyReducer"
+import { Page } from "./Page"
+
+const useSearchImagesWithReducer = () => {
+    const { searchForExpression: _searchForExpression, ...response } =
+        useSearchImages()
+    const dispatchAddToHistory = useDispatchAddToHistory()
+    const searchForExpression = useCallback((expression: string) => {
+        dispatchAddToHistory(expression)
+        _searchForExpression(expression)
+    }, [])
+    return { searchForExpression, ...response }
+}
 
 export const Search = () => {
-    const { searchForExpression, images, isLoading, error } = useSearchImages()
+    const { searchForExpression, images, isLoading, error } =
+        useSearchImagesWithReducer()
+    const { previousSearchExpressions } = useSelector(selectHistory)
+    console.log(previousSearchExpressions)
 
     return (
-        <div className="App">
+        <Page>
             <h1>NASA Images</h1>
             <SearchForm searchForExpression={searchForExpression} />
             {error && <ErrorMessage error={error} />}
@@ -19,6 +38,6 @@ export const Search = () => {
             ) : (
                 "Type anything in the search field"
             )}
-        </div>
+        </Page>
     )
 }
