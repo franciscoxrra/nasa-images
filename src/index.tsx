@@ -1,11 +1,11 @@
 import React from "react"
 import ReactDOM from "react-dom/client"
-import "./index.css"
 import App from "./App"
 import reportWebVitals from "./reportWebVitals"
 import { Provider } from "react-redux"
 import { store } from "./reducers/store"
 
+// TODO add header/footer to Page component
 // TODO add saver and analytics to redux
 // TODO (redux) look into enhancers,
 // TODO add router
@@ -16,6 +16,11 @@ import { store } from "./reducers/store"
 // TODO GlobalStyles, ThemeProvider
 // TODO ErrorBoundary, ErrorFatal
 // TODO Sentry setup
+// TODO mobile style
+// TODO image loader
+// TODO set search for images only
+// TODO entry page (can it be done?)
+// TODO look into webvitals and jest
 
 const root = ReactDOM.createRoot(document.getElementById("root") as HTMLElement)
 

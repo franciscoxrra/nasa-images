@@ -1,8 +1,15 @@
 import React, { useCallback, useState } from "react"
-import { nasaImagesQueryParam, nasaImagesSearchUrl } from "../util/constants"
+import { nasaImagesSearchUrl } from "../util/constants"
+
+interface Link {
+    href: string
+    rel: string
+    render?: string
+}
 
 interface ImagesRaw {
     collection?: {
+        href: string
         items: Array<{
             data: Array<{
                 center: string
@@ -14,57 +21,105 @@ interface ImagesRaw {
                 title: string
             }>
             href: string
-            links?: Array<{
-                href: string
-                rel: string
-                render?: string
-            }>
+            links?: Array<Link>
         }>
+        links?: Array<Link>
+        metadata?: {
+            total_hits?: number
+        }
+        version: string
     }
 }
 
 export interface Image {
-    href: string
+    previewUrl: string
+    originalUrl: string
     title: string
     description: string
+    truncated_description: string
     id: string
+    keywords: string[]
 }
 
+export interface ImagesData {
+    images: Image[]
+    totalResults: number | undefined
+    page: number
+    pageSize: number
+}
+
+type ParameterKey = "query" | "id"
+
+const previewImagePrefix = "~thumb."
+const originalImagePrefix = "~orig."
+
 const searchImages = async (
-    fieldValue: string,
-    setImages: React.Dispatch<React.SetStateAction<Image[] | null>>,
+    parameterKey: ParameterKey,
+    parameterValue: string,
+    setImagesData: React.Dispatch<React.SetStateAction<ImagesData | null>>,
     setIsLoading: React.Dispatch<React.SetStateAction<boolean>>,
-    setError: React.Dispatch<React.SetStateAction<Error | null>>
+    setError: React.Dispatch<React.SetStateAction<Error | null>>,
+    page: number = 1,
+    pageSize: number = 50
 ) => {
-    if (fieldValue === "") {
-        setImages(null)
+    if (parameterValue === "") {
+        setImagesData(null)
     } else {
         try {
             const url = new URL(nasaImagesSearchUrl)
-            url.searchParams.set(nasaImagesQueryParam, encodeURI(fieldValue))
+            url.searchParams.set("media_type", "image")
+
+            if (parameterKey === "id") {
+                url.searchParams.set("nasa_id", encodeURI(parameterValue))
+            } else {
+                url.searchParams.set("q", encodeURI(parameterValue))
+            }
+
+            url.searchParams.set("page", `${page}`)
+            url.searchParams.set("page_size", `${pageSize}`)
+
             setIsLoading(true)
             const fetchResponse = await fetch(url.href)
             const json: ImagesRaw = await fetchResponse.json()
+            console.log(json)
             const images =
                 json.collection?.items.reduce((acc: Image[], item) => {
                     const data = item.data[0]
                     const link = item.links?.find(
-                        (link) => link?.render === "image"
+                        (link) =>
+                            link?.render === "image" &&
+                            link.href.includes(previewImagePrefix)
                     )
                     if (data?.media_type === "image" && link) {
                         return [
                             ...acc,
                             {
-                                href: link.href,
+                                previewUrl: link.href,
+                                originalUrl: link.href.replace(
+                                    previewImagePrefix,
+                                    originalImagePrefix
+                                ),
                                 title: data.title,
                                 description: data.description,
-                                id: data.nasa_id
+                                truncated_description:
+                                    data.description.substring(0, 80),
+                                id: data.nasa_id,
+                                keywords: data.keywords
                             }
                         ]
                     }
                     return acc
                 }, []) || null
-            setImages(images)
+            setImagesData(
+                images
+                    ? {
+                          images,
+                          totalResults: json.collection?.metadata?.total_hits,
+                          page,
+                          pageSize
+                      }
+                    : null
+            )
             setIsLoading(false)
         } catch (e) {
             if (e instanceof Error) {
@@ -78,18 +133,21 @@ const searchImages = async (
 }
 
 export const useSearchImages = () => {
-    const [images, setImages] = useState<Image[] | null>(null)
+    const [imagesData, setImagesData] = useState<ImagesData | null>(null)
     const [isLoading, setIsLoading] = useState(false)
     const [error, setError] = useState<Error | null>(null)
 
-    const searchForExpression = useCallback((expression: string) => {
-        setError(null)
-        searchImages(expression, setImages, setIsLoading, setError)
-    }, [])
+    const searchForExpression = useCallback(
+        (key: ParameterKey, expression: string) => {
+            setError(null)
+            searchImages(key, expression, setImagesData, setIsLoading, setError)
+        },
+        []
+    )
 
     return {
         searchForExpression,
-        images,
+        imagesData,
         isLoading,
         error
     }

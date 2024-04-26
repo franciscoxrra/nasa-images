@@ -1,11 +1,16 @@
-import "./index.css"
 import { BrowserRouter } from "react-router-dom"
 import { RouteMap } from "./RouteMap"
+import { ThemeProvider } from "@emotion/react"
+import { theme } from "./theme/theme"
+import { GlobalStyles } from "./theme/GlobalStyles"
 
 const App = () => (
-    <BrowserRouter>
-        <RouteMap />
-    </BrowserRouter>
+    <ThemeProvider theme={theme}>
+        <GlobalStyles />
+        <BrowserRouter>
+            <RouteMap />
+        </BrowserRouter>
+    </ThemeProvider>
 )
 
 export default App
