@@ -18,7 +18,8 @@
         "varsIgnorePattern": "^_",
         "ignoreRestSiblings": false
       }
-    ]
+    ],
+    "no-console": "warn"
   },
   "extends": [
     "prettier"
