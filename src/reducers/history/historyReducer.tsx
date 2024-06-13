@@ -3,8 +3,13 @@ import { Reducer } from "react"
 import { PrefixAction } from "../util"
 import { State } from "../store"
 
+interface HistoryEntry {
+    expression: string
+    date: string
+}
+
 export interface HistoryState {
-    previousSearchExpressions: string[]
+    previousSearchExpressions: HistoryEntry[]
 }
 
 const initialState: HistoryState = {
@@ -17,7 +22,7 @@ type HistoryAction<Type, Payload = undefined> = PrefixAction<
     Payload
 >
 
-export type AddToHistory = HistoryAction<"history/add", string>
+export type AddToHistory = HistoryAction<"history/add", HistoryEntry>
 
 export type ResetHistory = HistoryAction<"history/reset">
 
