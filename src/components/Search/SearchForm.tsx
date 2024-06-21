@@ -4,13 +4,15 @@ import {
     useCallback,
     useState
 } from "react"
+import { useNavigate } from "react-router-dom"
 
 interface SearchFormProps {
-    searchForExpression: (expression: string) => void
+    initialValue?: string
 }
 
-export const SearchForm = ({ searchForExpression }: SearchFormProps) => {
-    const [fieldValue, setFieldValue] = useState("")
+export const SearchForm = ({ initialValue = "" }: SearchFormProps) => {
+    const navigate = useNavigate()
+    const [fieldValue, setFieldValue] = useState(initialValue)
 
     const fieldOnChange = useCallback<ChangeEventHandler<HTMLInputElement>>(
         (event) => {
@@ -22,9 +24,11 @@ export const SearchForm = ({ searchForExpression }: SearchFormProps) => {
     const formOnSubmit = useCallback<FormEventHandler<HTMLFormElement>>(
         (event) => {
             event.preventDefault()
-            searchForExpression(fieldValue)
+            if (fieldValue !== "") {
+                navigate(`/search/${fieldValue}`)
+            }
         },
-        [fieldValue, searchForExpression]
+        [fieldValue, navigate]
     )
 
     return (

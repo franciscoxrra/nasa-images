@@ -5,6 +5,7 @@ import { Header } from "./Header"
 import { Footer } from "./Footer"
 import { Body } from "./Body"
 import styled from "@emotion/styled"
+import { pageName } from "../../util/constants"
 
 const Container = styled.div`
     label: Page;
@@ -30,7 +31,10 @@ export const Page = ({ subTitle, children }: PageProps) => {
     return (
         <>
             <Helmet>
-                <title>NASA Images{subTitle ? ` | ${subTitle}` : ""}</title>
+                <title>
+                    {pageName}
+                    {subTitle ? ` | ${subTitle}` : ""}
+                </title>
             </Helmet>
             <Container>
                 <Header />

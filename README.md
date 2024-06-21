@@ -1,6 +1,6 @@
-# NASA images search engine page
+# Space images search engine page
 
-Search NASA images using a text field.
+Search Space images (powered by NASA) using a text field.
 
 ## Available Scripts
 

@@ -21,6 +21,8 @@ import { store } from "./reducers/store"
 // TODO set search for images only
 // TODO entry page (can it be done?)
 // TODO look into webvitals and jest
+// TODO add Next.js
+// TODO re-read/remove comments (public too)
 
 const root = ReactDOM.createRoot(document.getElementById("root") as HTMLElement)
 
