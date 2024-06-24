@@ -2,13 +2,13 @@ import React from "react"
 import styled from "@emotion/styled"
 
 const Container = styled.div`
-    label: Body;
+    label: MainSection;
 `
 
 interface BodyProps {
     children: React.ReactNode
 }
 
-export const Body = ({ children }: BodyProps) => (
+export const MainSection = ({ children }: BodyProps) => (
     <Container>{children}</Container>
 )

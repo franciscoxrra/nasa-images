@@ -81,7 +81,6 @@ const searchImages = async (
             setIsLoading(true)
             const fetchResponse = await fetch(url.href)
             const json: ImagesRaw = await fetchResponse.json()
-            console.log(json)
             const images =
                 json.collection?.items.reduce((acc: Image[], item) => {
                     const data = item.data[0]
@@ -102,7 +101,7 @@ const searchImages = async (
                                 title: data.title,
                                 description: data.description,
                                 truncated_description:
-                                    data.description.substring(0, 80),
+                                    data.description?.substring(0, 80),
                                 id: data.nasa_id,
                                 keywords: data.keywords
                             }
@@ -126,7 +125,6 @@ const searchImages = async (
                 setError(e)
             } else {
                 setError(new Error("An unknown error occurred"))
-                console.error(e)
             }
         }
     }

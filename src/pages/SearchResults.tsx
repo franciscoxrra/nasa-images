@@ -13,7 +13,7 @@ type Params = {
     [searchExpressionVar]: string
 }
 
-export const Search = () => {
+export const SearchResults = () => {
     const navigate = useNavigate()
     const searchExpression = useParams<Params>()[searchExpressionVar]
 
@@ -26,7 +26,7 @@ export const Search = () => {
         } else {
             navigate(mainPath)
         }
-    }, [])
+    }, [searchExpression])
 
     return (
         <Page>

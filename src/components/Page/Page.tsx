@@ -1,9 +1,9 @@
 import React from "react"
 import { Helmet } from "react-helmet"
 import { useVersionCheckAndRefresh } from "../../hooks/versionCheckAndRefresh"
-import { Header } from "./Header"
-import { Footer } from "./Footer"
-import { Body } from "./Body"
+import { TopNavigationBar } from "./TopNavigationBar"
+import { FooterSection } from "./FooterSection"
+import { MainSection } from "./MainSection"
 import styled from "@emotion/styled"
 import { pageName } from "../../util/constants"
 
@@ -37,9 +37,9 @@ export const Page = ({ subTitle, children }: PageProps) => {
                 </title>
             </Helmet>
             <Container>
-                <Header />
-                <Body>{children}</Body>
-                <Footer />
+                <TopNavigationBar />
+                <MainSection>{children}</MainSection>
+                <FooterSection />
             </Container>
         </>
     )

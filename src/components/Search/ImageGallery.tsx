@@ -1,10 +1,13 @@
 import styled from "@emotion/styled"
 import { Image } from "../../requesters/searchImages"
+import { noDescriptionText } from "../../util/constants"
 
 // TODO Optimise css with theme and restructure
-// TODO get a shorter description
 // TODO Time response
 // TODO Look at public folder's files
+// TODO Stop last images stretching
+// TODO Remove generic yarn html comment
+// TODO Fix css in image gallery
 
 const Container = styled.div`
     label: ImageGallery;
@@ -14,7 +17,7 @@ const Container = styled.div`
     align-content: flex-start;
     justify-content: flex-start;
     gap: 15px;
-    margin: 0 15px;
+    margin: 15px;
 `
 
 const ResultEntry = styled.div`
@@ -77,9 +80,10 @@ const EntryTitle = styled.div`
     width: 100%;
 `
 
-const EntryDescription = styled.div`
+const EntryDescription = styled.div<{ isEmpty: boolean }>`
     label: EntryDescription;
 
+    color: ${(props) => (props.isEmpty ? "#aaa" : "#000")};
     position: absolute;
     white-space: nowrap;
     overflow: hidden;
@@ -91,10 +95,6 @@ const EntryDescription = styled.div`
 interface ImageGalleryProps {
     images: Image[]
 }
-
-// TODO Stop last images stretching
-// TODO Remove generic yarn html comment
-// TODO Fix css in image gallery
 
 export const ImageGallery = ({ images }: ImageGalleryProps) => (
     <Container>
@@ -110,8 +110,11 @@ export const ImageGallery = ({ images }: ImageGalleryProps) => (
                               <EntryTitle>{image.title}</EntryTitle>
                           </div>
                           <div>
-                              <EntryDescription>
-                                  {image.truncated_description}
+                              <EntryDescription
+                                  isEmpty={!image.truncated_description}
+                              >
+                                  {image.truncated_description ||
+                                      noDescriptionText}
                               </EntryDescription>
                           </div>
                       </TextSection>

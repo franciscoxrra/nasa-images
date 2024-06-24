@@ -1,5 +1,6 @@
 import { Navigate, Route, Routes } from "react-router-dom"
-import { Search } from "./pages/Search"
+import { Main } from "./pages/Main"
+import { SearchResults } from "./pages/SearchResults"
 import {
     getSearchPath,
     mainPath,
@@ -11,11 +12,11 @@ import { NotFound } from "./pages/NotFound"
 export const RouteMap = () => (
     <Routes>
         {/*Main landing page*/}
-        <Route path={mainPath} element={<Search />} />
+        <Route path={mainPath} element={<Main />} />
         {/*Expression searching page*/}
         <Route
             path={getSearchPath(makeParam(searchExpressionVar))}
-            element={<Search />}
+            element={<SearchResults />}
         />
         {/*In case it is an empty search, redirect to main page*/}
         <Route
