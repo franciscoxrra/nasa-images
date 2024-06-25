@@ -2,6 +2,7 @@ import {
     ChangeEventHandler,
     FormEventHandler,
     useCallback,
+    useEffect,
     useState
 } from "react"
 import { useNavigate } from "react-router-dom"
@@ -13,6 +14,10 @@ interface SearchFormProps {
 export const SearchForm = ({ initialValue = "" }: SearchFormProps) => {
     const navigate = useNavigate()
     const [fieldValue, setFieldValue] = useState(initialValue)
+
+    useEffect(() => {
+        setFieldValue(initialValue)
+    }, [initialValue])
 
     const fieldOnChange = useCallback<ChangeEventHandler<HTMLInputElement>>(
         (event) => {
@@ -33,7 +38,6 @@ export const SearchForm = ({ initialValue = "" }: SearchFormProps) => {
 
     return (
         <form onSubmit={formOnSubmit}>
-            <label>search field:</label>
             <input
                 type="text"
                 placeholder="milkyway, moon, ..."

@@ -12,9 +12,9 @@ const Container = styled.div`
 
     display: grid;
     grid-template-rows:
-        ${(props) => props.theme.page.header.height}
+        ${(props) => props.theme.layout.header.height}
         minmax(
-            calc(100vh - ${(props) => props.theme.page.header.height}),
+            calc(100vh - ${(props) => props.theme.layout.header.height}),
             max-content
         )
         max-content;

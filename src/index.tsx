@@ -23,6 +23,7 @@ import { store } from "./reducers/store"
 // TODO look into webvitals and jest
 // TODO add Next.js
 // TODO re-read/remove comments (public too)
+// TODO check usability labels, tabbing, text-to-speech, etc
 
 const root = ReactDOM.createRoot(document.getElementById("root") as HTMLElement)
 

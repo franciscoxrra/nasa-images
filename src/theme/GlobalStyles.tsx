@@ -1,6 +1,10 @@
 import { Global, css, Theme, useTheme } from "@emotion/react"
 
 const makeGlobalStyles = (theme: Theme) => css`
+    html {
+        font-size: ${theme.fonts.remRatio};
+    }
+
     body {
         margin: 0;
         font-family: ${theme.fonts.main.fontFamily};

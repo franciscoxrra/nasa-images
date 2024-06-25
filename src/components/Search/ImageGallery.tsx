@@ -16,8 +16,8 @@ const Container = styled.div`
     flex-wrap: wrap;
     align-content: flex-start;
     justify-content: flex-start;
-    gap: 15px;
-    margin: 15px;
+    gap: ${(props) => props.theme.gallery.gap.vertical};
+    margin: ${(props) => props.theme.layout.spacing.margin};
 `
 
 const ResultEntry = styled.div`
@@ -25,20 +25,20 @@ const ResultEntry = styled.div`
 
     display: flex;
     flex-wrap: wrap;
-    flex-basis: 120px; /* width: 350px; */
+    flex-basis: ${(props) => props.theme.gallery.minWidth};
     flex-grow: 1;
-    gap: 10px;
-    max-width: 360px;
+    gap: ${(props) => props.theme.gallery.gap.horizontal};
+    max-width: ${(props) => props.theme.gallery.maxWidth};
 `
 
 const ImageSection = styled.div`
     label: ImageSection;
 
     width: 100%;
-    height: 180px;
-    border-radius: 10px;
+    height: ${(props) => props.theme.gallery.image.height};
+    border-radius: ${(props) => props.theme.gallery.image.borderRadius};
     align-content: center;
-    background-color: #dddddd;
+    background-color: ${(props) => props.theme.gallery.image.backgroundColor};
     overflow: hidden;
 
     > img {
@@ -46,7 +46,7 @@ const ImageSection = styled.div`
         min-width: 100%;
         max-height: 100%;
         vertical-align: middle;
-        max-width: 360px;
+        max-width: ${(props) => props.theme.gallery.maxWidth};
     }
 `
 
@@ -58,21 +58,21 @@ const TextSection = styled.div`
     width: 100%;
     flex-basis: 100%;
     flex-grow: 0;
-    height: 40px;
+    height: ${(props) => props.theme.gallery.text.height};
     text-align: left;
-    padding: 0 5px;
+    padding: ${(props) => props.theme.gallery.text.padding};
 
     > div {
         position: relative;
         width: 100%;
-        font-size: 14px;
+        font-size: ${(props) => props.theme.fonts.searchEntry.title.size};
     }
 `
 
 const EntryTitle = styled.div`
     label: EntryTitle;
 
-    color: #aaa;
+    color: ${(props) => props.theme.gallery.text.color.secondary};
     position: absolute;
     white-space: nowrap;
     overflow: hidden;
@@ -83,13 +83,16 @@ const EntryTitle = styled.div`
 const EntryDescription = styled.div<{ isEmpty: boolean }>`
     label: EntryDescription;
 
-    color: ${(props) => (props.isEmpty ? "#aaa" : "#000")};
+    color: ${(props) =>
+        props.isEmpty
+            ? props.theme.gallery.text.color.secondary
+            : props.theme.gallery.text.color.primary};
     position: absolute;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
     width: 100%;
-    font-size: 16px;
+    font-size: ${(props) => props.theme.fonts.searchEntry.description.size};
 `
 
 interface ImageGalleryProps {
