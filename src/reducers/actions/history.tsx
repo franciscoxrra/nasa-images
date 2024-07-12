@@ -14,9 +14,12 @@ const resetHistory = (): ResetHistory => ({
 export const useAddToHistory = () => {
     const dispatch = useDispatch()
 
-    return useCallback((expression: string, date: Date) => {
-        dispatch(addToHistory(expression, date))
-    }, [])
+    return useCallback(
+        (expression: string, date: Date) => {
+            dispatch(addToHistory(expression, date))
+        },
+        [dispatch]
+    )
 }
 
 export const useResetHistory = () => {
@@ -24,5 +27,5 @@ export const useResetHistory = () => {
 
     return useCallback(() => {
         dispatch(resetHistory())
-    }, [])
+    }, [dispatch])
 }

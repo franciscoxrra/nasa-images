@@ -3,13 +3,16 @@ import { RouteMap } from "./RouteMap"
 import { ThemeProvider } from "@emotion/react"
 import { theme } from "./theme/theme"
 import { GlobalStyles } from "./theme/GlobalStyles"
+import ViewportDimensionsProvider from "./contexts/ViewportDimensions"
 
 const App = () => (
     <ThemeProvider theme={theme}>
         <GlobalStyles />
-        <BrowserRouter>
-            <RouteMap />
-        </BrowserRouter>
+        <ViewportDimensionsProvider>
+            <BrowserRouter>
+                <RouteMap />
+            </BrowserRouter>
+        </ViewportDimensionsProvider>
     </ThemeProvider>
 )
 

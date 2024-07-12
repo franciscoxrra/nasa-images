@@ -6,6 +6,15 @@ import {
     useState
 } from "react"
 import { useNavigate } from "react-router-dom"
+import styled from "@emotion/styled"
+
+const Container = styled.form`
+    label: SearchForm;
+
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+`
 
 interface SearchFormProps {
     initialValue?: string
@@ -37,7 +46,7 @@ export const SearchForm = ({ initialValue = "" }: SearchFormProps) => {
     )
 
     return (
-        <form onSubmit={formOnSubmit}>
+        <Container onSubmit={formOnSubmit}>
             <input
                 type="text"
                 placeholder="milkyway, moon, ..."
@@ -45,6 +54,6 @@ export const SearchForm = ({ initialValue = "" }: SearchFormProps) => {
                 onChange={fieldOnChange}
             />
             <button type="submit">search</button>
-        </form>
+        </Container>
     )
 }

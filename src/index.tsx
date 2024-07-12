@@ -16,6 +16,7 @@ import { store } from "./reducers/store"
 // TODO GlobalStyles, ThemeProvider
 // TODO ErrorBoundary, ErrorFatal
 // TODO Sentry setup
+// TODO Sentry feedback form
 // TODO mobile style
 // TODO image loader
 // TODO set search for images only
@@ -24,6 +25,7 @@ import { store } from "./reducers/store"
 // TODO add Next.js
 // TODO re-read/remove comments (public too)
 // TODO check usability labels, tabbing, text-to-speech, etc
+// TODO e2e testing
 
 const root = ReactDOM.createRoot(document.getElementById("root") as HTMLElement)
 

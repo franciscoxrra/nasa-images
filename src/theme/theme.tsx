@@ -32,6 +32,9 @@ export const theme = {
         }
     },
     gallery: {
+        header: {
+            height: "3rem"
+        },
         gap: {
             vertical: "1.5rem",
             horizontal: "1rem"

@@ -6,8 +6,17 @@ import { Page } from "../components/Page/Page"
 import { useSearchImagesWithHistory } from "../hooks/searchImagesWithHistory"
 import { useNavigate, useParams } from "react-router-dom"
 import { mainPath, searchExpressionVar } from "../util/paths"
-import { useEffect } from "react"
+import React, { useEffect } from "react"
 import { pageName } from "../util/constants"
+import styled from "@emotion/styled"
+
+// TODO add css to theme
+
+const Logo = styled.img`
+    label: Logo;
+
+    height: 5rem;
+`
 
 type Params = {
     [searchExpressionVar]: string
@@ -26,11 +35,11 @@ export const SearchResults = () => {
         } else {
             navigate(mainPath)
         }
-    }, [searchExpression])
+    }, [navigate, searchExpression, searchForExpression])
 
     return (
         <Page>
-            <h1>{pageName}</h1>
+            <Logo src="/logo512_horizontal.png" alt={pageName} />
             <SearchForm initialValue={searchExpression} />
             {error && <ErrorMessage error={error} />}
             {isLoading ? (
