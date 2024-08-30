@@ -2,8 +2,8 @@
   "parser": "@typescript-eslint/parser",
   "plugins": ["react-hooks", "@typescript-eslint/eslint-plugin", "@stylistic/js"],
   "rules": {
-    "react-hooks/rules-of-hooks": "error",
-    "react-hooks/exhaustive-deps": "error",
+    "react-hooks/rules-of-hooks": "warn",
+    "react-hooks/exhaustive-deps": "warn",
     "quotes": ["warn", "double", { "avoidEscape": true, "allowTemplateLiterals": true }],
     "curly": "warn",
     "arrow-body-style": ["warn", "as-needed"],

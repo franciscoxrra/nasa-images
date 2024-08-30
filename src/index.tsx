@@ -19,6 +19,7 @@ import { store } from "./reducers/store"
 // TODO Sentry feedback form
 // TODO mobile style
 // TODO image loader
+// TODO search loader
 // TODO set search for images only
 // TODO entry page (can it be done?)
 // TODO look into webvitals and jest
@@ -26,6 +27,8 @@ import { store } from "./reducers/store"
 // TODO re-read/remove comments (public too)
 // TODO check usability labels, tabbing, text-to-speech, etc
 // TODO e2e testing
+// TODO Storybook
+// TODO Update readme
 
 const root = ReactDOM.createRoot(document.getElementById("root") as HTMLElement)
 

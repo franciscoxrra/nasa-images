@@ -45,7 +45,9 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "prepare": "husky"
+    "prepare": "husky",
+    "surge:install": "yarn global add surge",
+    "surge:deploy": "yarn build & surge build"
   },
   "husky": {
     "hooks": {

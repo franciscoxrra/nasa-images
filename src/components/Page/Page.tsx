@@ -6,18 +6,25 @@ import { FooterSection } from "./FooterSection"
 import styled from "@emotion/styled"
 import { pageName } from "../../util/constants"
 import { useViewportDimensions } from "../../contexts/ViewportDimensions"
+import { usePageScroll } from "../../contexts/PageScroll"
+
+// TODO add to theme
 
 const Container = styled.div`
     label: Page;
 `
 
-const HeaderSection = styled.div`
+const HeaderSection = styled.div<{ atPageTop: boolean }>`
     label: HeaderSection;
 
     position: fixed;
     width: 100%;
     top: 0;
     left: 0;
+    z-index: 1;
+    background-color: white;
+    box-shadow: ${(props) =>
+        props.atPageTop ? "none" : "0 2px 2px 0 #777777"};
 `
 
 const BodySection = styled.div<{ headerHeight: number }>`
@@ -47,6 +54,7 @@ export const Page = ({
     const [height, setHeight] = useState(0)
     const $header = useRef<HTMLDivElement>(null)
     const { windowWidth, windowHeight } = useViewportDimensions()
+    const { scrollY } = usePageScroll()
 
     useEffect(() => {
         if ($header.current) {
@@ -63,7 +71,9 @@ export const Page = ({
                 </title>
             </Helmet>
             <Container className={className}>
-                <HeaderSection ref={$header}>{header}</HeaderSection>
+                <HeaderSection ref={$header} atPageTop={scrollY === 0}>
+                    {header}
+                </HeaderSection>
                 <BodySection headerHeight={height}>{children}</BodySection>
                 <FooterSection />
             </Container>

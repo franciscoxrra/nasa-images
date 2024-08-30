@@ -1,5 +1,5 @@
 import React, { useCallback, useState } from "react"
-import { nasaImagesSearchUrl } from "../util/constants"
+import { nasaImagesSearchUrl, resultsPerPage } from "../util/constants"
 
 interface Link {
     href: string
@@ -31,6 +31,10 @@ interface ImagesRaw {
     }
 }
 
+interface ImagesError {
+    reason: string
+}
+
 export interface Image {
     previewUrl: string
     originalUrl: string
@@ -48,6 +52,13 @@ export interface ImagesData {
     pageSize: number
 }
 
+const checkResponse = async (response: Response) => {
+    if (response.status < 200 || response.status >= 300) {
+        const json: ImagesError = await response.json()
+        throw new Error(json.reason)
+    }
+}
+
 type ParameterKey = "query" | "id"
 
 const previewImagePrefix = "~thumb."
@@ -60,10 +71,12 @@ const searchImages = async (
     setIsLoading: React.Dispatch<React.SetStateAction<boolean>>,
     setError: React.Dispatch<React.SetStateAction<Error | null>>,
     page: number = 1,
-    pageSize: number = 50
+    pageSize: number = resultsPerPage
 ) => {
     if (parameterValue === "") {
         setImagesData(null)
+        setIsLoading(false)
+        setError(null)
     } else {
         try {
             const url = new URL(nasaImagesSearchUrl)
@@ -79,7 +92,9 @@ const searchImages = async (
             url.searchParams.set("page_size", `${pageSize}`)
 
             setIsLoading(true)
+            setError(null)
             const fetchResponse = await fetch(url.href)
+            await checkResponse(fetchResponse)
             const json: ImagesRaw = await fetchResponse.json()
             const images =
                 json.collection?.items.reduce((acc: Image[], item) => {
@@ -121,6 +136,8 @@ const searchImages = async (
             )
             setIsLoading(false)
         } catch (e) {
+            setImagesData(null)
+            setIsLoading(false)
             if (e instanceof Error) {
                 setError(e)
             } else {
@@ -136,9 +153,22 @@ export const useSearchImages = () => {
     const [error, setError] = useState<Error | null>(null)
 
     const searchForExpression = useCallback(
-        (key: ParameterKey, expression: string) => {
+        (
+            key: ParameterKey,
+            expression: string,
+            page: number = 1,
+            pageSize: number = resultsPerPage
+        ) => {
             setError(null)
-            searchImages(key, expression, setImagesData, setIsLoading, setError)
+            searchImages(
+                key,
+                expression,
+                setImagesData,
+                setIsLoading,
+                setError,
+                page,
+                pageSize
+            )
         },
         []
     )

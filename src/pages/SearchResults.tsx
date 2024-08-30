@@ -1,22 +1,13 @@
-import { SearchForm } from "../components/Search/SearchForm"
 import { ErrorMessage } from "../components/Search/ErrorMessage"
 import { Loading } from "../components/Search/Loading"
 import { ImageGallery } from "../components/Search/ImageGallery"
 import { Page } from "../components/Page/Page"
 import { useSearchImagesWithHistory } from "../hooks/searchImagesWithHistory"
-import { useNavigate, useParams } from "react-router-dom"
+import { useNavigate, useParams, useLocation } from "react-router-dom"
 import { mainPath, searchExpressionVar } from "../util/paths"
-import React, { useEffect } from "react"
-import { pageName } from "../util/constants"
-import styled from "@emotion/styled"
-
-// TODO add css to theme
-
-const Logo = styled.img`
-    label: Logo;
-
-    height: 5rem;
-`
+import React, { useEffect, useMemo } from "react"
+import { SearchHeader } from "../components/Page/SearchHeader"
+import { nasaApiPageCap, resultsPerPage } from "../util/constants"
 
 type Params = {
     [searchExpressionVar]: string
@@ -24,28 +15,50 @@ type Params = {
 
 export const SearchResults = () => {
     const navigate = useNavigate()
-    const searchExpression = useParams<Params>()[searchExpressionVar]
+    const expression = useParams<Params>()[searchExpressionVar]
+
+    // TODO clean mess below
+    // TODO update page title (eg: "Space Images - moon - page 2")
+    const location = useLocation()
+    const searchParams = new URLSearchParams(location.search)
+    const pageParam = searchParams.get("page")
+    const page = pageParam && /^\d+$/.test(pageParam) ? parseInt(pageParam) : 1
 
     const { searchForExpression, imagesData, isLoading, error } =
         useSearchImagesWithHistory()
 
     useEffect(() => {
-        if (typeof searchExpression === "string") {
-            searchForExpression(searchExpression)
+        if (typeof expression === "string") {
+            // This could cause history duplication in dev environment if react StrictMode is on
+            searchForExpression(expression, page, resultsPerPage)
         } else {
             navigate(mainPath)
         }
-    }, [navigate, searchExpression, searchForExpression])
+    }, [navigate, expression, searchForExpression, page])
+
+    const header = useMemo(
+        () => <SearchHeader initialValue={expression} />,
+        [expression]
+    )
 
     return (
-        <Page>
-            <Logo src="/logo512_horizontal.png" alt={pageName} />
-            <SearchForm initialValue={searchExpression} />
+        <Page header={header}>
             {error && <ErrorMessage error={error} />}
             {isLoading ? (
                 <Loading />
             ) : imagesData ? (
-                <ImageGallery images={imagesData.images} />
+                <>
+                    {" "}
+                    {/* TODO Update this component and pagination*/}
+                    <ImageGallery images={imagesData.images} />
+                    {imagesData?.totalResults &&
+                        Math.min(
+                            Math.ceil(
+                                imagesData?.totalResults / imagesData?.pageSize
+                            ),
+                            nasaApiPageCap
+                        )}
+                </>
             ) : (
                 "Type anything in the search field"
             )}
