@@ -1,4 +1,13 @@
 // Could come from a server
+
+const searchButtonHeightRem = 3
+const searchFieldPaddingRem = 0.5
+const searchFieldBorderWidthRem = 0.1
+const searchFieldLineHeightRem =
+    searchButtonHeightRem -
+    2 * searchFieldPaddingRem -
+    2 * searchFieldBorderWidthRem
+
 export const theme = {
     colors: {
         primary: "#000000",
@@ -23,6 +32,17 @@ export const theme = {
             }
         }
     },
+    search: {
+        button: {
+            height: `${searchButtonHeightRem}rem`
+        },
+        field: {
+            lineHeight: `${searchFieldLineHeightRem}rem`,
+            padding: `${searchFieldPaddingRem}rem`,
+            borderWidth: `${searchFieldBorderWidthRem}rem`,
+            borderRadius: "0.3rem"
+        }
+    },
     layout: {
         header: {
             height: "3rem"
@@ -36,7 +56,7 @@ export const theme = {
             height: "3rem"
         },
         gap: {
-            vertical: "1.5rem",
+            vertical: "0.7rem",
             horizontal: "1rem"
         },
         minWidth: "12rem",
@@ -45,6 +65,10 @@ export const theme = {
             height: "18rem",
             borderRadius: "1rem",
             backgroundColor: "#dddddd"
+        },
+        entry: {
+            padding: "0.3rem",
+            borderWidth: "0.2rem"
         },
         text: {
             height: "4rem",

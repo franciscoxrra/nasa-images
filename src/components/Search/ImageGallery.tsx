@@ -29,6 +29,14 @@ const ResultEntry = styled.div`
     flex-grow: 1;
     gap: ${(props) => props.theme.gallery.gap.horizontal};
     max-width: ${(props) => props.theme.gallery.maxWidth};
+    border: ${(props) => props.theme.gallery.entry.borderWidth} solid
+        ${(props) => props.theme.backgroundColors.primary};
+    padding: ${(props) => props.theme.gallery.entry.padding};
+
+    &:hover {
+        border: ${(props) => props.theme.gallery.entry.borderWidth} solid
+            ${(props) => props.theme.colors.tertiary};
+    }
 `
 
 const ImageSection = styled.div`

@@ -14,13 +14,29 @@ const Container = styled.form`
     display: flex;
     justify-content: center;
     gap: 1rem;
+
+    input[type="text"] {
+        width: 40rem;
+        line-height: ${(props) => props.theme.search.field.lineHeight};
+        padding: ${(props) => props.theme.search.field.padding};
+        border-width: ${(props) => props.theme.search.field.borderWidth};
+        border-radius: ${(props) => props.theme.search.field.borderRadius};
+    }
+
+    button {
+        height: ${(props) => props.theme.search.button.height};
+    }
 `
 
 interface SearchFormProps {
     initialValue?: string
+    className?: string
 }
 
-export const SearchForm = ({ initialValue = "" }: SearchFormProps) => {
+export const SearchForm = ({
+    initialValue = "",
+    className
+}: SearchFormProps) => {
     const navigate = useNavigate()
     const [fieldValue, setFieldValue] = useState(initialValue)
 
@@ -46,7 +62,7 @@ export const SearchForm = ({ initialValue = "" }: SearchFormProps) => {
     )
 
     return (
-        <Container onSubmit={formOnSubmit}>
+        <Container onSubmit={formOnSubmit} className={className}>
             <input
                 type="text"
                 placeholder="milkyway, moon, ..."
