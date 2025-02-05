@@ -1,7 +1,15 @@
+import styled from "@emotion/styled"
+
 interface ErrorMessageProps {
     error: Error
 }
 
-export const ErrorMessage = ({ error }: ErrorMessageProps) => (
-    <div>{error.message}</div>
+const Container = styled.div`
+    label: ErrorMessage;
+`
+
+export const ErrorMessage = ({
+    error
+}: ErrorMessageProps) => (
+    <Container>{error.message}</Container>
 )

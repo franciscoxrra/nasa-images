@@ -3,4 +3,7 @@ export const mainPath = "/"
 export const searchExpressionVar = "searchExpression"
 export const makeParam = (param: string) => `:${param}`
 
-export const getSearchPath = (expression: string) => `/search/${expression}`
+export const getSearchPath = (expression: string) =>
+    `/search/${expression}`
+
+export const pageParamName = "page"

@@ -1,5 +1,9 @@
 import React, { useCallback, useState } from "react"
-import { nasaImagesSearchUrl, resultsPerPage } from "../util/constants"
+import {
+    apiPageCap,
+    nasaImagesSearchUrl,
+    resultsPerPage
+} from "../util/constants"
 
 interface Link {
     href: string
@@ -67,13 +71,26 @@ const originalImagePrefix = "~orig."
 const searchImages = async (
     parameterKey: ParameterKey,
     parameterValue: string,
-    setImagesData: React.Dispatch<React.SetStateAction<ImagesData | null>>,
-    setIsLoading: React.Dispatch<React.SetStateAction<boolean>>,
-    setError: React.Dispatch<React.SetStateAction<Error | null>>,
+    setImagesData: React.Dispatch<
+        React.SetStateAction<ImagesData | null>
+    >,
+    setIsLoading: React.Dispatch<
+        React.SetStateAction<boolean>
+    >,
+    setError: React.Dispatch<
+        React.SetStateAction<Error | null>
+    >,
     page: number = 1,
-    pageSize: number = resultsPerPage
+    pageSize: number = resultsPerPage,
+    maxPage: number = 100
 ) => {
-    if (parameterValue === "") {
+    if (page > maxPage) {
+        setImagesData(null)
+        setIsLoading(false)
+        setError(
+            new Error("Search result page not available")
+        )
+    } else if (parameterValue === "") {
         setImagesData(null)
         setIsLoading(false)
         setError(null)
@@ -83,9 +100,15 @@ const searchImages = async (
             url.searchParams.set("media_type", "image")
 
             if (parameterKey === "id") {
-                url.searchParams.set("nasa_id", encodeURI(parameterValue))
+                url.searchParams.set(
+                    "nasa_id",
+                    encodeURI(parameterValue)
+                )
             } else {
-                url.searchParams.set("q", encodeURI(parameterValue))
+                url.searchParams.set(
+                    "q",
+                    encodeURI(parameterValue)
+                )
             }
 
             url.searchParams.set("page", `${page}`)
@@ -93,42 +116,64 @@ const searchImages = async (
 
             setIsLoading(true)
             setError(null)
-            const fetchResponse = await fetch(url.href)
+            const fetchResponse = await fetch(url.href, {
+                cache: "no-cache"
+            })
             await checkResponse(fetchResponse)
-            const json: ImagesRaw = await fetchResponse.json()
+            const json: ImagesRaw =
+                await fetchResponse.json()
             const images =
-                json.collection?.items.reduce((acc: Image[], item) => {
-                    const data = item.data[0]
-                    const link = item.links?.find(
-                        (link) =>
-                            link?.render === "image" &&
-                            link.href.includes(previewImagePrefix)
-                    )
-                    if (data?.media_type === "image" && link) {
-                        return [
-                            ...acc,
-                            {
-                                previewUrl: link.href,
-                                originalUrl: link.href.replace(
-                                    previewImagePrefix,
-                                    originalImagePrefix
-                                ),
-                                title: data.title,
-                                description: data.description,
-                                truncated_description:
-                                    data.description?.substring(0, 80),
-                                id: data.nasa_id,
-                                keywords: data.keywords
-                            }
-                        ]
-                    }
-                    return acc
-                }, []) || null
+                json.collection?.items.reduce(
+                    (acc: Image[], item) => {
+                        const data = item.data[0]
+                        const link = item.links?.find(
+                            (link) =>
+                                link?.render === "image" &&
+                                link.href.includes(
+                                    previewImagePrefix
+                                )
+                        )
+                        if (
+                            data?.media_type === "image" &&
+                            link
+                        ) {
+                            return [
+                                ...acc,
+                                {
+                                    previewUrl: link.href,
+                                    originalUrl:
+                                        link.href.replace(
+                                            previewImagePrefix,
+                                            originalImagePrefix
+                                        ),
+                                    title: data.title,
+                                    description:
+                                        data.description,
+                                    truncated_description:
+                                        data.description?.substring(
+                                            0,
+                                            80
+                                        ),
+                                    id: data.nasa_id,
+                                    keywords: data.keywords
+                                }
+                            ]
+                        }
+                        return acc
+                    },
+                    []
+                ) || null
+            const maxResults = maxPage * pageSize
             setImagesData(
                 images
                     ? {
                           images,
-                          totalResults: json.collection?.metadata?.total_hits,
+                          totalResults: Math.min(
+                              json.collection?.metadata
+                                  ?.total_hits ||
+                                  maxResults,
+                              maxResults
+                          ),
                           page,
                           pageSize
                       }
@@ -141,14 +186,17 @@ const searchImages = async (
             if (e instanceof Error) {
                 setError(e)
             } else {
-                setError(new Error("An unknown error occurred"))
+                setError(
+                    new Error("An unknown error occurred")
+                )
             }
         }
     }
 }
 
 export const useSearchImages = () => {
-    const [imagesData, setImagesData] = useState<ImagesData | null>(null)
+    const [imagesData, setImagesData] =
+        useState<ImagesData | null>(null)
     const [isLoading, setIsLoading] = useState(false)
     const [error, setError] = useState<Error | null>(null)
 
@@ -157,7 +205,8 @@ export const useSearchImages = () => {
             key: ParameterKey,
             expression: string,
             page: number = 1,
-            pageSize: number = resultsPerPage
+            pageSize: number = resultsPerPage,
+            maxPage = apiPageCap
         ) => {
             setError(null)
             searchImages(
@@ -167,7 +216,8 @@ export const useSearchImages = () => {
                 setIsLoading,
                 setError,
                 page,
-                pageSize
+                pageSize,
+                maxPage
             )
         },
         []

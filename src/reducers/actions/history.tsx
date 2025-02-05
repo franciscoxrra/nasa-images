@@ -1,10 +1,21 @@
 import { useDispatch } from "react-redux"
 import { useCallback } from "react"
-import { AddToHistory, ResetHistory } from "../history/historyReducer"
+import {
+    AddToHistory,
+    ResetHistory
+} from "../history/historyReducer"
 
-const addToHistory = (expression: string, date: Date): AddToHistory => ({
+const addToHistory = (
+    expression: string,
+    lastViewedPage: number,
+    date: Date
+): AddToHistory => ({
     type: "history/add",
-    payload: { expression, date: date.toISOString() }
+    payload: {
+        expression,
+        lastViewPage: lastViewedPage,
+        lastViewDate: date.toISOString()
+    }
 })
 
 const resetHistory = (): ResetHistory => ({
@@ -15,8 +26,18 @@ export const useAddToHistory = () => {
     const dispatch = useDispatch()
 
     return useCallback(
-        (expression: string, date: Date) => {
-            dispatch(addToHistory(expression, date))
+        (
+            expression: string,
+            lastViewedPage: number,
+            date: Date
+        ) => {
+            dispatch(
+                addToHistory(
+                    expression,
+                    lastViewedPage,
+                    date
+                )
+            )
         },
         [dispatch]
     )
