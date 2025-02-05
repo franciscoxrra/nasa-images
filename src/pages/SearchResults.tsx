@@ -14,7 +14,7 @@ import {
     searchExpressionVar
 } from "../util/paths"
 import React, { useEffect, useMemo } from "react"
-import { SearchHeader } from "../components/Page/SearchHeader"
+import { SearchHeader } from "../components/Page/Sections/SearchHeader"
 import {
     apiPageCap,
     resultsPerPage

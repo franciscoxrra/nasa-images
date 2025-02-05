@@ -1,5 +1,5 @@
-import { pageName } from "../../util/constants"
-import { SearchForm } from "../Search/SearchForm"
+import { pageName } from "../../../util/constants"
+import { SearchForm } from "../../Search/SearchForm"
 import React from "react"
 import styled from "@emotion/styled"
 
@@ -31,9 +31,14 @@ interface SearchHeaderProps {
     initialValue?: string
 }
 
-export const SearchHeader = ({ initialValue = "" }: SearchHeaderProps) => (
+export const SearchHeader = ({
+    initialValue = ""
+}: SearchHeaderProps) => (
     <Container>
-        <Logo src="/logo512_horizontal.png" alt={pageName} />
+        <Logo
+            src="/logo512_horizontal.png"
+            alt={pageName}
+        />
         <ResultSearchForm initialValue={initialValue} />
     </Container>
 )
