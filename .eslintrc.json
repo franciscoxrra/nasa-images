@@ -21,7 +21,12 @@
         "ignoreRestSiblings": false
       }
     ],
-    "no-console": "warn"
+    "no-console": "warn",
+    "no-restricted-imports": ["error", { "paths": [{
+      "name": "react-redux",
+      "importNames": ["useDispatch"],
+      "message": "Use existing hooks."
+    }]}]
   },
   "extends": [
     "prettier"

@@ -1,3 +1,4 @@
+/* eslint-disable no-restricted-imports */
 import { useDispatch } from "react-redux"
 import { useCallback } from "react"
 import {

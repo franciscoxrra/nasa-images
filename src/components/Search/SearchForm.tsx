@@ -8,6 +8,10 @@ import {
 import { useNavigate } from "react-router-dom"
 import styled from "@emotion/styled"
 import { SearchResultsLocationState } from "../../pages/SearchResults"
+import { useSelector } from "react-redux"
+import { selectHistory } from "../../reducers/history/historyReducer"
+import { HistoryButton } from "./HistoryButton"
+import { getSearchPath } from "../../util/paths"
 
 const Container = styled.form`
     label: SearchForm;
@@ -46,6 +50,9 @@ export const SearchForm = ({
     const navigate = useNavigate()
     const [fieldValue, setFieldValue] =
         useState(initialValue)
+    const searchHistory = useSelector(selectHistory)
+    const hasSearchHistory =
+        searchHistory.previousSearchExpressions.length > 0
 
     useEffect(() => {
         setFieldValue(initialValue)
@@ -66,7 +73,7 @@ export const SearchForm = ({
                 timestamp: Date.now()
             }
             if (fieldValue !== "") {
-                navigate(`/search/${fieldValue}`, {
+                navigate(getSearchPath(fieldValue), {
                     state
                 })
             }
@@ -86,6 +93,7 @@ export const SearchForm = ({
                 onChange={fieldOnChange}
             />
             <button type="submit">search</button>
+            {hasSearchHistory && <HistoryButton />}
         </Container>
     )
 }

@@ -5,6 +5,7 @@ import { theme } from "./theme/theme"
 import { GlobalStyles } from "./theme/GlobalStyles"
 import ViewportDimensionsProvider from "./contexts/ViewportDimensions"
 import PageScrollProvider from "./contexts/PageScroll"
+import { ModalSystem } from "./components/ModalSystem/ModalSystem"
 
 const App = () => (
     <ThemeProvider theme={theme}>
@@ -12,7 +13,9 @@ const App = () => (
         <ViewportDimensionsProvider>
             <PageScrollProvider>
                 <BrowserRouter>
-                    <RouteMap />
+                    <ModalSystem>
+                        <RouteMap />
+                    </ModalSystem>
                 </BrowserRouter>
             </PageScrollProvider>
         </ViewportDimensionsProvider>

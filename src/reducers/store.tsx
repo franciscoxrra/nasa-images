@@ -1,13 +1,19 @@
-import { combineReducers, configureStore } from "@reduxjs/toolkit"
+import {
+    combineReducers,
+    configureStore
+} from "@reduxjs/toolkit"
 import { isEnvProduction } from "../util/constants"
 import { historyReducer } from "./history/historyReducer"
 import { throttle } from "throttle-debounce"
+import { modalReducer } from "./modal/modalReducer"
 
 const localStorageStateKey = "state"
 
 const loadState = () => {
     try {
-        const serializedState = localStorage.getItem(localStorageStateKey)
+        const serializedState = localStorage.getItem(
+            localStorageStateKey
+        )
         if (serializedState === null) {
             return undefined
         }
@@ -21,7 +27,10 @@ const saveState = (state: State) => {
     try {
         const { /*config:_,*/ ...savableState } = state // TODO remove once unnecessary slices removed
         const serializedState = JSON.stringify(savableState)
-        localStorage.setItem(localStorageStateKey, serializedState)
+        localStorage.setItem(
+            localStorageStateKey,
+            serializedState
+        )
     } catch (err) {
         // Ignore write errors.
     }
@@ -29,7 +38,8 @@ const saveState = (state: State) => {
 
 export const store = configureStore({
     reducer: combineReducers({
-        history: historyReducer
+        history: historyReducer,
+        modal: modalReducer
     }),
     devTools: !isEnvProduction,
     preloadedState: loadState()

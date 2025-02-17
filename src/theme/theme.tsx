@@ -12,11 +12,13 @@ export const theme = {
     colors: {
         primary: "#000000",
         secondary: "#ffffff",
-        tertiary: "#aaaaaa"
+        tertiary: "#aaaaaa",
+        link: "#5555ff"
     },
     backgroundColors: {
         primary: "#ffffff",
-        secondary: "#000000"
+        secondary: "#000000",
+        grayout: "#aaaaaaaa"
     },
     fonts: {
         remRatio: "10px",
@@ -30,6 +32,11 @@ export const theme = {
             description: {
                 size: "1.6rem"
             }
+        },
+        sizes: {
+            regular: "1.4rem",
+            big: "1.8rem",
+            biggest: "2.4rem"
         }
     },
     search: {

@@ -20,8 +20,8 @@ const Logo = styled.img`
     height: 5rem;
 `
 
-const ResultSearchForm = styled(SearchForm)`
-    label: ResultSearchForm;
+const HeaderSearchForm = styled(SearchForm)`
+    label: HeaderSearchForm;
 
     justify-content: left;
     align-items: center;
@@ -39,6 +39,6 @@ export const SearchHeader = ({
             src="/logo512_horizontal.png"
             alt={pageName}
         />
-        <ResultSearchForm initialValue={initialValue} />
+        <HeaderSearchForm initialValue={initialValue} />
     </Container>
 )
