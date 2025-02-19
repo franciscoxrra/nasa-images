@@ -1,5 +1,5 @@
 import { BrowserRouter } from "react-router-dom"
-import { RouteMap } from "./RouteMap"
+import { RouteMap } from "./pages/RouteMap"
 import { ThemeProvider } from "@emotion/react"
 import { theme } from "./theme/theme"
 import { GlobalStyles } from "./theme/GlobalStyles"

@@ -6,9 +6,11 @@ import { useSearchImagesWithHistory } from "../hooks/searchImagesWithHistory"
 import {
     useNavigate,
     useParams,
-    useLocation
+    useLocation,
+    useSearchParams
 } from "react-router-dom"
 import {
+    itemParamName,
     mainPath,
     pageParamName,
     searchExpressionVar
@@ -20,10 +22,44 @@ import {
     resultsPerPage
 } from "../util/constants"
 import { ResultsPageSwitcher } from "../components/Search/ResultsPageSwitcher"
+import styled from "@emotion/styled"
+import { css } from "@emotion/react"
+import { ImageProfile } from "../components/Search/ImageProfile"
 
 type Params = {
     [searchExpressionVar]: string
 }
+
+const SearchResultsBody = styled.div`
+    label: SearchResultsBody;
+
+    display: grid;
+    gap: 1rem;
+    margin-bottom: 1rem;
+`
+
+const GalleryContainer = styled.div<{
+    hasItem: boolean
+}>`
+    label: GalleryContainer;
+
+    display: grid;
+    ${(props) =>
+        props.hasItem
+            ? css`
+                  grid-template-columns: auto minmax(
+                          55%,
+                          max-content
+                      );
+              `
+            : css`
+                  grid-template-columns: auto;
+              `}
+`
+
+const NavPages = styled.div`
+    label: NavPages;
+`
 
 // TODO make maxPage/apiPageCap and other cases uniform
 
@@ -41,14 +77,14 @@ export const SearchResults = () => {
     const location = useLocation()
     const locationState: SearchResultsLocationState | null =
         location.state
-    const searchParams = new URLSearchParams(
-        location.search
-    )
+    const [searchParams] = useSearchParams()
     const pageParam = searchParams.get(pageParamName)
     const page =
         (pageParam && /^\d+$/.test(pageParam)
             ? parseInt(pageParam)
             : 1) || 1
+    const item = searchParams.get(itemParamName)
+    const hasItem = item !== null
 
     const {
         searchForExpression,
@@ -94,22 +130,28 @@ export const SearchResults = () => {
             {isLoading ? (
                 <Loading />
             ) : imagesData ? (
-                <>
+                <SearchResultsBody>
                     {" "}
                     {/* TODO Update this component and pagination*/}
-                    <ImageGallery
-                        images={imagesData.images}
-                    />
-                    <ResultsPageSwitcher
-                        page={page}
-                        totalResults={
-                            imagesData?.totalResults
-                        }
-                        pageSize={imagesData.pageSize}
-                    />
-                    {totalNumberOfPages &&
-                        `Total numbers of pages: ${totalNumberOfPages}`}
-                </>
+                    <GalleryContainer hasItem={hasItem}>
+                        <ImageGallery
+                            images={imagesData.images}
+                            selectedItem={item}
+                        />
+                        {hasItem && <ImageProfile />}
+                    </GalleryContainer>
+                    <NavPages>
+                        <ResultsPageSwitcher
+                            page={page}
+                            totalResults={
+                                imagesData?.totalResults
+                            }
+                            pageSize={imagesData.pageSize}
+                        />
+                        {totalNumberOfPages &&
+                            `Total numbers of pages: ${totalNumberOfPages}`}
+                    </NavPages>
+                </SearchResultsBody>
             ) : (
                 "Type anything in the search field"
             )}

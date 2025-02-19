@@ -1,4 +1,4 @@
-import { PageSwitchButton } from "./PageSwitchButton"
+import { NavPageButton } from "./NavPageButton"
 import styled from "@emotion/styled"
 
 const totalDirectPageNumbers = 9
@@ -19,9 +19,9 @@ const SequentialPageNumberLinks = ({
         {[...Array(totalLinks)].map((_, index) => {
             const page = start + index
             return (
-                <PageSwitchButton page={page} key={page}>
+                <NavPageButton page={page} key={page}>
                     {page}
-                </PageSwitchButton>
+                </NavPageButton>
             )
         })}
     </>

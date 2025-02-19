@@ -18,6 +18,7 @@ export const theme = {
     backgroundColors: {
         primary: "#ffffff",
         secondary: "#000000",
+        tertiary: "#eeeeee",
         grayout: "#aaaaaaaa"
     },
     fonts: {

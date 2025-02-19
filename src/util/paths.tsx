@@ -10,3 +10,5 @@ export const getSearchPath = (
     `/search/${expression}${typeof page === "number" && page > 1 ? `?page=${page}` : ""}`
 
 export const pageParamName = "page"
+
+export const itemParamName = "item"

@@ -1,4 +1,4 @@
-import { PageSwitchButton } from "./PageSwitchButton"
+import { NavPageButton } from "./NavPageButton"
 import styled from "@emotion/styled"
 import { DirectPageNumbers } from "./DirectPageNumbers"
 
@@ -31,18 +31,18 @@ export const ResultsPageSwitcher = ({
     return (
         <Container>
             {page > 1 && (
-                <PageSwitchButton page={page - 1}>
+                <NavPageButton page={page - 1}>
                     previous
-                </PageSwitchButton>
+                </NavPageButton>
             )}
             <DirectPageNumbers
                 page={page}
                 totalPages={totalPages}
             />
             {page < totalPages && (
-                <PageSwitchButton page={page + 1}>
+                <NavPageButton page={page + 1}>
                     next
-                </PageSwitchButton>
+                </NavPageButton>
             )}
         </Container>
     )

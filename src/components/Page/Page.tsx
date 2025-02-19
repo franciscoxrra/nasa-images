@@ -1,4 +1,9 @@
-import React, { useEffect, useRef, useState } from "react"
+import React, {
+    createContext,
+    useEffect,
+    useRef,
+    useState
+} from "react"
 import { Helmet } from "react-helmet"
 import { useVersionCheckAndRefresh } from "../../hooks/versionCheckAndRefresh"
 import { DefaultHeader } from "./Sections/DefaultHeader"
@@ -9,6 +14,10 @@ import { useViewportDimensions } from "../../contexts/ViewportDimensions"
 import { usePageScroll } from "../../contexts/PageScroll"
 
 // TODO add to theme
+
+export const PageContext = createContext<{
+    headerHeight: number
+}>({ headerHeight: 0 })
 
 const Container = styled.div`
     label: Page;
@@ -73,18 +82,22 @@ export const Page = ({
                     {subTitle ? ` | ${subTitle}` : ""}
                 </title>
             </Helmet>
-            <Container className={className}>
-                <HeaderSection
-                    ref={$header}
-                    atPageTop={scrollY === 0}
-                >
-                    {header}
-                </HeaderSection>
-                <BodySection headerHeight={height}>
-                    {children}
-                </BodySection>
-                <FooterSection />
-            </Container>
+            <PageContext.Provider
+                value={{ headerHeight: height }}
+            >
+                <Container className={className}>
+                    <HeaderSection
+                        ref={$header}
+                        atPageTop={scrollY === 0}
+                    >
+                        {header}
+                    </HeaderSection>
+                    <BodySection headerHeight={height}>
+                        {children}
+                    </BodySection>
+                    <FooterSection />
+                </Container>
+            </PageContext.Provider>
         </>
     )
 }
