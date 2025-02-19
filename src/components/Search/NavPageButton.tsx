@@ -1,23 +1,7 @@
 import { useSearchParams } from "react-router-dom"
 import { ReactNode, useCallback } from "react"
 import { pageParamName } from "../../util/paths"
-import styled from "@emotion/styled"
-
-const Container = styled.button`
-    label: NavPageButton;
-
-    background: none;
-    color: ${(props) => props.theme.colors.link};
-    border: none;
-    padding: 0;
-    font: inherit;
-    cursor: pointer;
-    outline: inherit;
-
-    &:hover {
-        text-decoration: underline;
-    }
-`
+import { LinkButton } from "../common/LinkButton"
 
 interface NavPageButtonProps {
     page: number
@@ -36,6 +20,8 @@ export const NavPageButton = ({
         })
     }, [page, setSearchParams])
     return (
-        <Container onClick={onClick}>{children}</Container>
+        <LinkButton onClick={onClick}>
+            {children}
+        </LinkButton>
     )
 }

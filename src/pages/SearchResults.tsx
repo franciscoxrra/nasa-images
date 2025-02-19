@@ -47,10 +47,7 @@ const GalleryContainer = styled.div<{
     ${(props) =>
         props.hasItem
             ? css`
-                  grid-template-columns: auto minmax(
-                          55%,
-                          max-content
-                      );
+                  grid-template-columns: auto 55%;
               `
             : css`
                   grid-template-columns: auto;
