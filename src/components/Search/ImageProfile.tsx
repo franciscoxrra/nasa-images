@@ -117,7 +117,7 @@ export const ImageProfile = () => {
                             <LinkButton
                                 onClick={CloseOnClick}
                             >
-                                close
+                                [close]
                             </LinkButton>
                         </TopSection>
                         <img
