@@ -1,9 +1,10 @@
 {
   "parser": "@typescript-eslint/parser",
-  "plugins": ["react-hooks", "@typescript-eslint/eslint-plugin", "@stylistic/js"],
+  "plugins": ["react", "react-hooks", "@typescript-eslint/eslint-plugin", "@stylistic/js"],
   "rules": {
     "react-hooks/rules-of-hooks": "warn",
     "react-hooks/exhaustive-deps": "warn",
+    "react/jsx-curly-brace-presence": ["warn", "never"],
     "quotes": ["warn", "double", { "avoidEscape": true, "allowTemplateLiterals": true }],
     "curly": "warn",
     "arrow-body-style": ["warn", "as-needed"],

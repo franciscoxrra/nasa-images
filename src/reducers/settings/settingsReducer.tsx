@@ -4,10 +4,12 @@ import { State } from "../store"
 
 interface SettingsState {
     resultsPerPage: number
+    maxResults: number
 }
 
 const initialState: SettingsState = {
-    resultsPerPage: 50
+    resultsPerPage: 50,
+    maxResults: 5000
 }
 
 type SettingsAction<
