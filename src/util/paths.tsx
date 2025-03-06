@@ -1,4 +1,5 @@
 export const mainPath = "/"
+export const aboutPath = "/about"
 
 export const searchExpressionVar = "searchExpression"
 export const makeParam = (param: string) => `:${param}`

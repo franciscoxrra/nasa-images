@@ -9,7 +9,7 @@ const Container = styled.div`
     label: SearchHeader;
 
     display: grid;
-    grid-template-columns: min-content auto;
+    grid-template-columns: max-content auto;
     gap: ${(props) => props.theme.layout.spacing.margin};
     margin: ${(props) => props.theme.layout.spacing.margin};
 `

@@ -3,7 +3,7 @@ import { PrefixAction } from "../util"
 import { Reducer } from "react"
 import { State } from "../store"
 
-export type ModalType = "history"
+export type ModalType = "history" | "settings"
 
 interface ModalEntry<Extra = undefined> {
     type: ModalType

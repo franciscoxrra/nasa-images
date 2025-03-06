@@ -29,7 +29,7 @@ export const HistoryModal = () => {
     return (
         <ModalContainer
             hasCloseX={true}
-            title={"Recent History"}
+            title="Recent History"
         >
             <ModalList>
                 {searchHistory.previousSearchExpressions.map(

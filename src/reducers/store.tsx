@@ -6,6 +6,7 @@ import { isEnvProduction } from "../util/constants"
 import { historyReducer } from "./history/historyReducer"
 import { throttle } from "throttle-debounce"
 import { modalReducer } from "./modal/modalReducer"
+import { settingsReducer } from "./settings/settingsReducer"
 
 const localStorageStateKey = "state"
 
@@ -39,7 +40,8 @@ const saveState = (state: State) => {
 export const store = configureStore({
     reducer: combineReducers({
         history: historyReducer,
-        modal: modalReducer
+        modal: modalReducer,
+        settings: settingsReducer
     }),
     devTools: !isEnvProduction,
     preloadedState: loadState()
