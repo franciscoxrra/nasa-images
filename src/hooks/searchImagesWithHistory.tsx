@@ -1,10 +1,6 @@
 import { useSearchImages } from "../requesters/searchImages"
 import { useAddToHistory } from "../reducers/actions/history"
 import { useCallback } from "react"
-import {
-    apiPageCap,
-    resultsPerPage
-} from "../util/constants"
 
 export const useSearchImagesWithHistory = () => {
     const {
@@ -15,17 +11,17 @@ export const useSearchImagesWithHistory = () => {
     const searchForExpression = useCallback(
         (
             expression: string,
-            page: number = 1,
-            pageSize: number = resultsPerPage,
-            maxPage = apiPageCap
+            page: number,
+            resultsPerPage: number,
+            maxResults: number
         ) => {
             addToHistory(expression, page, new Date())
             _searchForExpression(
                 "query",
                 expression,
                 page,
-                pageSize,
-                maxPage
+                resultsPerPage,
+                maxResults
             )
         },
         [_searchForExpression, addToHistory]

@@ -1,23 +1,21 @@
-import { pageName } from "../../../util/constants"
 import { SearchForm } from "../../Search/SearchForm"
 import React from "react"
 import styled from "@emotion/styled"
+import { LogoButton } from "../../Buttons/LogoButton"
+import { DefaultHeaderRightSide } from "./DefaultHeaderRightSide"
 
 // TODO add css to theme
+// TODO all different size formatting
+// TODO all tests: e2e, visual, unit (?)
+// TODO all refactor for better function and value names
 
 const Container = styled.div`
     label: SearchHeader;
 
     display: grid;
-    grid-template-columns: max-content auto;
+    grid-template-columns: max-content auto max-content;
     gap: ${(props) => props.theme.layout.spacing.margin};
     margin: ${(props) => props.theme.layout.spacing.margin};
-`
-
-const Logo = styled.img`
-    label: Logo;
-
-    height: 5rem;
 `
 
 const HeaderSearchForm = styled(SearchForm)`
@@ -35,10 +33,8 @@ export const SearchHeader = ({
     initialValue = ""
 }: SearchHeaderProps) => (
     <Container>
-        <Logo
-            src="/logo512_horizontal.png"
-            alt={pageName}
-        />
+        <LogoButton />
         <HeaderSearchForm initialValue={initialValue} />
+        <DefaultHeaderRightSide />
     </Container>
 )

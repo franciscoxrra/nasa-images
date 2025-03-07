@@ -1,9 +1,5 @@
 import React, { useCallback, useState } from "react"
-import {
-    apiPageCap,
-    nasaImagesSearchUrl,
-    resultsPerPage
-} from "../util/constants"
+import { nasaImagesSearchUrl } from "../util/constants"
 
 interface Link {
     href: string
@@ -53,7 +49,7 @@ export interface ImagesData {
     images: Image[]
     totalResults: number | undefined
     page: number
-    pageSize: number
+    resultsPerPage: number
 }
 
 const checkResponse = async (response: Response) => {
@@ -80,10 +76,11 @@ const searchImages = async (
     setError: React.Dispatch<
         React.SetStateAction<Error | null>
     >,
-    page: number = 1,
-    pageSize: number = resultsPerPage,
-    maxPage: number = 100
+    page: number,
+    resultsPerPage: number,
+    maxResults: number
 ) => {
+    const maxPage = Math.ceil(maxResults / resultsPerPage)
     if (page > maxPage) {
         setImagesData(null)
         setIsLoading(false)
@@ -112,7 +109,10 @@ const searchImages = async (
             }
 
             url.searchParams.set("page", `${page}`)
-            url.searchParams.set("page_size", `${pageSize}`)
+            url.searchParams.set(
+                "page_size",
+                `${page === maxPage ? maxResults % resultsPerPage || resultsPerPage : resultsPerPage}`
+            )
 
             setIsLoading(true)
             setError(null)
@@ -163,7 +163,6 @@ const searchImages = async (
                     },
                     []
                 ) || null
-            const maxResults = maxPage * pageSize
             setImagesData(
                 images
                     ? {
@@ -175,7 +174,7 @@ const searchImages = async (
                               maxResults
                           ),
                           page,
-                          pageSize
+                          resultsPerPage
                       }
                     : null
             )
@@ -205,8 +204,8 @@ export const useSearchImages = () => {
             key: ParameterKey,
             expression: string,
             page: number = 1,
-            pageSize: number = resultsPerPage,
-            maxPage = apiPageCap
+            resultsPerPage: number = 1,
+            maxResults: number = 1
         ) => {
             setError(null)
             searchImages(
@@ -216,8 +215,8 @@ export const useSearchImages = () => {
                 setIsLoading,
                 setError,
                 page,
-                pageSize,
-                maxPage
+                resultsPerPage,
+                maxResults
             )
         },
         []

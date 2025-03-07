@@ -64,7 +64,7 @@ export const ImageProfile = () => {
         useSearchParams()
 
     useEffect(() => {
-        const dimensionFloater = () => {
+        const adaptFloaterHeight = () => {
             if ($container.current) {
                 const dims =
                     $container.current.getClientRects()[0]
@@ -74,12 +74,15 @@ export const ImageProfile = () => {
                 )
             }
         }
-        dimensionFloater()
-        window.addEventListener("scroll", dimensionFloater)
+        adaptFloaterHeight()
+        window.addEventListener(
+            "scroll",
+            adaptFloaterHeight
+        )
         return () =>
             window.removeEventListener(
                 "scroll",
-                dimensionFloater
+                adaptFloaterHeight
             )
     }, [headerHeight, windowHeight])
 

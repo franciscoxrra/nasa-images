@@ -17,14 +17,12 @@ import {
 } from "../util/paths"
 import React, { useEffect, useMemo } from "react"
 import { SearchHeader } from "../components/Page/Sections/SearchHeader"
-import {
-    apiPageCap,
-    resultsPerPage
-} from "../util/constants"
 import { ResultsPageSwitcher } from "../components/Search/ResultsPageSwitcher"
 import styled from "@emotion/styled"
 import { css } from "@emotion/react"
 import { ImageProfile } from "../components/Search/ImageProfile"
+import { useSelector } from "react-redux"
+import { selectSettings } from "../reducers/settings/settingsReducer"
 
 type Params = {
     [searchExpressionVar]: string
@@ -89,6 +87,7 @@ export const SearchResults = () => {
         isLoading,
         error
     } = useSearchImagesWithHistory()
+    const settings = useSelector(selectSettings)
 
     useEffect(() => {
         if (typeof expression === "string") {
@@ -96,8 +95,8 @@ export const SearchResults = () => {
             searchForExpression(
                 expression,
                 page,
-                resultsPerPage,
-                apiPageCap
+                settings.resultsPerPage,
+                settings.maxResults
             )
         } else {
             navigate(mainPath)
@@ -107,7 +106,8 @@ export const SearchResults = () => {
         expression,
         searchForExpression,
         page,
-        locationState?.timestamp
+        locationState?.timestamp,
+        settings
     ])
 
     const header = useMemo(
@@ -118,7 +118,8 @@ export const SearchResults = () => {
     const totalNumberOfPages =
         imagesData?.totalResults &&
         Math.ceil(
-            imagesData?.totalResults / imagesData.pageSize
+            imagesData?.totalResults /
+                settings.resultsPerPage
         )
 
     return (
@@ -143,7 +144,9 @@ export const SearchResults = () => {
                             totalResults={
                                 imagesData?.totalResults
                             }
-                            pageSize={imagesData.pageSize}
+                            pageSize={
+                                settings.resultsPerPage
+                            }
                         />
                         {totalNumberOfPages &&
                             `Total numbers of pages: ${totalNumberOfPages}`}
