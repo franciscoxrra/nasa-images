@@ -45,7 +45,7 @@ const GalleryContainer = styled.div<{
     ${(props) =>
         props.hasItem
             ? css`
-                  grid-template-columns: auto 55%;
+                  grid-template-columns: 45% auto;
               `
             : css`
                   grid-template-columns: auto;

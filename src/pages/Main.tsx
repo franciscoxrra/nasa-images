@@ -18,15 +18,15 @@ export const MainSection = styled.div`
 const ImageSection = styled.div`
     label: ImageSection;
 
-    min-height: 20rem;
-    max-height: 40rem;
+    min-height: 15rem;
+    max-height: 30rem;
     height: calc(100% - 35rem);
     display: grid;
     align-content: end;
     justify-items: center;
 
     > img {
-        height: 20rem;
+        height: 15rem;
         padding: 1rem;
     }
 `

@@ -1,6 +1,6 @@
 // Could come from a server
 
-const searchButtonHeightRem = 3
+const searchButtonHeightRem = 2.5
 const searchFieldPaddingRem = 0.5
 const searchFieldBorderWidthRem = 0.1
 const searchFieldLineHeightRem =
@@ -10,41 +10,37 @@ const searchFieldLineHeightRem =
 
 export const theme = {
     colors: {
-        primary: "#000000",
-        secondary: "#ffffff",
-        tertiary: "#aaaaaa",
-        link: "#5555ff"
-    },
-    backgroundColors: {
-        primary: "#ffffff",
-        secondary: "#000000",
-        tertiary: "#eeeeee",
-        grayout: "#aaaaaaaa"
-    },
-    fonts: {
-        remRatio: "10px",
-        main: {
-            fontFamily: "sans-serif"
+        standard: {
+            primary: "#000000",
+            secondary: "#ffffff",
+            tertiary: "#aaaaaa",
+            link: "#5555ff"
         },
-        searchEntry: {
-            title: {
-                size: "1.4rem"
-            },
-            description: {
-                size: "1.6rem"
-            }
-        },
-        sizes: {
-            regular: "1.4rem",
-            big: "1.8rem",
-            biggest: "2.4rem"
+        background: {
+            primary: "#ffffff",
+            secondary: "#000000",
+            tertiary: "#eeeeee",
+            grayout: "#aaaaaaaa"
         }
     },
-    search: {
-        button: {
-            height: `${searchButtonHeightRem}rem`
+    fonts: {
+        primary: {
+            fontFamily: "sans-serif"
         },
-        field: {
+        sizes: {
+            regular: "1rem",
+            big: "1.2rem",
+            biggest: "2rem"
+        }
+    },
+    buttons: {
+        primary: {
+            padding: "0 1.5rem",
+            height: `${searchButtonHeightRem}rem`
+        }
+    },
+    fields: {
+        primary: {
             lineHeight: `${searchFieldLineHeightRem}rem`,
             padding: `${searchFieldPaddingRem}rem`,
             borderWidth: `${searchFieldBorderWidthRem}rem`,
@@ -52,38 +48,32 @@ export const theme = {
         }
     },
     layout: {
-        header: {
-            height: "3rem"
-        },
         spacing: {
             margin: "1.5rem"
         }
     },
-    gallery: {
-        header: {
-            height: "3rem"
-        },
-        gap: {
-            vertical: "0.7rem",
-            horizontal: "1rem"
-        },
-        minWidth: "12rem",
-        maxWidth: "36rem",
-        image: {
-            height: "18rem",
-            borderRadius: "1rem",
-            backgroundColor: "#dddddd"
-        },
-        entry: {
-            padding: "0.3rem",
-            borderWidth: "0.2rem"
-        },
-        text: {
-            height: "4rem",
-            padding: "0 0.5rem",
-            color: {
-                primary: "#000000",
-                secondary: "#aaaaaa"
+    galleries: {
+        primary: {
+            header: {
+                height: "3rem"
+            },
+            gap: {
+                vertical: "0.7rem",
+                horizontal: "1rem"
+            },
+            image: {
+                height: "18rem",
+                borderRadius: "1rem"
+            },
+            entry: {
+                minWidth: "12rem",
+                maxWidth: "36rem",
+                padding: "0.3rem",
+                borderWidth: "0.2rem"
+            },
+            textSection: {
+                height: "3rem",
+                padding: "0 0.5rem"
             }
         }
     }

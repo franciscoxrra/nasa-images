@@ -11,33 +11,41 @@ const ResultEntry = styled.button<{ isSelected: boolean }>`
 
     display: flex;
     flex-wrap: wrap;
-    flex-basis: ${(props) => props.theme.gallery.minWidth};
+    flex-basis: ${(props) =>
+        props.theme.galleries.primary.entry.minWidth};
     flex-grow: 1;
-    gap: ${(props) => props.theme.gallery.gap.horizontal};
-    max-width: ${(props) => props.theme.gallery.maxWidth};
+    gap: ${(props) =>
+        props.theme.galleries.primary.gap.horizontal};
+    max-width: ${(props) =>
+        props.theme.galleries.primary.entry.maxWidth};
     border: ${(props) =>
-            props.theme.gallery.entry.borderWidth}
+            props.theme.galleries.primary.entry.borderWidth}
         solid
-        ${(props) => props.theme.backgroundColors.primary};
+        ${(props) => props.theme.colors.background.primary};
     border-radius: 1.5rem; // TODO add to theme
     padding: ${(props) =>
-        props.theme.gallery.entry.padding};
+        props.theme.galleries.primary.entry.padding};
     ${(props) =>
         props.isSelected
             ? css`
-                  border: ${props.theme.gallery.entry
-                          .borderWidth}
-                      solid ${props.theme.colors.tertiary};
+                  border: ${props.theme.galleries.primary
+                          .entry.borderWidth}
+                      solid
+                      ${props.theme.colors.standard
+                          .tertiary};
               `
             : css`
-                  background-color: ${props.theme
-                      .backgroundColors.primary};
+                  background-color: ${props.theme.colors
+                      .background.primary};
               `}
 
     &:hover {
         border: ${(props) =>
-                props.theme.gallery.entry.borderWidth}
-            solid ${(props) => props.theme.colors.tertiary};
+                props.theme.galleries.primary.entry
+                    .borderWidth}
+            solid
+            ${(props) =>
+                props.theme.colors.standard.tertiary};
     }
 `
 
@@ -45,12 +53,13 @@ const ImageSection = styled.div`
     label: ImageSection;
 
     width: 100%;
-    height: ${(props) => props.theme.gallery.image.height};
+    height: ${(props) =>
+        props.theme.galleries.primary.image.height};
     border-radius: ${(props) =>
-        props.theme.gallery.image.borderRadius};
+        props.theme.galleries.primary.image.borderRadius};
     align-content: center;
     background-color: ${(props) =>
-        props.theme.gallery.image.backgroundColor};
+        props.theme.colors.background.tertiary};
     overflow: hidden;
 
     > img {
@@ -59,7 +68,7 @@ const ImageSection = styled.div`
         max-height: 100%;
         vertical-align: middle;
         max-width: ${(props) =>
-            props.theme.gallery.maxWidth};
+            props.theme.galleries.primary.entry.maxWidth};
     }
 `
 
@@ -71,15 +80,17 @@ const TextSection = styled.div`
     width: 100%;
     flex-basis: 100%;
     flex-grow: 0;
-    height: ${(props) => props.theme.gallery.text.height};
+    height: ${(props) =>
+        props.theme.galleries.primary.textSection.height};
     text-align: left;
-    padding: ${(props) => props.theme.gallery.text.padding};
+    padding: ${(props) =>
+        props.theme.galleries.primary.textSection.padding};
 
     > div {
         position: relative;
         width: 100%;
         font-size: ${(props) =>
-            props.theme.fonts.searchEntry.title.size};
+            props.theme.fonts.sizes.big};
     }
 `
 
@@ -87,7 +98,7 @@ const EntryTitle = styled.div`
     label: EntryTitle;
 
     color: ${(props) =>
-        props.theme.gallery.text.color.secondary};
+        props.theme.colors.standard.tertiary};
     position: absolute;
     white-space: nowrap;
     overflow: hidden;
@@ -100,15 +111,15 @@ const EntryDescription = styled.div<{ isEmpty: boolean }>`
 
     color: ${(props) =>
         props.isEmpty
-            ? props.theme.gallery.text.color.secondary
-            : props.theme.gallery.text.color.primary};
+            ? props.theme.colors.standard.tertiary
+            : props.theme.colors.standard.primary};
     position: absolute;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
     width: 100%;
     font-size: ${(props) =>
-        props.theme.fonts.searchEntry.description.size};
+        props.theme.fonts.sizes.regular};
 `
 
 interface ImageItemProps {

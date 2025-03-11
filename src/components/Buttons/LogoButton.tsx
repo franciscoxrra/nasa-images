@@ -12,7 +12,7 @@ const Container = styled(LinkButton)`
 const Logo = styled.img`
     label: Logo;
 
-    height: 5rem;
+    height: 2.5rem;
 `
 
 export const LogoButton = () => {

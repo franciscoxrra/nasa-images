@@ -30,7 +30,7 @@ const XButton = styled.button`
     font-size: ${(props) => props.theme.fonts.sizes.big};
 
     &:hover {
-        color: ${({ theme }) => theme.colors.link};
+        color: ${({ theme }) => theme.colors.standard.link};
         text-decoration: underline;
     }
 `

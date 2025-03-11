@@ -21,20 +21,22 @@ const Container = styled.form`
     gap: 1rem;
 
     input[type="text"] {
-        width: 40rem;
+        min-width: 15rem;
+        max-width: 42rem;
+        width: 40vw;
         line-height: ${(props) =>
-            props.theme.search.field.lineHeight};
+            props.theme.fields.primary.lineHeight};
         padding: ${(props) =>
-            props.theme.search.field.padding};
+            props.theme.fields.primary.padding};
         border-width: ${(props) =>
-            props.theme.search.field.borderWidth};
+            props.theme.fields.primary.borderWidth};
         border-radius: ${(props) =>
-            props.theme.search.field.borderRadius};
+            props.theme.fields.primary.borderRadius};
     }
 
     button {
         height: ${(props) =>
-            props.theme.search.button.height};
+            props.theme.buttons.primary.height};
     }
 `
 

@@ -16,7 +16,7 @@ const ModalContainer = styled.div`
     height: 100%;
     z-index: 100;
     background-color: ${(props) =>
-        props.theme.backgroundColors.grayout};
+        props.theme.colors.background.grayout};
     display: grid;
     justify-items: center;
     align-items: center;
@@ -30,7 +30,7 @@ const Modal = styled.div`
     max-height: 50rem;
     max-width: 50rem;
     background-color: ${(props) =>
-        props.theme.backgroundColors.primary};
+        props.theme.colors.background.primary};
     border-radius: 1rem;
 `
 

@@ -54,6 +54,8 @@ interface PageProps {
 
 const defaultHeader = <DefaultHeader />
 
+// TODO check hook useVersionCheckAndRefresh works
+
 export const Page = ({
     subTitle,
     className,

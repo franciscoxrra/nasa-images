@@ -10,4 +10,11 @@ export const nasaImagesApiUrl =
 export const nasaImagesSearchEndpoint =
     process.env.REACT_APP_NASA_IMAGES_SEARCH_ENDPOINT || ""
 
+export const linkedinProfileUrl =
+    process.env.REACT_APP_LINKEDIN_PROFILE || ""
+export const githubProfileUrl =
+    process.env.REACT_APP_GITHUB_PROFILE || ""
+export const githubRepoUrl =
+    process.env.REACT_APP_GITHUB_REPO || ""
+
 export const nasaImagesSearchUrl = `${nasaImagesApiUrl}${nasaImagesSearchEndpoint}`

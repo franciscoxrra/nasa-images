@@ -4,7 +4,7 @@ export const LinkButton = styled.button`
     label: LinkButton;
 
     background: none;
-    color: ${(props) => props.theme.colors.link};
+    color: ${(props) => props.theme.colors.standard.link};
     border: none;
     padding: 0;
     font: inherit;

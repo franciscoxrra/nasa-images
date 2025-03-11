@@ -29,7 +29,7 @@ const FloatingProfile = styled.div<{
     height: ${(props) => props.floaterHeight}px;
     padding: 0 3rem;
     background-color: ${(props) =>
-        props.theme.backgroundColors.tertiary};
+        props.theme.colors.background.tertiary};
     overflow-y: auto;
 `
 
@@ -41,10 +41,15 @@ const ProfileContainer = styled.div`
     display: flex;
     flex-direction: column;
     gap: 1rem;
+`
+
+const ImageSection = styled.div`
+    label: ImageSection;
 
     & img {
-        width: 100%;
-        max-height: 60%;
+        max-height: 60vh;
+        min-height: 30vh;
+        max-width: 100%;
     }
 `
 
@@ -123,12 +128,14 @@ export const ImageProfile = () => {
                                 [close]
                             </LinkButton>
                         </TopSection>
-                        <img
-                            src={imageData.originalUrl}
-                            alt={
-                                imageData.truncated_description
-                            }
-                        />
+                        <ImageSection>
+                            <img
+                                src={imageData.originalUrl}
+                                alt={
+                                    imageData.truncated_description
+                                }
+                            />
+                        </ImageSection>
                         <h2>{imageData.title}</h2>
                         <p
                             dangerouslySetInnerHTML={{

@@ -16,7 +16,8 @@ const Container = styled.div`
     flex-wrap: wrap;
     align-content: flex-start;
     justify-content: flex-start;
-    gap: ${(props) => props.theme.gallery.gap.vertical};
+    gap: ${(props) =>
+        props.theme.galleries.primary.gap.vertical};
     margin: ${(props) => props.theme.layout.spacing.margin};
 `
 
