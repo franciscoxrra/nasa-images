@@ -67,8 +67,8 @@ export const theme = {
                 height: "3rem"
             },
             gap: {
-                vertical: "0.7rem",
-                horizontal: "1rem"
+                small: "0.2rem",
+                medium: "0.7rem"
             },
             image: {
                 height: "18rem",

@@ -17,9 +17,17 @@ const Container = styled.div`
     align-content: flex-start;
     justify-content: flex-start;
     gap: ${(props) =>
-        props.theme.galleries.primary.gap.vertical};
+        props.theme.galleries.primary.gap.medium};
     margin: ${(props) =>
         props.theme.layout.spacing.margin.medium};
+
+    @media (max-width: ${(props) =>
+            props.theme.breakpoints.width.medium}) {
+        gap: ${(props) =>
+            props.theme.galleries.primary.gap.small};
+        margin: ${(props) =>
+            props.theme.layout.spacing.margin.small};
+    }
 `
 
 interface ImageGalleryProps {

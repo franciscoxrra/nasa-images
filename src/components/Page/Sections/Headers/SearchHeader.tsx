@@ -23,6 +23,8 @@ const Container = styled.div`
             props.theme.breakpoints.width.medium}) {
         gap: ${(props) =>
             props.theme.layout.spacing.margin.small};
+        margin: ${(props) =>
+            props.theme.layout.spacing.margin.small};
     }
 `
 

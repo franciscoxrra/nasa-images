@@ -29,7 +29,7 @@ const Container = styled.form`
     width: max-content;
 
     > input[type="text"] {
-        min-width: 15rem;
+        min-width: 10rem;
         max-width: 42rem;
         width: 40vw;
         box-sizing: border-box;

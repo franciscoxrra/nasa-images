@@ -14,8 +14,7 @@ const ResultEntry = styled.button<{ isSelected: boolean }>`
     flex-basis: ${(props) =>
         props.theme.galleries.primary.entry.minWidth};
     flex-grow: 1;
-    gap: ${(props) =>
-        props.theme.galleries.primary.gap.horizontal};
+    gap: 0.5rem;
     max-width: ${(props) =>
         props.theme.galleries.primary.entry.maxWidth};
     border: ${(props) =>
