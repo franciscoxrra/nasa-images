@@ -7,36 +7,71 @@ import {
 } from "react"
 import { useNavigate } from "react-router-dom"
 import styled from "@emotion/styled"
-import { SearchResultsLocationState } from "../../pages/SearchResults"
+import { SearchResultsLocationState } from "../../../pages/SearchResults"
 import { useSelector } from "react-redux"
-import { selectHistory } from "../../reducers/history/historyReducer"
+import { selectHistory } from "../../../reducers/history/historyReducer"
+import { getSearchPath } from "../../../util/paths"
 import { HistoryButton } from "./HistoryButton"
-import { getSearchPath } from "../../util/paths"
+import { SearchSubmitButton } from "./SearchSubmitButton"
+import { ButtonSeparator } from "./ButtonSeparator"
 
 const Container = styled.form`
     label: SearchForm;
 
     display: flex;
+    align-items: center;
     justify-content: center;
-    gap: 1rem;
+    margin: auto;
+    width: max-content;
 
     input[type="text"] {
         min-width: 15rem;
         max-width: 42rem;
         width: 40vw;
-        line-height: ${(props) =>
-            props.theme.fields.primary.lineHeight};
+        box-sizing: border-box;
+        height: ${(props) =>
+            props.theme.fields.primary.height};
         padding: ${(props) =>
             props.theme.fields.primary.padding};
         border-width: ${(props) =>
-            props.theme.fields.primary.borderWidth};
+            `${props.theme.fields.primary.borderWidth} 0 
+                ${props.theme.fields.primary.borderWidth} ${props.theme.fields.primary.borderWidth}`};
         border-radius: ${(props) =>
-            props.theme.fields.primary.borderRadius};
+            `${props.theme.fields.primary.borderRadius} 0 
+            0 ${props.theme.fields.primary.borderRadius}`};
+
+        &:focus {
+            outline: none;
+        }
     }
 
     button {
+        display: grid;
+        align-items: center;
         height: ${(props) =>
-            props.theme.buttons.primary.height};
+            props.theme.fields.primary.height};
+        padding: 0 1rem;
+
+        &:hover {
+            filter: brightness(95%);
+        }
+    }
+
+    input[type="text"],
+    button {
+        border-color: ${(props) =>
+            props.theme.colors.standard.primary};
+        border-style: solid;
+    }
+
+    &:hover,
+    &:focus-within {
+        background: #fff;
+        border-radius: ${(props) =>
+            `${props.theme.fields.primary.borderRadius} 0 
+            0 ${props.theme.fields.primary.borderRadius}`};
+        box-shadow: 0 0 0.5rem 0.1rem #ccccccaa;
+        border-color: transparent;
     }
 `
 
@@ -94,8 +129,13 @@ export const SearchForm = ({
                 value={fieldValue}
                 onChange={fieldOnChange}
             />
-            <button type="submit">search</button>
-            {hasSearchHistory && <HistoryButton />}
+            {hasSearchHistory && (
+                <>
+                    <HistoryButton />
+                    <ButtonSeparator />
+                </>
+            )}
+            <SearchSubmitButton />
         </Container>
     )
 }

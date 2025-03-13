@@ -11,7 +11,7 @@ import { useViewportDimensions } from "../../contexts/ViewportDimensions"
 import { useSearchImages } from "../../requesters/searchImages"
 import { useSearchParams } from "react-router-dom"
 import { itemParamName } from "../../util/paths"
-import { LinkButton } from "../common/LinkButton"
+import { LinkButton } from "../buttons/LinkButton"
 
 const Container = styled.div`
     label: ImageProfile;

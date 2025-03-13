@@ -1,4 +1,4 @@
-export const mainPath = "/"
+export const homePath = "/"
 export const aboutPath = "/about"
 
 export const searchExpressionVar = "searchExpression"

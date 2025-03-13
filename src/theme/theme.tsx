@@ -1,26 +1,20 @@
 // Could come from a server
 
-const searchButtonHeightRem = 2.5
-const searchFieldPaddingRem = 0.5
-const searchFieldBorderWidthRem = 0.1
-const searchFieldLineHeightRem =
-    searchButtonHeightRem -
-    2 * searchFieldPaddingRem -
-    2 * searchFieldBorderWidthRem
-
 export const theme = {
     colors: {
         standard: {
             primary: "#000000",
             secondary: "#ffffff",
             tertiary: "#aaaaaa",
+            icon: "#777777",
             link: "#5555ff"
         },
         background: {
             primary: "#ffffff",
             secondary: "#000000",
             tertiary: "#eeeeee",
-            grayout: "#aaaaaaaa"
+            grayout: "#aaaaaaaa",
+            light: "#efefef"
         }
     },
     fonts: {
@@ -36,20 +30,35 @@ export const theme = {
     buttons: {
         primary: {
             padding: "0 1.5rem",
-            height: `${searchButtonHeightRem}rem`
+            height: "2.5rem"
+        }
+    },
+    icons: {
+        primary: {
+            size: "1.25rem"
         }
     },
     fields: {
         primary: {
-            lineHeight: `${searchFieldLineHeightRem}rem`,
-            padding: `${searchFieldPaddingRem}rem`,
-            borderWidth: `${searchFieldBorderWidthRem}rem`,
+            height: "2.5rem",
+            padding: "0.5rem",
+            borderWidth: "0.1rem",
             borderRadius: "0.3rem"
         }
     },
     layout: {
         spacing: {
-            margin: "1.5rem"
+            margin: {
+                small: "1rem",
+                medium: "1.5rem",
+                large: "2rem"
+            }
+        }
+    },
+    breakpoints: {
+        width: {
+            small: "640px",
+            medium: "1008px"
         }
     },
     galleries: {

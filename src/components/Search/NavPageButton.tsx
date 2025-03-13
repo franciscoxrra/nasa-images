@@ -1,7 +1,7 @@
 import { useSearchParams } from "react-router-dom"
 import { ReactNode, useCallback } from "react"
 import { pageParamName } from "../../util/paths"
-import { LinkButton } from "../common/LinkButton"
+import { LinkButton } from "../buttons/LinkButton"
 
 interface NavPageButtonProps {
     page: number

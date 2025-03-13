@@ -18,7 +18,8 @@ const Container = styled.div`
     justify-content: flex-start;
     gap: ${(props) =>
         props.theme.galleries.primary.gap.vertical};
-    margin: ${(props) => props.theme.layout.spacing.margin};
+    margin: ${(props) =>
+        props.theme.layout.spacing.margin.medium};
 `
 
 interface ImageGalleryProps {

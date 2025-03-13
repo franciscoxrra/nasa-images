@@ -1,10 +1,10 @@
 import { Navigate, Route, Routes } from "react-router-dom"
-import { Main } from "./Main"
+import { Home } from "./Home"
 import { SearchResults } from "./SearchResults"
 import {
     aboutPath,
     getSearchPath,
-    mainPath,
+    homePath,
     makeParam,
     searchExpressionVar
 } from "../util/paths"
@@ -13,8 +13,8 @@ import { About } from "./About"
 
 export const RouteMap = () => (
     <Routes>
-        {/*Main landing page*/}
-        <Route path={mainPath} element={<Main />} />
+        {/*Home landing page*/}
+        <Route path={homePath} element={<Home />} />
         {/*About page*/}
         <Route path={aboutPath} element={<About />} />
         {/*Expression searching page*/}
@@ -24,11 +24,11 @@ export const RouteMap = () => (
             )}
             element={<SearchResults />}
         />
-        {/*In case it is an empty search, redirect to main page*/}
+        {/*In case it is an empty search, redirect to home page*/}
         <Route
             path={getSearchPath("")}
             element={
-                <Navigate to={mainPath} replace={true} />
+                <Navigate to={homePath} replace={true} />
             }
         />
         {/*If nothing else, page not found*/}

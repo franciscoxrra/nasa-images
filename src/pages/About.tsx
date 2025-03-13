@@ -1,5 +1,5 @@
 import { Page } from "../components/Page/Page"
-import { SearchHeader } from "../components/Page/Sections/SearchHeader"
+import { SearchHeader } from "../components/Page/Sections/Headers/SearchHeader"
 import {
     githubProfileUrl,
     githubRepoUrl,

@@ -1,12 +1,12 @@
-import { SearchForm } from "../components/Search/SearchForm"
+import { SearchForm } from "../components/search/SearchForm/SearchForm"
 import { Page } from "../components/Page/Page"
 import { pageName } from "../util/constants"
 import styled from "@emotion/styled"
 
 // TODO add css to theme
 
-export const MainSection = styled.div`
-    label: MainSection;
+export const HomeBody = styled.div`
+    label: HomeBody;
 
     height: 100%;
 
@@ -31,13 +31,19 @@ const ImageSection = styled.div`
     }
 `
 
-export const Main = () => (
+const HomeSearchForm = styled(SearchForm)`
+    label: HomeSearchForm;
+
+    max-width: 32rem;
+`
+
+export const Home = () => (
     <Page>
-        <MainSection>
+        <HomeBody>
             <ImageSection>
                 <img src="/logo1024.png" alt={pageName} />
             </ImageSection>
-            <SearchForm />
-        </MainSection>
+            <HomeSearchForm />
+        </HomeBody>
     </Page>
 )

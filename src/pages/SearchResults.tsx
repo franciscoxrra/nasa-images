@@ -1,6 +1,6 @@
-import { ErrorMessage } from "../components/Search/ErrorMessage"
-import { Loading } from "../components/Search/Loading"
-import { ImageGallery } from "../components/Search/ImageGallery"
+import { ErrorMessage } from "../components/search/ErrorMessage"
+import { Loading } from "../components/search/Loading"
+import { ImageGallery } from "../components/search/ImageGallery"
 import { Page } from "../components/Page/Page"
 import { useSearchImagesWithHistory } from "../hooks/searchImagesWithHistory"
 import {
@@ -11,16 +11,16 @@ import {
 } from "react-router-dom"
 import {
     itemParamName,
-    mainPath,
+    homePath,
     pageParamName,
     searchExpressionVar
 } from "../util/paths"
 import React, { useEffect, useMemo } from "react"
-import { SearchHeader } from "../components/Page/Sections/SearchHeader"
-import { ResultsPageSwitcher } from "../components/Search/ResultsPageSwitcher"
+import { SearchHeader } from "../components/Page/Sections/Headers/SearchHeader"
+import { ResultsPageSwitcher } from "../components/search/ResultsPageSwitcher"
 import styled from "@emotion/styled"
 import { css } from "@emotion/react"
-import { ImageProfile } from "../components/Search/ImageProfile"
+import { ImageProfile } from "../components/search/ImageProfile"
 import { useSelector } from "react-redux"
 import { selectSettings } from "../reducers/settings/settingsReducer"
 
@@ -99,7 +99,7 @@ export const SearchResults = () => {
                 settings.maxResults
             )
         } else {
-            navigate(mainPath)
+            navigate(homePath)
         }
     }, [
         navigate,

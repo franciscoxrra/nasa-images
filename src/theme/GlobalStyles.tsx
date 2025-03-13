@@ -5,6 +5,8 @@ import {
     useTheme
 } from "@emotion/react"
 
+export const iconsClassName = "space-icons"
+
 const makeGlobalStyles = (theme: Theme) => css`
     html {
         background-color: ${theme.colors.background
@@ -26,6 +28,12 @@ const makeGlobalStyles = (theme: Theme) => css`
     button {
         font-size: ${theme.fonts.sizes.regular};
         padding: ${theme.buttons.primary.padding};
+    }
+
+    .${iconsClassName} {
+        height: ${theme.icons.primary.size};
+        width: ${theme.icons.primary.size};
+        color: ${theme.colors.standard.icon};
     }
 `
 

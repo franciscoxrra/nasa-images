@@ -6,7 +6,7 @@ import React, {
 } from "react"
 import { Helmet } from "react-helmet"
 import { useVersionCheckAndRefresh } from "../../hooks/versionCheckAndRefresh"
-import { DefaultHeader } from "./Sections/DefaultHeader"
+import { HomeHeader } from "./Sections/Headers/Home/HomeHeader"
 import { FooterSection } from "./Sections/FooterSection"
 import styled from "@emotion/styled"
 import { pageName } from "../../util/constants"
@@ -52,7 +52,7 @@ interface PageProps {
     children: React.ReactNode
 }
 
-const defaultHeader = <DefaultHeader />
+const defaultHeader = <HomeHeader />
 
 // TODO check hook useVersionCheckAndRefresh works
 

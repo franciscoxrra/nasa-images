@@ -1,12 +1,29 @@
 import { pageName } from "../../util/constants"
 import React, { useCallback } from "react"
 import styled from "@emotion/styled"
-import { LinkButton } from "../common/LinkButton"
-import { mainPath } from "../../util/paths"
+import { LinkButton } from "./LinkButton"
+import { homePath } from "../../util/paths"
 import { useNavigate } from "react-router-dom"
 
 const Container = styled(LinkButton)`
-    label: LogoButton;
+    label: HomeButton;
+
+    & > img:nth-child(1) {
+        display: none;
+    }
+    & > img:nth-child(2) {
+        display: block;
+    }
+
+    @media (min-width: ${(props) =>
+            props.theme.breakpoints.width.medium}) {
+        & > img:nth-child(1) {
+            display: block;
+        }
+        & > img:nth-child(2) {
+            display: none;
+        }
+    }
 `
 
 const Logo = styled.img`
@@ -15,12 +32,12 @@ const Logo = styled.img`
     height: 2.5rem;
 `
 
-export const LogoButton = () => {
+export const HomeButton = () => {
     const navigate = useNavigate()
     const onLogoClick = useCallback<
         React.MouseEventHandler<HTMLButtonElement>
     >(() => {
-        navigate(mainPath)
+        navigate(homePath)
     }, [navigate])
     return (
         <Container onClick={onLogoClick}>
@@ -28,6 +45,7 @@ export const LogoButton = () => {
                 src="/logo512_horizontal.png"
                 alt={pageName}
             />
+            <Logo src="/logo512.png" alt={pageName} />
         </Container>
     )
 }

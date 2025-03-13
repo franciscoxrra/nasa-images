@@ -29,8 +29,11 @@ import { store } from "./reducers/store"
 // TODO e2e testing
 // TODO Storybook
 // TODO Update readme
+// TODO add Browserlist package
 
-const root = ReactDOM.createRoot(document.getElementById("root") as HTMLElement)
+const root = ReactDOM.createRoot(
+    document.getElementById("root") as HTMLElement
+)
 
 root.render(
     <React.StrictMode>

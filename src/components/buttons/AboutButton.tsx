@@ -1,7 +1,8 @@
 import { useNavigate } from "react-router-dom"
 import { aboutPath } from "../../util/paths"
-import { LinkButton } from "../common/LinkButton"
 import { useCallback } from "react"
+import { FaCircleInfo } from "react-icons/fa6"
+import { IconButton } from "./IconButton"
 
 export const AboutButton = () => {
     const navigate = useNavigate()
@@ -10,5 +11,9 @@ export const AboutButton = () => {
         navigate(aboutPath)
     }, [navigate])
 
-    return <LinkButton onClick={onClick}>About</LinkButton>
+    return (
+        <IconButton onClick={onClick}>
+            <FaCircleInfo />
+        </IconButton>
+    )
 }

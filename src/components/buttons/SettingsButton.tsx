@@ -1,6 +1,7 @@
 import { useCallback } from "react"
-import { LinkButton } from "../common/LinkButton"
+import { IconButton } from "./IconButton"
 import { useAddLastToModalPipeline } from "../../reducers/actions/modal"
+import { FaGear } from "react-icons/fa6"
 
 export const SettingsButton = () => {
     const addLastToModalPipeline =
@@ -11,6 +12,8 @@ export const SettingsButton = () => {
     }, [addLastToModalPipeline])
 
     return (
-        <LinkButton onClick={onClick}>Settings</LinkButton>
+        <IconButton onClick={onClick}>
+            <FaGear />
+        </IconButton>
     )
 }
