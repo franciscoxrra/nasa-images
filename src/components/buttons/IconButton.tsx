@@ -4,6 +4,7 @@ export const IconButton = styled.button`
     label: IconButton;
 
     display: grid;
+    align-content: center;
     background: none;
     border: none;
     padding: 0.5rem;

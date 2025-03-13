@@ -1,8 +1,10 @@
 import {
     ChangeEventHandler,
     FormEventHandler,
+    MouseEventHandler,
     useCallback,
     useEffect,
+    useRef,
     useState
 } from "react"
 import { useNavigate } from "react-router-dom"
@@ -14,6 +16,7 @@ import { getSearchPath } from "../../../util/paths"
 import { HistoryButton } from "./HistoryButton"
 import { SearchSubmitButton } from "./SearchSubmitButton"
 import { ButtonSeparator } from "./ButtonSeparator"
+import { ClearButton } from "../../buttons/ClearButton"
 
 const Container = styled.form`
     label: SearchForm;
@@ -21,10 +24,11 @@ const Container = styled.form`
     display: flex;
     align-items: center;
     justify-content: center;
+    height: ${(props) => props.theme.fields.primary.height};
     margin: auto;
     width: max-content;
 
-    input[type="text"] {
+    > input[type="text"] {
         min-width: 15rem;
         max-width: 42rem;
         width: 40vw;
@@ -45,7 +49,7 @@ const Container = styled.form`
         }
     }
 
-    button {
+    > button {
         display: grid;
         align-items: center;
         height: ${(props) =>
@@ -57,8 +61,8 @@ const Container = styled.form`
         }
     }
 
-    input[type="text"],
-    button {
+    > input[type="text"],
+    > button {
         border-color: ${(props) =>
             props.theme.colors.standard.primary};
         border-style: solid;
@@ -84,6 +88,8 @@ export const SearchForm = ({
     initialValue = "",
     className
 }: SearchFormProps) => {
+    const $input = useRef<HTMLInputElement>(null)
+
     const navigate = useNavigate()
     const [fieldValue, setFieldValue] =
         useState(initialValue)
@@ -99,6 +105,13 @@ export const SearchForm = ({
         ChangeEventHandler<HTMLInputElement>
     >((event) => {
         setFieldValue(event.target.value)
+    }, [])
+
+    const onClearClick = useCallback<
+        MouseEventHandler<HTMLButtonElement>
+    >(() => {
+        setFieldValue("")
+        $input.current?.focus()
     }, [])
 
     const formOnSubmit = useCallback<
@@ -128,6 +141,11 @@ export const SearchForm = ({
                 placeholder="milkyway, moon, ..."
                 value={fieldValue}
                 onChange={fieldOnChange}
+                ref={$input}
+            />
+            <ClearButton
+                isDisabled={!fieldValue}
+                onClearClick={onClearClick}
             />
             {hasSearchHistory && (
                 <>
