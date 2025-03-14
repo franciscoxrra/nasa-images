@@ -99,7 +99,7 @@ const searchImages = async (
             if (parameterKey === "id") {
                 url.searchParams.set(
                     "nasa_id",
-                    encodeURI(parameterValue)
+                    parameterValue
                 )
             } else {
                 url.searchParams.set(

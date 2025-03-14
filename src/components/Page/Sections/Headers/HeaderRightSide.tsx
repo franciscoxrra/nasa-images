@@ -1,7 +1,7 @@
 import { AboutButton } from "../../../buttons/AboutButton"
 import { SettingsButton } from "../../../buttons/SettingsButton"
 import styled from "@emotion/styled"
-import { MenuButton } from "../../../buttons/MenuButton"
+import { MenuButton } from "../../../buttons/MenuButton/MenuButton"
 import {
     IfLargeScreen,
     IfNotLargeScreen

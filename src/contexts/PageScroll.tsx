@@ -1,4 +1,9 @@
-import React, { createContext, useContext, useEffect, useState } from "react"
+import React, {
+    createContext,
+    useContext,
+    useEffect,
+    useState
+} from "react"
 
 const initialState = {
     scrollX: 0,
@@ -7,15 +12,19 @@ const initialState = {
 
 type PageScrollContextType = typeof initialState
 
-const PageScrollContext = createContext<PageScrollContextType>(initialState)
+const PageScrollContext =
+    createContext<PageScrollContextType>(initialState)
 
-export const usePageScroll = () => useContext(PageScrollContext)
+export const usePageScroll = () =>
+    useContext(PageScrollContext)
 
 interface PageScrollProviderProps {
     children: React.ReactNode
 }
 
-const PageScrollProvider = ({ children }: PageScrollProviderProps) => {
+const PageScrollProvider = ({
+    children: body
+}: PageScrollProviderProps) => {
     const [pageScroll, setPageScroll] =
         useState<PageScrollContextType>(initialState)
 
@@ -33,12 +42,16 @@ const PageScrollProvider = ({ children }: PageScrollProviderProps) => {
         scrollListener()
         document.addEventListener("scroll", scrollListener)
 
-        return () => window.removeEventListener("resize", scrollListener)
+        return () =>
+            window.removeEventListener(
+                "resize",
+                scrollListener
+            )
     }, [])
 
     return (
         <PageScrollContext.Provider value={pageScroll}>
-            {children}
+            {body}
         </PageScrollContext.Provider>
     )
 }

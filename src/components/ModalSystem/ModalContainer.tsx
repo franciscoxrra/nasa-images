@@ -57,7 +57,7 @@ interface ModalContainerProps {
 export const ModalContainer = ({
     hasCloseX,
     title,
-    children
+    children: modalBody
 }: ModalContainerProps) => {
     const removeHeadFromModalPipeline =
         useRemoveHeadFromModalPipeline()
@@ -77,7 +77,7 @@ export const ModalContainer = ({
                 )}
             </ModalTab>
             <ModalTitle>{title}</ModalTitle>
-            <ModalContent>{children}</ModalContent>
+            <ModalContent>{modalBody}</ModalContent>
         </Container>
     )
 }

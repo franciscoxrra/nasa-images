@@ -60,7 +60,7 @@ export const Page = ({
     subTitle,
     className,
     header = defaultHeader,
-    children
+    children: body
 }: PageProps) => {
     useVersionCheckAndRefresh()
 
@@ -95,7 +95,7 @@ export const Page = ({
                         {header}
                     </HeaderSection>
                     <BodySection headerHeight={height}>
-                        {children}
+                        {body}
                     </BodySection>
                     <FooterSection />
                 </Container>

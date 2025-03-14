@@ -22,7 +22,7 @@ interface BreakpointFilterProps {
 
 export const IfLargeScreen = ({
     className,
-    children
+    children: filteredPart
 }: BreakpointFilterProps) => {
     const theme = useTheme()
     return (
@@ -30,27 +30,27 @@ export const IfLargeScreen = ({
             lowerLimit={theme.breakpoints.width.medium}
             className={className}
         >
-            {children}
+            {filteredPart}
         </BreakpointFilter>
     )
 }
 
 export const IfNotLargeScreen = ({
-    children
+    children: filteredPart
 }: BreakpointFilterProps) => {
     const theme = useTheme()
     return (
         <BreakpointFilter
             upperLimit={theme.breakpoints.width.medium}
         >
-            {children}
+            {filteredPart}
         </BreakpointFilter>
     )
 }
 
 export const IfMediumScreen = ({
     className,
-    children
+    children: filteredPart
 }: BreakpointFilterProps) => {
     const theme = useTheme()
     return (
@@ -59,14 +59,14 @@ export const IfMediumScreen = ({
             upperLimit={theme.breakpoints.width.medium}
             className={className}
         >
-            {children}
+            {filteredPart}
         </BreakpointFilter>
     )
 }
 
 export const IfSmallScreen = ({
     className,
-    children
+    children: filteredPart
 }: BreakpointFilterProps) => {
     const theme = useTheme()
     return (
@@ -74,7 +74,7 @@ export const IfSmallScreen = ({
             upperLimit={theme.breakpoints.width.small}
             className={className}
         >
-            {children}
+            {filteredPart}
         </BreakpointFilter>
     )
 }

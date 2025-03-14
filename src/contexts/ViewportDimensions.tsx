@@ -1,4 +1,9 @@
-import React, { createContext, useContext, useEffect, useState } from "react"
+import React, {
+    createContext,
+    useContext,
+    useEffect,
+    useState
+} from "react"
 
 const initialState = {
     windowWidth: 0,
@@ -8,19 +13,24 @@ const initialState = {
 type ViewportDimensionsContextType = typeof initialState
 
 const ViewportDimensionsContext =
-    createContext<ViewportDimensionsContextType>(initialState)
+    createContext<ViewportDimensionsContextType>(
+        initialState
+    )
 
-export const useViewportDimensions = () => useContext(ViewportDimensionsContext)
+export const useViewportDimensions = () =>
+    useContext(ViewportDimensionsContext)
 
 interface ViewportDimensionsProviderProps {
     children: React.ReactNode
 }
 
 const ViewportDimensionsProvider = ({
-    children
+    children: body
 }: ViewportDimensionsProviderProps) => {
     const [deviceDimensions, setViewportDimensions] =
-        useState<ViewportDimensionsContextType>(initialState)
+        useState<ViewportDimensionsContextType>(
+            initialState
+        )
 
     useEffect(() => {
         const resizeListener = () => {
@@ -36,12 +46,18 @@ const ViewportDimensionsProvider = ({
         resizeListener()
         window.addEventListener("resize", resizeListener)
 
-        return () => window.removeEventListener("resize", resizeListener)
+        return () =>
+            window.removeEventListener(
+                "resize",
+                resizeListener
+            )
     }, [])
 
     return (
-        <ViewportDimensionsContext.Provider value={deviceDimensions}>
-            {children}
+        <ViewportDimensionsContext.Provider
+            value={deviceDimensions}
+        >
+            {body}
         </ViewportDimensionsContext.Provider>
     )
 }

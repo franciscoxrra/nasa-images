@@ -52,7 +52,7 @@ interface ModalSystemProps {
 }
 
 export const ModalSystem = ({
-    children
+    children: body
 }: ModalSystemProps) => {
     const headModal = useSelector(selectHeadModal)
     const hasModal = !!headModal
@@ -84,7 +84,7 @@ export const ModalSystem = ({
                 </ModalContainer>
             )}
             <ContentContainer hasModal={hasModal}>
-                {children}
+                {body}
             </ContentContainer>
         </>
     )

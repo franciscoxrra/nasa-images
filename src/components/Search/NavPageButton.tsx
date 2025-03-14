@@ -10,7 +10,7 @@ interface NavPageButtonProps {
 
 export const NavPageButton = ({
     page,
-    children
+    children: buttonBody
 }: NavPageButtonProps) => {
     const [_, setSearchParams] = useSearchParams()
     const onClick = useCallback(() => {
@@ -21,7 +21,7 @@ export const NavPageButton = ({
     }, [page, setSearchParams])
     return (
         <LinkButton onClick={onClick}>
-            {children}
+            {buttonBody}
         </LinkButton>
     )
 }
