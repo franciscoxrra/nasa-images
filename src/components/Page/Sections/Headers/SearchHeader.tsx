@@ -2,7 +2,7 @@ import { SearchForm } from "../../../search/SearchForm/SearchForm"
 import React from "react"
 import styled from "@emotion/styled"
 import { HomeButton } from "../../../buttons/HomeButton"
-import { HomeHeaderRightSide } from "./Home/HomeHeaderRightSide"
+import { HeaderRightSide } from "./HeaderRightSide"
 
 // TODO add css to theme
 // TODO all different size formatting
@@ -49,6 +49,6 @@ export const SearchHeader = ({
         <HeaderSearchFormSection>
             <SearchForm initialValue={initialValue} />
         </HeaderSearchFormSection>
-        <HomeHeaderRightSide />
+        <HeaderRightSide />
     </Container>
 )

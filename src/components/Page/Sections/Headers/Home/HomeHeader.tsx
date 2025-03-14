@@ -1,5 +1,5 @@
 import styled from "@emotion/styled"
-import { HomeHeaderRightSide } from "./HomeHeaderRightSide"
+import { HeaderRightSide } from "../HeaderRightSide"
 
 const Container = styled.div`
     label: HomeHeader;
@@ -17,6 +17,6 @@ const Container = styled.div`
 export const HomeHeader = () => (
     <Container>
         <div></div>
-        <HomeHeaderRightSide />
+        <HeaderRightSide />
     </Container>
 )
