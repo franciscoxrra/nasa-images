@@ -30,11 +30,10 @@ import { store } from "./reducers/store"
 // TODO Storybook
 // TODO Update readme
 // TODO Manage tab navigation, reaching behind modals
-// TODO fix images display (smallest to largest, filter if no images)
 // TODO fix search header for small screens
 
 const root = ReactDOM.createRoot(
-    document.getElementById("root") as HTMLElement
+    document.getElementById("space-base") as HTMLElement
 )
 
 root.render(

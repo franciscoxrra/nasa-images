@@ -5,6 +5,7 @@ import { useSearchParams } from "react-router-dom"
 import { itemParamName } from "../../util/paths"
 import { css } from "@emotion/react"
 import React, { useCallback } from "react"
+import { getSmallestImageLink } from "./utils"
 
 const ResultEntry = styled.button<{ isSelected: boolean }>`
     label: ResultEntry;
@@ -146,7 +147,7 @@ export const ImageItem = ({ image }: ImageItemProps) => {
         >
             <ImageSection>
                 <img
-                    src={image.previewUrl}
+                    src={getSmallestImageLink(image).href}
                     alt={image.title}
                 />
             </ImageSection>

@@ -12,6 +12,7 @@ import { useSearchImages } from "../../requesters/searchImages"
 import { useSearchParams } from "react-router-dom"
 import { itemParamName } from "../../util/paths"
 import { LinkButton } from "../buttons/LinkButton"
+import { getLargestImageLink } from "./utils"
 
 const Container = styled.div`
     label: ImageProfile;
@@ -93,7 +94,7 @@ export const ImageProfile = () => {
 
     const { searchForExpression, imagesData, isLoading } =
         useSearchImages()
-    const imageData = imagesData?.images[0]
+    const image = imagesData?.images[0]
 
     useEffect(() => {
         searchForExpression(
@@ -119,7 +120,7 @@ export const ImageProfile = () => {
                 headerHeight={headerHeight}
                 floaterHeight={floaterHeight}
             >
-                {imageData && !isLoading ? (
+                {image && !isLoading ? (
                     <ProfileContainer>
                         <TopSection>
                             <LinkButton
@@ -130,16 +131,20 @@ export const ImageProfile = () => {
                         </TopSection>
                         <ImageSection>
                             <img
-                                src={imageData.originalUrl}
+                                src={
+                                    getLargestImageLink(
+                                        image
+                                    ).href
+                                }
                                 alt={
-                                    imageData.truncated_description
+                                    image.truncated_description
                                 }
                             />
                         </ImageSection>
-                        <h2>{imageData.title}</h2>
+                        <h2>{image.title}</h2>
                         <p
                             dangerouslySetInnerHTML={{
-                                __html: imageData.description
+                                __html: image.description
                             }}
                         />
                     </ProfileContainer>

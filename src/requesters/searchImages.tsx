@@ -1,10 +1,16 @@
 import React, { useCallback, useState } from "react"
 import { nasaImagesSearchUrl } from "../util/constants"
+import { emptyArray } from "../util/structure"
+
+// TODO clean file up
 
 interface Link {
     href: string
     rel: string
     render?: string
+    width: number
+    height: number
+    size?: number
 }
 
 interface ImagesRaw {
@@ -35,9 +41,16 @@ interface ImagesError {
     reason: string
 }
 
+interface ImageLink {
+    href: string
+    type?: "preview" | "canonical" | string
+    width: number
+    height: number
+    size?: number
+}
+
 export interface Image {
-    previewUrl: string
-    originalUrl: string
+    linksBySize: ImageLink[]
     title: string
     description: string
     truncated_description: string
@@ -60,9 +73,6 @@ const checkResponse = async (response: Response) => {
 }
 
 type ParameterKey = "query" | "id"
-
-const previewImagePrefix = "~thumb."
-const originalImagePrefix = "~orig."
 
 const searchImages = async (
     parameterKey: ParameterKey,
@@ -126,26 +136,35 @@ const searchImages = async (
                 json.collection?.items.reduce(
                     (acc: Image[], item) => {
                         const data = item.data[0]
-                        const link = item.links?.find(
-                            (link) =>
-                                link?.render === "image" &&
-                                link.href.includes(
-                                    previewImagePrefix
+                        const linksBySize =
+                            item.links
+                                ?.filter(
+                                    (link) =>
+                                        link.href &&
+                                        link.width &&
+                                        link.height
                                 )
-                        )
+                                .sort((a, b) =>
+                                    a.width * a.height >
+                                    b.width * b.height
+                                        ? 1
+                                        : -1
+                                )
+                                .map((link) => ({
+                                    href: link.href,
+                                    type: link.rel,
+                                    width: link.width,
+                                    height: link.height,
+                                    size: link.size
+                                })) || emptyArray
                         if (
                             data?.media_type === "image" &&
-                            link
+                            linksBySize.length > 0
                         ) {
                             return [
                                 ...acc,
                                 {
-                                    previewUrl: link.href,
-                                    originalUrl:
-                                        link.href.replace(
-                                            previewImagePrefix,
-                                            originalImagePrefix
-                                        ),
+                                    linksBySize,
                                     title: data.title,
                                     description:
                                         data.description,
