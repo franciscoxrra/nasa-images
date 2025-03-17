@@ -9,8 +9,6 @@ import {
 
 const Container = styled.div`
     label: HeaderRightSide;
-
-    grid-area: HeaderRightSide;
 `
 const ButtonsContainer = styled.div`
     label: Buttons;

@@ -3,33 +3,21 @@ import React from "react"
 import styled from "@emotion/styled"
 import { HeaderRightSide } from "../HeaderRightSide"
 import { HeaderHomeButton } from "./HeaderHomeButton"
+import { Header } from "../Header"
 
 // TODO add css to theme
 // TODO all different size formatting
 // TODO all tests: e2e, visual, unit (?)
 // TODO all refactor for better function and value names
 
-const Container = styled.div`
+const Container = styled(Header)`
     label: SearchHeader;
 
-    display: grid;
     grid-template-areas:
         "HeaderHomeButton HeaderSearchFormSection HeaderRightSide"
         "HeaderHomeButton HeaderSearchFormSection HeaderRightSide";
     grid-template-columns: max-content auto max-content;
     grid-template-rows: max-content max-content;
-    gap: ${(props) =>
-        props.theme.layout.spacing.margin.medium};
-    margin: ${(props) =>
-        props.theme.layout.spacing.margin.medium};
-
-    @media (max-width: ${(props) =>
-            props.theme.breakpoints.width.medium}) {
-        gap: ${(props) =>
-            props.theme.layout.spacing.margin.small};
-        margin: ${(props) =>
-            props.theme.layout.spacing.margin.small};
-    }
 
     @media (max-width: ${(props) =>
             props.theme.breakpoints.width.small}) {
@@ -37,8 +25,6 @@ const Container = styled.div`
             ".                          HeaderHomeButton            HeaderRightSide"
             "HeaderSearchFormSection    HeaderSearchFormSection     HeaderSearchFormSection";
         grid-template-columns: 1fr minmax(auto, 100%) 1fr;
-        gap: ${(props) =>
-            props.theme.layout.spacing.margin.xs};
     }
 `
 
@@ -68,6 +54,12 @@ interface SearchHeaderProps {
     initialValue?: string
 }
 
+const SearchHeaderRightSide = styled(HeaderRightSide)`
+    label: SearchHeaderRightSide;
+
+    grid-area: HeaderRightSide;
+`
+
 export const SearchHeader = ({
     initialValue = ""
 }: SearchHeaderProps) => (
@@ -76,6 +68,6 @@ export const SearchHeader = ({
         <HeaderSearchFormSection>
             <SearchForm initialValue={initialValue} />
         </HeaderSearchFormSection>
-        <HeaderRightSide />
+        <SearchHeaderRightSide />
     </Container>
 )
