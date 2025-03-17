@@ -49,6 +49,7 @@ export const theme = {
     layout: {
         spacing: {
             margin: {
+                xs: "0.5rem",
                 small: "1rem",
                 medium: "1.5rem",
                 large: "2rem"

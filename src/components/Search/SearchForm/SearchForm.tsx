@@ -21,7 +21,8 @@ import { ClearButton } from "../../buttons/ClearButton"
 const Container = styled.form`
     label: SearchForm;
 
-    display: flex;
+    display: grid;
+    grid-template-columns: 40vw repeat(4, max-content);
     align-items: center;
     justify-content: center;
     height: ${(props) => props.theme.fields.primary.height};
@@ -29,9 +30,8 @@ const Container = styled.form`
     width: max-content;
 
     > input[type="text"] {
-        min-width: 10rem;
+        min-width: 5rem;
         max-width: 42rem;
-        width: 40vw;
         box-sizing: border-box;
         height: ${(props) =>
             props.theme.fields.primary.height};
@@ -46,6 +46,11 @@ const Container = styled.form`
 
         &:focus {
             outline: none;
+        }
+
+        @media (max-width: ${(props) =>
+                props.theme.breakpoints.width.small}) {
+            width: 100%;
         }
     }
 

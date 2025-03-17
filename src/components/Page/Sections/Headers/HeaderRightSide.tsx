@@ -9,6 +9,8 @@ import {
 
 const Container = styled.div`
     label: HeaderRightSide;
+
+    grid-area: HeaderRightSide;
 `
 const ButtonsContainer = styled.div`
     label: Buttons;
@@ -25,8 +27,14 @@ const Buttons = () => (
     </ButtonsContainer>
 )
 
-export const HeaderRightSide = () => (
-    <Container>
+interface HeaderRightSideProps {
+    className?: string
+}
+
+export const HeaderRightSide = ({
+    className
+}: HeaderRightSideProps) => (
+    <Container className={className}>
         <IfLargeScreen>
             <Buttons />
         </IfLargeScreen>

@@ -5,6 +5,7 @@ const Container = styled.div`
     label: MenuDisplayer;
 
     position: absolute;
+    z-index: 10;
     right: 0;
     margin-top: 0.2rem;
     padding: 0.2rem;

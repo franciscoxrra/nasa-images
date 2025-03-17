@@ -16,7 +16,7 @@ import {
     searchExpressionVar
 } from "../util/paths"
 import React, { useEffect, useMemo } from "react"
-import { SearchHeader } from "../components/Page/Sections/Headers/SearchHeader"
+import { SearchHeader } from "../components/Page/Sections/Headers/SearchHeader/SearchHeader"
 import { ResultsPageSwitcher } from "../components/search/ResultsPageSwitcher"
 import styled from "@emotion/styled"
 import { css } from "@emotion/react"

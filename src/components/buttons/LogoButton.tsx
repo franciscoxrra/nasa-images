@@ -4,13 +4,9 @@ import styled from "@emotion/styled"
 import { LinkButton } from "./LinkButton"
 import { homePath } from "../../util/paths"
 import { useNavigate } from "react-router-dom"
-import {
-    IfLargeScreen,
-    IfNotLargeScreen
-} from "../../util/breakpointFilters"
 
 const Container = styled(LinkButton)`
-    label: HomeButton;
+    label: LogoButton;
 `
 
 const Logo = styled.img`
@@ -19,7 +15,15 @@ const Logo = styled.img`
     height: 2.5rem;
 `
 
-export const HomeButton = () => {
+interface LogoButtonProps {
+    logoOnly?: boolean
+    className?: string
+}
+
+export const LogoButton = ({
+    logoOnly = false,
+    className
+}: LogoButtonProps) => {
     const navigate = useNavigate()
     const onLogoClick = useCallback<
         React.MouseEventHandler<HTMLButtonElement>
@@ -27,16 +31,18 @@ export const HomeButton = () => {
         navigate(homePath)
     }, [navigate])
     return (
-        <Container onClick={onLogoClick}>
-            <IfLargeScreen>
+        <Container
+            onClick={onLogoClick}
+            className={className}
+        >
+            {logoOnly ? (
+                <Logo src="/logo512.png" alt={pageName} />
+            ) : (
                 <Logo
                     src="/logo512_horizontal.png"
                     alt={pageName}
                 />
-            </IfLargeScreen>
-            <IfNotLargeScreen>
-                <Logo src="/logo512.png" alt={pageName} />
-            </IfNotLargeScreen>
+            )}
         </Container>
     )
 }
