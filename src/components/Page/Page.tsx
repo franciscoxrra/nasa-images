@@ -21,6 +21,8 @@ export const PageContext = createContext<{
 
 const Container = styled.div`
     label: Page;
+
+    min-width: min-content;
 `
 
 const HeaderSection = styled.div<{ atPageTop: boolean }>`

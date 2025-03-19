@@ -46,7 +46,10 @@ export const ClearButton = ({
 }: ClearButtonProps) => (
     <Container>
         {!isDisabled && (
-            <IconButton onClick={onClearClick}>
+            <IconButton
+                onClick={onClearClick}
+                type="button"
+            >
                 <FaDeleteLeft />
             </IconButton>
         )}
