@@ -1,12 +1,11 @@
 import styled from "@emotion/styled"
 import React, {
     useCallback,
-    useContext,
     useEffect,
     useRef,
     useState
 } from "react"
-import { PageContext } from "../Page/Page"
+import { usePageDetails } from "../Page/Page"
 import { useViewportDimensions } from "../../contexts/ViewportDimensions"
 import { useSearchImages } from "../../requesters/searchImages"
 import { useSearchParams } from "react-router-dom"
@@ -77,7 +76,7 @@ const TopSection = styled.div`
 export const ImageProfile = () => {
     const $container = useRef<HTMLDivElement>(null)
     const { windowHeight } = useViewportDimensions()
-    const { headerHeight } = useContext(PageContext)
+    const { headerHeight } = usePageDetails()
     const [floaterHeight, setFloaterHeight] = useState(0)
     const [searchParams, setSearchParams] =
         useSearchParams()

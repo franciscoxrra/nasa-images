@@ -1,10 +1,9 @@
 import { ImageGallery } from "./ImageGallery"
 import { ImageProfile } from "./ImageProfile"
 import { ResultsPageSwitcher } from "./ResultsPageSwitcher"
-import React, { useContext } from "react"
+import React from "react"
 import styled from "@emotion/styled"
 import { useSearchParams } from "react-router-dom"
-import { PageContext } from "../Page/Page"
 import {
     itemParamName,
     pageParamName
@@ -13,6 +12,7 @@ import { useSelector } from "react-redux"
 import { selectSettings } from "../../reducers/settings/settingsReducer"
 import { css } from "@emotion/react"
 import { ImagesData } from "../../requesters/searchImages"
+import { usePageDetails } from "../Page/Page"
 
 const imageGalleryClassName = "imageGalleryClassName"
 
@@ -94,7 +94,7 @@ interface SearchResultsBodyProps {
 export const SearchResultsBody = ({
     imagesData
 }: SearchResultsBodyProps) => {
-    const { headerHeight } = useContext(PageContext)
+    const { headerHeight } = usePageDetails()
 
     // TODO clean mess below
     // TODO update page title (eg: "Space Images - moon - page 2")

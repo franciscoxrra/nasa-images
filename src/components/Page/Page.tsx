@@ -1,5 +1,6 @@
 import React, {
     createContext,
+    useContext,
     useEffect,
     useRef,
     useState
@@ -15,9 +16,11 @@ import { usePageScroll } from "../../contexts/PageScroll"
 
 // TODO add to theme
 
-export const PageContext = createContext<{
+const PageContext = createContext<{
     headerHeight: number
 }>({ headerHeight: 0 })
+
+export const usePageDetails = () => useContext(PageContext)
 
 const Container = styled.div`
     label: Page;
