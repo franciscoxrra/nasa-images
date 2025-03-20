@@ -16,8 +16,7 @@ const ResultEntry = styled.button<{ isSelected: boolean }>`
         props.theme.galleries.primary.entry.minWidth};
     flex-grow: 1;
     gap: 0.5rem;
-    max-width: ${(props) =>
-        props.theme.galleries.primary.entry.maxWidth};
+    max-width: 100%;
     border: ${(props) =>
             props.theme.galleries.primary.entry.borderWidth}
         solid
@@ -52,6 +51,7 @@ const ResultEntry = styled.button<{ isSelected: boolean }>`
 const ItemImageSection = styled.div`
     label: ItemImageSection;
 
+    display: flex;
     width: 100%;
     height: ${(props) =>
         props.theme.galleries.primary.image.height.large};

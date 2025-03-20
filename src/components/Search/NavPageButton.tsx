@@ -2,6 +2,7 @@ import { useSearchParams } from "react-router-dom"
 import { ReactNode, useCallback } from "react"
 import { pageParamName } from "../../util/paths"
 import { LinkButton } from "../buttons/LinkButton"
+import { IconButton } from "../buttons/IconButton"
 
 interface NavPageButtonProps {
     page: number
@@ -19,9 +20,14 @@ export const NavPageButton = ({
             return prev
         })
     }, [page, setSearchParams])
-    return (
+    return typeof buttonBody === "string" ||
+        typeof buttonBody === "number" ? (
         <LinkButton onClick={onClick}>
             {buttonBody}
         </LinkButton>
+    ) : (
+        <IconButton onClick={onClick}>
+            {buttonBody}
+        </IconButton>
     )
 }

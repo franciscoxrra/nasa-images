@@ -1,13 +1,22 @@
 import { NavPageButton } from "./NavPageButton"
 import styled from "@emotion/styled"
 import { DirectPageNumbers } from "./DirectPageNumbers"
+import {
+    FaCircleArrowLeft,
+    FaCircleArrowRight
+} from "react-icons/fa6"
 
 const Container = styled.div`
     label: ResultsPageSwitcher;
 
     display: flex;
     justify-content: center;
-    gap: 3rem;
+    gap: 1rem;
+
+    @media (width < ${(props) =>
+            props.theme.breakpoints.width.small}) {
+        gap: 0.5rem;
+    }
 `
 
 interface ResultsPageSwitcherProps {
@@ -32,7 +41,7 @@ export const ResultsPageSwitcher = ({
         <Container>
             {page > 1 && (
                 <NavPageButton page={page - 1}>
-                    previous
+                    <FaCircleArrowLeft />
                 </NavPageButton>
             )}
             <DirectPageNumbers
@@ -41,7 +50,7 @@ export const ResultsPageSwitcher = ({
             />
             {page < totalPages && (
                 <NavPageButton page={page + 1}>
-                    next
+                    <FaCircleArrowRight />
                 </NavPageButton>
             )}
         </Container>

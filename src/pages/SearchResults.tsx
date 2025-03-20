@@ -28,6 +28,8 @@ type Params = {
     [searchExpressionVar]: string
 }
 
+const imageGalleryClassName = "imageGalleryClassName"
+
 const SearchResultsBody = styled.div`
     label: SearchResultsBody;
 
@@ -46,9 +48,19 @@ const GalleryContainer = styled.div<{
         props.hasItem
             ? css`
                   grid-template-columns: auto minmax(
-                          28rem,
+                          32rem,
                           55%
                       );
+
+                  @media (width < ${props.theme.breakpoints
+                          .width.small}) {
+                      grid-template-columns: 0 100%;
+
+                      & > .${imageGalleryClassName} {
+                          visibility: hidden;
+                          height: 100%;
+                      }
+                  }
               `
             : css`
                   grid-template-columns: auto;
@@ -138,6 +150,9 @@ export const SearchResults = () => {
                         <ImageGallery
                             images={imagesData.images}
                             selectedItem={item}
+                            className={
+                                imageGalleryClassName
+                            }
                         />
                         {hasItem && <ImageProfile />}
                     </GalleryContainer>
@@ -152,7 +167,7 @@ export const SearchResults = () => {
                             }
                         />
                         {totalNumberOfPages &&
-                            `Total numbers of pages: ${totalNumberOfPages}`}
+                            `Total: ${totalNumberOfPages} pages`}
                     </NavPages>
                 </SearchResultsBody>
             ) : (

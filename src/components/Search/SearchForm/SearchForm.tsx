@@ -22,7 +22,10 @@ const Container = styled.form`
     label: SearchForm;
 
     display: grid;
-    grid-template-columns: 40vw repeat(4, max-content);
+    grid-template-columns: max-content repeat(
+            4,
+            max-content
+        );
     align-items: center;
     justify-content: center;
     height: ${(props) => props.theme.fields.primary.height};
@@ -30,8 +33,9 @@ const Container = styled.form`
     width: max-content;
 
     > input[type="text"] {
-        min-width: 5rem;
-        max-width: 42rem;
+        width: 36vw;
+        min-width: 18rem;
+        max-width: 32rem;
         box-sizing: border-box;
         height: ${(props) =>
             props.theme.fields.primary.height};
@@ -51,6 +55,7 @@ const Container = styled.form`
         @media (width < ${(props) =>
                 props.theme.breakpoints.width.small}) {
             width: 100%;
+            min-width: 5rem;
         }
     }
 

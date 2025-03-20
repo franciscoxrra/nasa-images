@@ -1,5 +1,6 @@
 import { NavPageButton } from "./NavPageButton"
 import styled from "@emotion/styled"
+import { css } from "@emotion/react"
 
 const totalDirectPageNumbers = 9
 const defaultDirectPageNumbersBefore = 4
@@ -27,12 +28,29 @@ const SequentialPageNumberLinks = ({
     </>
 )
 
-const Container = styled.div`
+const Container = styled.div<{
+    filterBefore: number
+    filterAfter: number
+}>`
     label: DirectPageNumbers;
 
     display: flex;
     justify-content: center;
+    align-items: center;
     gap: 1rem;
+
+    @media (width < ${(props) =>
+            props.theme.breakpoints.width.small}) {
+        gap: 0.75rem;
+        ${(props) => css`
+            > button:nth-child(-n + ${props.filterBefore}),
+            > button:nth-last-child(${props.filterAfter}),
+            > button:nth-last-child(${props.filterAfter})
+                ~ button {
+                display: none;
+            }
+        `}
+    }
 `
 
 interface PageNumbersProps {
@@ -72,7 +90,10 @@ export const DirectPageNumbers = ({
     const pagesAfter = _pagesAfter < 0 ? 0 : _pagesAfter
 
     return (
-        <Container>
+        <Container
+            filterBefore={Math.floor(pagesBefore / 1.5)}
+            filterAfter={Math.floor(pagesAfter / 1.5)}
+        >
             <SequentialPageNumberLinks
                 start={pageWithLimit - pagesBefore}
                 totalLinks={pagesBefore}

@@ -32,6 +32,11 @@ const FloatingProfile = styled.div<{
     background-color: ${(props) =>
         props.theme.colors.background.tertiary};
     overflow-y: auto;
+
+    @media (width < ${(props) =>
+            props.theme.breakpoints.width.small}) {
+        padding: 0 1rem;
+    }
 `
 
 const ProfileContainer = styled.div`
@@ -42,6 +47,11 @@ const ProfileContainer = styled.div`
     display: flex;
     flex-direction: column;
     gap: 1rem;
+
+    @media (width < ${(props) =>
+            props.theme.breakpoints.width.small}) {
+        padding: 1rem 0;
+    }
 `
 
 const ProfileImageSection = styled.div`

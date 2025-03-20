@@ -58,6 +58,8 @@ const SearchHeaderRightSide = styled(HeaderRightSide)`
     label: SearchHeaderRightSide;
 
     grid-area: HeaderRightSide;
+    display: grid;
+    align-items: center;
 `
 
 export const SearchHeader = ({

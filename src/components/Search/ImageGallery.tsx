@@ -19,7 +19,7 @@ const NestedContainer = styled.div`
     label: ImageGallery;
 
     display: flex;
-    min-width: 20rem;
+    min-width: 18rem;
     flex-wrap: wrap;
     align-content: flex-start;
     justify-content: flex-start;
@@ -40,12 +40,14 @@ const NestedContainer = styled.div`
 interface ImageGalleryProps {
     images: Image[]
     selectedItem: string | null
+    className?: string
 }
 
 export const ImageGallery = ({
-    images
+    images,
+    className
 }: ImageGalleryProps) => (
-    <Container>
+    <Container className={className}>
         <NestedContainer>
             {images.length === 0
                 ? "Nothing found... try something else"
