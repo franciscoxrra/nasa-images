@@ -49,12 +49,12 @@ const ResultEntry = styled.button<{ isSelected: boolean }>`
     }
 `
 
-const ImageSection = styled.div`
-    label: ImageSection;
+const ItemImageSection = styled.div`
+    label: ItemImageSection;
 
     width: 100%;
     height: ${(props) =>
-        props.theme.galleries.primary.image.height};
+        props.theme.galleries.primary.image.height.large};
     border-radius: ${(props) =>
         props.theme.galleries.primary.image.borderRadius};
     align-content: center;
@@ -69,6 +69,20 @@ const ImageSection = styled.div`
         vertical-align: middle;
         max-width: ${(props) =>
             props.theme.galleries.primary.entry.maxWidth};
+    }
+
+    @media (width < ${(props) =>
+            props.theme.breakpoints.width.medium}) {
+        height: ${(props) =>
+            props.theme.galleries.primary.image.height
+                .medium};
+    }
+
+    @media (width < ${(props) =>
+            props.theme.breakpoints.width.small}) {
+        height: ${(props) =>
+            props.theme.galleries.primary.image.height
+                .small};
     }
 `
 
@@ -145,12 +159,12 @@ export const ImageItem = ({ image }: ImageItemProps) => {
             onClick={itemOnClick}
             isSelected={isSelected}
         >
-            <ImageSection>
+            <ItemImageSection>
                 <img
                     src={getSmallestImageLink(image).href}
                     alt={image.title}
                 />
-            </ImageSection>
+            </ItemImageSection>
             <TextSection>
                 <div>
                     <EntryTitle>{image.title}</EntryTitle>

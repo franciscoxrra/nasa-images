@@ -12,8 +12,8 @@ const TextSection = styled.div`
     label: TextSection;
 `
 
-const ImageSection = styled.div`
-    label: ImageSection;
+const HeadshotSection = styled.div`
+    label: HeadshotSection;
 
     img {
         height: 25rem;
@@ -56,10 +56,10 @@ export const About = () => (
                 by Francisco (Richardson) Rebello de Andrade
             </p>
         </TextSection>
-        <ImageSection>
+        <HeadshotSection>
             <img src="/headshot.500.jpg" alt="headshot" />
             <p>Full-Stack Software Engineer</p>
-        </ImageSection>
+        </HeadshotSection>
         <LinksSection>
             <a href={linkedinProfileUrl} target="_blank">
                 <img

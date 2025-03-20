@@ -44,12 +44,13 @@ const ProfileContainer = styled.div`
     gap: 1rem;
 `
 
-const ImageSection = styled.div`
-    label: ImageSection;
+const ProfileImageSection = styled.div`
+    label: ProfileImageSection;
 
     & img {
+        object-fit: cover;
         max-height: 60vh;
-        min-height: 30vh;
+        height: 100%;
         max-width: 100%;
     }
 `
@@ -129,7 +130,7 @@ export const ImageProfile = () => {
                                 [close]
                             </LinkButton>
                         </TopSection>
-                        <ImageSection>
+                        <ProfileImageSection>
                             <img
                                 src={
                                     getLargestImageLink(
@@ -140,7 +141,7 @@ export const ImageProfile = () => {
                                     image.truncated_description
                                 }
                             />
-                        </ImageSection>
+                        </ProfileImageSection>
                         <h2>{image.title}</h2>
                         <p
                             dangerouslySetInnerHTML={{

@@ -15,8 +15,8 @@ export const HomeBody = styled.div`
     }
 `
 
-const ImageSection = styled.div`
-    label: ImageSection;
+const WelcomeImageSection = styled.div`
+    label: WelcomeImageSection;
 
     min-height: 15rem;
     max-height: 30rem;
@@ -40,9 +40,9 @@ const HomeSearchForm = styled(SearchForm)`
 export const Home = () => (
     <Page>
         <HomeBody>
-            <ImageSection>
+            <WelcomeImageSection>
                 <img src="/logo1024.png" alt={pageName} />
-            </ImageSection>
+            </WelcomeImageSection>
             <HomeSearchForm />
         </HomeBody>
     </Page>

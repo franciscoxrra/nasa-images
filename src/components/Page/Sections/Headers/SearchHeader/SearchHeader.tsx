@@ -19,7 +19,7 @@ const Container = styled(Header)`
     grid-template-columns: max-content auto max-content;
     grid-template-rows: max-content max-content;
 
-    @media (max-width: ${(props) =>
+    @media (width < ${(props) =>
             props.theme.breakpoints.width.small}) {
         grid-template-areas:
             ".                          HeaderHomeButton            HeaderRightSide"
@@ -37,7 +37,7 @@ const HeaderSearchFormSection = styled.div`
     grid-template-columns: min-content;
     grid-template-rows: min-content;
 
-    @media (max-width: ${(props) =>
+    @media (width < ${(props) =>
             props.theme.breakpoints.width.small}) {
         grid-template-columns: 100%;
         & > form {

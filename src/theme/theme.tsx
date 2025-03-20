@@ -72,7 +72,11 @@ export const theme = {
                 medium: "0.7rem"
             },
             image: {
-                height: "18rem",
+                height: {
+                    small: "10rem",
+                    medium: "10rem",
+                    large: "14rem"
+                },
                 borderRadius: "1rem"
             },
             entry: {

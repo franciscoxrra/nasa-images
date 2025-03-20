@@ -10,9 +10,16 @@ import { ImageItem } from "./ImageItem"
 // TODO Fix css in image gallery
 
 const Container = styled.div`
+    label: ImageGalleryScroll;
+
+    overflow-x: auto;
+`
+
+const NestedContainer = styled.div`
     label: ImageGallery;
 
     display: flex;
+    min-width: 20rem;
     flex-wrap: wrap;
     align-content: flex-start;
     justify-content: flex-start;
@@ -21,7 +28,7 @@ const Container = styled.div`
     margin: ${(props) =>
         props.theme.layout.spacing.margin.medium};
 
-    @media (max-width: ${(props) =>
+    @media (width < ${(props) =>
             props.theme.breakpoints.width.medium}) {
         gap: ${(props) =>
             props.theme.galleries.primary.gap.small};
@@ -39,10 +46,15 @@ export const ImageGallery = ({
     images
 }: ImageGalleryProps) => (
     <Container>
-        {images.length === 0
-            ? "Nothing found... try something else"
-            : images.map((image) => (
-                  <ImageItem image={image} key={image.id} />
-              ))}
+        <NestedContainer>
+            {images.length === 0
+                ? "Nothing found... try something else"
+                : images.map((image) => (
+                      <ImageItem
+                          image={image}
+                          key={image.id}
+                      />
+                  ))}
+        </NestedContainer>
     </Container>
 )

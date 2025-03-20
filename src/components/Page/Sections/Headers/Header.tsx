@@ -9,7 +9,7 @@ export const Header = styled.div`
     margin: ${(props) =>
         props.theme.layout.spacing.margin.medium};
 
-    @media (max-width: ${(props) =>
+    @media (width < ${(props) =>
             props.theme.breakpoints.width.medium}) {
         gap: ${(props) =>
             props.theme.layout.spacing.margin.small};
@@ -17,7 +17,7 @@ export const Header = styled.div`
             props.theme.layout.spacing.margin.small};
     }
 
-    @media (max-width: ${(props) =>
+    @media (width < ${(props) =>
             props.theme.breakpoints.width.small}) {
         gap: ${(props) =>
             props.theme.layout.spacing.margin.xs};

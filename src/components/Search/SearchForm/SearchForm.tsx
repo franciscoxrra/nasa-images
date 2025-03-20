@@ -48,7 +48,7 @@ const Container = styled.form`
             outline: none;
         }
 
-        @media (max-width: ${(props) =>
+        @media (width < ${(props) =>
                 props.theme.breakpoints.width.small}) {
             width: 100%;
         }
