@@ -11,6 +11,6 @@ const Container = styled.div`
 
 export const FooterSection = () => (
     <Container>
-        Example project, Made with React & Typescript
+        Portfolio project, Made with React & Typescript
     </Container>
 )

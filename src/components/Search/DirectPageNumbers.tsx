@@ -41,7 +41,7 @@ const Container = styled.div<{
 
     @media (width < ${(props) =>
             props.theme.breakpoints.width.small}) {
-        gap: 0.75rem;
+        gap: 0.7rem;
         ${(props) => css`
             > button:nth-child(
                     -n + ${props.filterForSmallBefore}
@@ -98,14 +98,14 @@ export const DirectPageNumbers = ({
     return (
         <Container
             filterForSmallBefore={
-                pagesBefore < 3
+                pagesBefore < 4
                     ? 0
-                    : Math.floor(pagesBefore / 1.5)
+                    : Math.floor(pagesBefore / 1.6)
             }
             filterForSmallAfter={
-                pagesAfter < 3
+                pagesAfter < 4
                     ? 0
-                    : Math.floor(pagesAfter / 1.5)
+                    : Math.floor(pagesAfter / 1.6)
             }
         >
             <SequentialPageNumberLinks
