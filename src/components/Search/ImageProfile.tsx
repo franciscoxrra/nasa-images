@@ -11,8 +11,8 @@ import { useViewportDimensions } from "../../contexts/ViewportDimensions"
 import { useSearchImages } from "../../requesters/searchImages"
 import { useSearchParams } from "react-router-dom"
 import { itemParamName } from "../../util/paths"
-import { LinkButton } from "../buttons/LinkButton"
 import { getLargestImageLink } from "./utils"
+import { IconButton } from "../buttons/IconButton"
 
 const Container = styled.div`
     label: ImageProfile;
@@ -28,7 +28,7 @@ const FloatingProfile = styled.div<{
     box-sizing: border-box;
     top: ${(props) => props.headerHeight}px;
     height: ${(props) => props.floaterHeight}px;
-    padding: 0 3rem;
+    padding: 0 2rem;
     background-color: ${(props) =>
         props.theme.colors.background.tertiary};
     overflow-y: auto;
@@ -43,14 +43,15 @@ const ProfileContainer = styled.div`
     label: ProfileContainer;
 
     width: 100%;
-    padding: 3rem 0;
+    padding: 2rem 0;
     display: flex;
     flex-direction: column;
     gap: 1rem;
 
     @media (width < ${(props) =>
             props.theme.breakpoints.width.small}) {
-        padding: 1rem 0;
+        padding: 0.5rem 0;
+        gap: 0;
     }
 `
 
@@ -70,6 +71,7 @@ const TopSection = styled.div`
 
     display: grid;
     justify-items: right;
+    font-size: ${(props) => props.theme.fonts.sizes.big};
 `
 
 export const ImageProfile = () => {
@@ -134,11 +136,11 @@ export const ImageProfile = () => {
                 {image && !isLoading ? (
                     <ProfileContainer>
                         <TopSection>
-                            <LinkButton
+                            <IconButton
                                 onClick={CloseOnClick}
                             >
-                                [close]
-                            </LinkButton>
+                                X
+                            </IconButton>
                         </TopSection>
                         <ProfileImageSection>
                             <img

@@ -82,8 +82,9 @@ export const Page = ({
         <>
             <Helmet>
                 <title>
-                    {pageName}
-                    {subTitle ? ` | ${subTitle}` : ""}
+                    {subTitle
+                        ? `${subTitle} - ${pageName}`
+                        : pageName}
                 </title>
             </Helmet>
             <PageContext.Provider

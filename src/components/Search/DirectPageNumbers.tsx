@@ -29,8 +29,8 @@ const SequentialPageNumberLinks = ({
 )
 
 const Container = styled.div<{
-    filterBefore: number
-    filterAfter: number
+    filterForSmallBefore: number
+    filterForSmallAfter: number
 }>`
     label: DirectPageNumbers;
 
@@ -43,9 +43,15 @@ const Container = styled.div<{
             props.theme.breakpoints.width.small}) {
         gap: 0.75rem;
         ${(props) => css`
-            > button:nth-child(-n + ${props.filterBefore}),
-            > button:nth-last-child(${props.filterAfter}),
-            > button:nth-last-child(${props.filterAfter})
+            > button:nth-child(
+                    -n + ${props.filterForSmallBefore}
+                ),
+            > button:nth-last-child(
+                    ${props.filterForSmallAfter}
+                ),
+            > button:nth-last-child(
+                    ${props.filterForSmallAfter}
+                )
                 ~ button {
                 display: none;
             }
@@ -91,8 +97,16 @@ export const DirectPageNumbers = ({
 
     return (
         <Container
-            filterBefore={Math.floor(pagesBefore / 1.5)}
-            filterAfter={Math.floor(pagesAfter / 1.5)}
+            filterForSmallBefore={
+                pagesBefore < 3
+                    ? 0
+                    : Math.floor(pagesBefore / 1.5)
+            }
+            filterForSmallAfter={
+                pagesAfter < 3
+                    ? 0
+                    : Math.floor(pagesAfter / 1.5)
+            }
         >
             <SequentialPageNumberLinks
                 start={pageWithLimit - pagesBefore}
