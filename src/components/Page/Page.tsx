@@ -13,6 +13,7 @@ import styled from "@emotion/styled"
 import { pageName } from "../../util/constants"
 import { useViewportDimensions } from "../../contexts/ViewportDimensions"
 import { usePageScroll } from "../../contexts/PageScroll"
+import { scrollbarPaddingFlag } from "../ModalSystem/ModalSystem"
 
 // TODO add to theme
 
@@ -32,9 +33,9 @@ const HeaderSection = styled.div<{ atPageTop: boolean }>`
     label: HeaderSection;
 
     position: fixed;
-    width: 100%;
     top: 0;
     left: 0;
+    right: 0;
     z-index: 1;
     background-color: white;
     box-shadow: ${(props) =>
@@ -97,13 +98,19 @@ export const Page = ({
                     <HeaderSection
                         ref={$header}
                         atPageTop={scrollY === 0}
+                        className={scrollbarPaddingFlag}
                     >
                         {header}
                     </HeaderSection>
-                    <BodySection headerHeight={height}>
+                    <BodySection
+                        headerHeight={height}
+                        className={scrollbarPaddingFlag}
+                    >
                         {body}
                     </BodySection>
-                    <FooterSection />
+                    <FooterSection
+                        className={scrollbarPaddingFlag}
+                    />
                 </Container>
             </PageContext.Provider>
         </>

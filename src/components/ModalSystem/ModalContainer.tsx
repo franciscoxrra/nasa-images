@@ -1,6 +1,7 @@
 import styled from "@emotion/styled"
 import { useRemoveHeadFromModalPipeline } from "../../reducers/actions/modal"
 import React, { useCallback } from "react"
+import { IconButton } from "../buttons/IconButton"
 
 const Container = styled.div`
     label: ModalContainer;
@@ -18,21 +19,6 @@ const ModalTab = styled.div`
 
     display: grid;
     justify-items: right;
-`
-
-const XButton = styled.button`
-    label: XButton;
-
-    background: none;
-    border: none;
-    outline: none;
-    box-shadow: none;
-    font-size: ${(props) => props.theme.fonts.sizes.big};
-
-    &:hover {
-        color: ${({ theme }) => theme.colors.standard.link};
-        text-decoration: underline;
-    }
 `
 
 const ModalTitle = styled.div`
@@ -71,9 +57,9 @@ export const ModalContainer = ({
         <Container>
             <ModalTab>
                 {hasCloseX && (
-                    <XButton onClick={onClickXButton}>
+                    <IconButton onClick={onClickXButton}>
                         X
-                    </XButton>
+                    </IconButton>
                 )}
             </ModalTab>
             <ModalTitle>{title}</ModalTitle>

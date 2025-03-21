@@ -70,7 +70,6 @@ const TopSection = styled.div`
 
     display: grid;
     justify-items: right;
-    font-size: ${(props) => props.theme.fonts.sizes.big};
 `
 
 export const ImageProfile = () => {

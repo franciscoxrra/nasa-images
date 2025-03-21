@@ -1,10 +1,12 @@
 import React, { useCallback } from "react"
 import styled from "@emotion/styled"
-import { css } from "@emotion/react"
 import { useSelector } from "react-redux"
 import { selectHeadModal } from "../../reducers/modal/modalReducer"
 import { useRemoveHeadFromModalPipeline } from "../../reducers/actions/modal"
 import { ModalSelector } from "./ModalSelector"
+import { css, Global } from "@emotion/react"
+
+export const scrollbarPaddingFlag = "scrollbar-padding-flag"
 
 const ModalContainer = styled.div`
     label: ModalContainer;
@@ -34,18 +36,24 @@ const Modal = styled.div`
     border-radius: 1rem;
 `
 
-const ContentContainer = styled.div<{ hasModal: boolean }>`
+const ContentContainer = styled.div`
     label: ContentContainer;
-
-    ${(props) =>
-        props.hasModal &&
-        css`
-            position: fixed;
-            height: 100%;
-            width: 100%;
-            overflow: hidden;
-        `}
 `
+
+const RemoveScrollbarGlobal = () => (
+    <Global
+        styles={css`
+            body {
+                overflow: hidden;
+            }
+
+            .${scrollbarPaddingFlag} {
+                padding-right: ${window.innerWidth -
+                document.body.clientWidth}px !important;
+            }
+        `}
+    />
+)
 
 interface ModalSystemProps {
     children?: React.ReactNode
@@ -75,17 +83,20 @@ export const ModalSystem = ({
     return (
         <>
             {hasModal && (
-                <ModalContainer onClick={onClickContainer}>
-                    <Modal onClick={onClickModal}>
-                        <ModalSelector
-                            type={headModal.type}
-                        />
-                    </Modal>
-                </ModalContainer>
+                <>
+                    <RemoveScrollbarGlobal />
+                    <ModalContainer
+                        onClick={onClickContainer}
+                    >
+                        <Modal onClick={onClickModal}>
+                            <ModalSelector
+                                type={headModal.type}
+                            />
+                        </Modal>
+                    </ModalContainer>
+                </>
             )}
-            <ContentContainer hasModal={hasModal}>
-                {body}
-            </ContentContainer>
+            <ContentContainer>{body}</ContentContainer>
         </>
     )
 }

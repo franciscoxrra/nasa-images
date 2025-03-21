@@ -28,6 +28,17 @@ const SequentialPageNumberLinks = ({
     </>
 )
 
+const CurrentPage = styled.div`
+    label: CurrentPage;
+
+    padding: 0.3rem;
+    margin: -0.3rem;
+    background-color: ${(props) =>
+        props.theme.colors.background.light};
+    font-weight: bold;
+    border-radius: 50%;
+`
+
 const Container = styled.div<{
     filterForSmallBefore: number
     filterForSmallAfter: number
@@ -112,7 +123,9 @@ export const DirectPageNumbers = ({
                 start={pageWithLimit - pagesBefore}
                 totalLinks={pagesBefore}
             />
-            {totalPages >= pageWithLimit && pageWithLimit}
+            {totalPages >= pageWithLimit && (
+                <CurrentPage>{pageWithLimit}</CurrentPage>
+            )}
             <SequentialPageNumberLinks
                 start={pageWithLimit + 1}
                 totalLinks={pagesAfter}

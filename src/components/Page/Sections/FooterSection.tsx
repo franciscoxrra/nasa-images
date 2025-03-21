@@ -9,8 +9,14 @@ const Container = styled.div`
         props.theme.colors.background.secondary};
 `
 
-export const FooterSection = () => (
-    <Container>
+interface FooterSectionProps {
+    className?: string
+}
+
+export const FooterSection = ({
+    className
+}: FooterSectionProps) => (
+    <Container className={className}>
         Portfolio project, Made with React & Typescript
     </Container>
 )
