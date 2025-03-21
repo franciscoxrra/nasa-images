@@ -31,6 +31,7 @@ import { store } from "./reducers/store"
 // TODO Update readme
 // TODO Manage tab navigation, reaching behind modals
 // TODO fix search header for small screens
+// TODO change font
 
 const root = ReactDOM.createRoot(
     document.getElementById("space-base") as HTMLElement

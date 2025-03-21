@@ -2,6 +2,11 @@ import { Reducer } from "react"
 import { PrefixAction } from "../util"
 import { State } from "../store"
 
+export const resultsPerPageOptions = [20, 50, 100] as const
+
+export type ResultsPerPageOptions =
+    (typeof resultsPerPageOptions)[number] // TODO use this type instead of number
+
 interface SettingsState {
     resultsPerPage: number
     maxResults: number

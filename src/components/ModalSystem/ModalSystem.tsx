@@ -27,13 +27,21 @@ const ModalContainer = styled.div`
 const Modal = styled.div`
     label: Modal;
 
-    height: 95%;
-    width: 95%;
-    max-height: 50rem;
-    max-width: 50rem;
+    width: 100%;
+    max-height: min(42rem, 95vw);
+    max-width: min(42rem, 95vw);
     background-color: ${(props) =>
         props.theme.colors.background.primary};
     border-radius: 1rem;
+
+    @media (width < ${(props) =>
+            props.theme.breakpoints.width.small}) {
+        height: 100vh;
+        width: 100vw;
+        max-height: none;
+        max-width: none;
+        border-radius: 0;
+    }
 `
 
 const ContentContainer = styled.div`

@@ -7,8 +7,8 @@ const Container = styled.div`
     label: ModalContainer;
 
     display: grid;
-    grid-template-rows: max-content max-content auto;
-    row-gap: 1rem;
+    grid-template-rows: max-content auto;
+    row-gap: 0.25rem;
     box-sizing: border-box;
     padding: 1rem;
     height: 100%;
@@ -21,6 +21,16 @@ const ModalTab = styled.div`
     justify-items: right;
 `
 
+const ModalContent = styled.div`
+    label: ModalContent;
+
+    display: grid;
+    grid-template-rows: max-content auto;
+    row-gap: 1rem;
+    overflow-y: auto;
+    padding: 0 3rem 3rem;
+`
+
 const ModalTitle = styled.div`
     label: ModalTitle;
 
@@ -28,10 +38,13 @@ const ModalTitle = styled.div`
         props.theme.fonts.sizes.biggest};
 `
 
-const ModalContent = styled.div`
+const ModalBody = styled.div`
     label: ModalContent;
 
     height: 100%;
+    min-height: 10rem;
+    display: grid;
+    align-items: center;
 `
 
 interface ModalContainerProps {
@@ -62,8 +75,10 @@ export const ModalContainer = ({
                     </IconButton>
                 )}
             </ModalTab>
-            <ModalTitle>{title}</ModalTitle>
-            <ModalContent>{modalBody}</ModalContent>
+            <ModalContent>
+                <ModalTitle>{title}</ModalTitle>
+                <ModalBody>{modalBody}</ModalBody>
+            </ModalContent>
         </Container>
     )
 }
