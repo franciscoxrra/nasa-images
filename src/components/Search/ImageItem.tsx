@@ -1,7 +1,10 @@
 import { Image } from "../../requesters/searchImages"
 import { noDescriptionText } from "../../util/constants"
 import styled from "@emotion/styled"
-import { useSearchParams } from "react-router-dom"
+import {
+    useLocation,
+    useSearchParams
+} from "react-router-dom"
 import { itemParamName } from "../../util/paths"
 import { css } from "@emotion/react"
 import React, { useCallback } from "react"
@@ -141,6 +144,7 @@ interface ImageItemProps {
 }
 
 export const ImageItem = ({ image }: ImageItemProps) => {
+    const location = useLocation()
     const [searchParams, setSearchParams] =
         useSearchParams()
     const isSelected =
@@ -148,11 +152,14 @@ export const ImageItem = ({ image }: ImageItemProps) => {
 
     const itemOnClick: React.MouseEventHandler<HTMLButtonElement> =
         useCallback(() => {
-            setSearchParams((prev) => {
-                prev.set(itemParamName, `${image.id}`)
-                return prev
-            })
-        }, [image.id, setSearchParams])
+            setSearchParams(
+                (prev) => {
+                    prev.set(itemParamName, `${image.id}`)
+                    return prev
+                },
+                { state: location.state }
+            )
+        }, [image.id, location.state, setSearchParams])
 
     return (
         <ResultEntry

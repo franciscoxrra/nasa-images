@@ -31,6 +31,10 @@ const SequentialPageNumberLinks = ({
 const CurrentPage = styled.div`
     label: CurrentPage;
 
+    display: grid;
+    align-content: center;
+    height: ${(props) => props.theme.fonts.sizes.regular};
+    aspect-ratio: 1 / 1;
     padding: 0.3rem;
     margin: -0.3rem;
     background-color: ${(props) =>
@@ -49,6 +53,8 @@ const Container = styled.div<{
     justify-content: center;
     align-items: center;
     gap: 1rem;
+    font-size: ${(props) =>
+        props.theme.fonts.sizes.regular};
 
     @media (width < ${(props) =>
             props.theme.breakpoints.width.small}) {

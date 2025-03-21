@@ -33,6 +33,8 @@ const ModalContent = styled.div`
     @media (width < ${(props) =>
             props.theme.breakpoints.width.small}) {
         padding: 0 1rem 1rem;
+        grid-template-rows: max-content max-content;
+        align-content: center;
     }
 `
 

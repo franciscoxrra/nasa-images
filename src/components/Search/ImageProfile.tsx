@@ -8,7 +8,10 @@ import React, {
 import { usePageDetails } from "../Page/Page"
 import { useViewportDimensions } from "../../contexts/ViewportDimensions"
 import { useSearchImages } from "../../requesters/searchImages"
-import { useSearchParams } from "react-router-dom"
+import {
+    useLocation,
+    useSearchParams
+} from "react-router-dom"
 import { itemParamName } from "../../util/paths"
 import { getLargestImageLink } from "./utils"
 import { IconButton } from "../buttons/IconButton"
@@ -77,6 +80,7 @@ export const ImageProfile = () => {
     const { windowHeight } = useViewportDimensions()
     const { headerHeight } = usePageDetails()
     const [floaterHeight, setFloaterHeight] = useState(0)
+    const location = useLocation()
     const [searchParams, setSearchParams] =
         useSearchParams()
 
@@ -118,11 +122,14 @@ export const ImageProfile = () => {
         React.MouseEventHandler<HTMLButtonElement>
     >(
         () =>
-            setSearchParams((prev) => {
-                prev.delete(itemParamName)
-                return prev
-            }),
-        [setSearchParams]
+            setSearchParams(
+                (prev) => {
+                    prev.delete(itemParamName)
+                    return prev
+                },
+                { state: location.state }
+            ),
+        [location.state, setSearchParams]
     )
 
     return (

@@ -12,6 +12,11 @@ import { ModalButtons } from "./common/ModalButtons"
 
 const SettingsList = styled.div`
     label: SettingsList;
+
+    & > div:nth-child(2n + 1) {
+        background-color: ${(props) =>
+            props.theme.colors.background.tertiary};
+    }
 `
 
 const SettingsItem = styled.div`
@@ -21,6 +26,7 @@ const SettingsItem = styled.div`
     grid-template-columns: auto max-content;
     justify-items: left;
     align-items: center;
+    padding: 0.25rem;
 `
 
 export const SettingsModal = () => {

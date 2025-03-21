@@ -35,7 +35,6 @@ export const SearchResults = () => {
         useParams<Params>()[searchExpressionVar]
 
     // TODO clean mess below
-    // TODO update page title (eg: "Space Images - moon - page 2")
     const location = useLocation()
     const locationState: SearchResultsLocationState | null =
         location.state
