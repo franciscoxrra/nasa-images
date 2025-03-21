@@ -29,6 +29,11 @@ const ModalContent = styled.div`
     row-gap: 1rem;
     overflow-y: auto;
     padding: 0 3rem 3rem;
+
+    @media (width < ${(props) =>
+            props.theme.breakpoints.width.small}) {
+        padding: 0 1rem 1rem;
+    }
 `
 
 const ModalTitle = styled.div`

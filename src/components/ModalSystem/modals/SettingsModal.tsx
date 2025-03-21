@@ -20,6 +20,7 @@ const SettingsItem = styled.div`
     display: grid;
     grid-template-columns: auto max-content;
     justify-items: left;
+    align-items: center;
 `
 
 export const SettingsModal = () => {
@@ -48,6 +49,7 @@ export const SettingsModal = () => {
                 <SettingsList>
                     <SettingsItem>
                         <div>Results per page</div>
+                        {/** TODO add line between setting name and setter **/}
                         <select
                             name="resultsPerPage"
                             value={settings.resultsPerPage}
