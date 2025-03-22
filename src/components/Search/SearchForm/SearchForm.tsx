@@ -65,6 +65,8 @@ const Container = styled.form`
         height: ${(props) =>
             props.theme.fields.primary.height};
         padding: 0 1rem;
+        background-color: ${(props) =>
+            props.theme.colors.background.tertiary};
 
         &:hover {
             filter: brightness(95%);

@@ -57,15 +57,32 @@ const ProfileContainer = styled.div`
     }
 `
 
-const ProfileImageSection = styled.div`
+const ProfileImageSection = styled.div<{
+    headerHeight: number
+}>`
     label: ProfileImageSection;
 
     & img {
         object-fit: cover;
-        max-height: 60vh;
+        max-height: calc(
+            75vh - ${(props) => props.headerHeight}px
+        );
         height: 100%;
         max-width: 100%;
     }
+
+    @media (width < ${(props) =>
+            props.theme.breakpoints.width.small}) {
+        & img {
+            max-height: calc(
+                60vh - ${(props) => props.headerHeight}px
+            );
+        }
+    }
+`
+
+const ProfileTextSection = styled.div`
+    label: ProfileTextSection;
 `
 
 const TopSection = styled.div`
@@ -147,7 +164,9 @@ export const ImageProfile = () => {
                                 X
                             </IconButton>
                         </TopSection>
-                        <ProfileImageSection>
+                        <ProfileImageSection
+                            headerHeight={headerHeight}
+                        >
                             <img
                                 src={
                                     getLargestImageLink(
@@ -159,12 +178,14 @@ export const ImageProfile = () => {
                                 }
                             />
                         </ProfileImageSection>
-                        <h2>{image.title}</h2>
-                        <p
-                            dangerouslySetInnerHTML={{
-                                __html: image.description
-                            }}
-                        />
+                        <ProfileTextSection>
+                            <h2>{image.title}</h2>
+                            <p
+                                dangerouslySetInnerHTML={{
+                                    __html: image.description
+                                }}
+                            />
+                        </ProfileTextSection>
                     </ProfileContainer>
                 ) : (
                     <div>Loading...</div>
