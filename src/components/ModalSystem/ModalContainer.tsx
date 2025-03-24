@@ -26,7 +26,7 @@ const ModalContent = styled.div`
 
     display: grid;
     grid-template-rows: max-content auto;
-    row-gap: 1rem;
+    row-gap: max(1rem, 10%);
     overflow-y: auto;
     padding: 0 3rem 3rem;
 
@@ -46,7 +46,7 @@ const ModalTitle = styled.div`
 `
 
 const ModalBody = styled.div`
-    label: ModalContent;
+    label: ModalBody;
 
     height: 100%;
     min-height: 10rem;

@@ -67,7 +67,6 @@ const ProfileImageSection = styled.div<{
         max-height: calc(
             75vh - ${(props) => props.headerHeight}px
         );
-        height: 100%;
         max-width: 100%;
     }
 
