@@ -11,9 +11,12 @@ export const HamburgerButton = () => {
     >(
         (event) => {
             if (isMenuOpen) {
+                setIsMenuOpen(false)
                 event.currentTarget.blur()
+            } else {
+                setIsMenuOpen(true)
+                event.currentTarget.focus()
             }
-            setIsMenuOpen(!isMenuOpen)
         },
         [isMenuOpen]
     )

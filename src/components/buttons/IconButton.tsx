@@ -1,19 +1,25 @@
 import styled from "@emotion/styled"
+import React from "react"
+import { PropsOf } from "@emotion/react"
 
-export const IconButton = styled.button`
+const Container = styled.button`
     label: IconButton;
 
+    padding: 0;
     aspect-ratio: 1 / 1;
-    display: grid;
-    align-content: center;
     background: none;
     border: none;
-    padding: 0.5rem;
     font: inherit;
     font-size: ${(props) => props.theme.fonts.sizes.big};
     cursor: pointer;
     outline: inherit;
     border-radius: 50%;
+
+    > div {
+        display: grid;
+        align-content: center;
+        padding: 0.5rem;
+    }
 
     &:hover {
         text-decoration: underline;
@@ -21,3 +27,17 @@ export const IconButton = styled.button`
             props.theme.colors.background.light};
     }
 `
+
+interface IconButtonProps
+    extends PropsOf<typeof Container> {
+    children?: React.ReactNode
+}
+
+export const IconButton = ({
+    children,
+    ...props
+}: IconButtonProps) => (
+    <Container {...props}>
+        <div>{children}</div>
+    </Container>
+)
