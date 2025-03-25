@@ -17,8 +17,27 @@ const HeadshotSection = styled.div`
 
     img {
         height: 25rem;
+        width: 25rem;
         border-radius: 50%;
         border: 0.5rem solid black;
+    }
+
+    @media (width < ${(props) =>
+            props.theme.breakpoints.width.medium}) {
+        img {
+            height: 18rem;
+            width: 18rem;
+            border: 0.35rem solid black;
+        }
+    }
+
+    @media (width < ${(props) =>
+            props.theme.breakpoints.width.small}) {
+        img {
+            height: 12rem;
+            width: 12rem;
+            border: 0.25rem solid black;
+        }
     }
 `
 
@@ -31,6 +50,20 @@ const LinksSection = styled.div`
 
     img {
         height: 5rem;
+    }
+
+    @media (width < ${(props) =>
+            props.theme.breakpoints.width.medium}) {
+        img {
+            height: 3rem;
+        }
+    }
+
+    @media (width < ${(props) =>
+            props.theme.breakpoints.width.small}) {
+        img {
+            height: 2rem;
+        }
     }
 `
 
