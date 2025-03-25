@@ -29,6 +29,7 @@ const FloatingProfile = styled.div<{
     position: sticky;
     box-sizing: border-box;
     top: ${(props) => props.headerHeight}px;
+    will-change: scroll-position;
     height: ${(props) => props.floaterHeight}px;
     padding: 0 2rem;
     background-color: ${(props) =>
@@ -37,6 +38,9 @@ const FloatingProfile = styled.div<{
 
     @media (width < ${(props) =>
             props.theme.breakpoints.width.small}) {
+        position: relative;
+        top: 0;
+        height: 100%;
         padding: 0 1rem;
     }
 `

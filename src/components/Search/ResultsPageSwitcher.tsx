@@ -15,7 +15,7 @@ const Container = styled.div`
 
     @media (width < ${(props) =>
             props.theme.breakpoints.width.small}) {
-        gap: 0.25rem;
+        gap: 0.5rem;
     }
 `
 

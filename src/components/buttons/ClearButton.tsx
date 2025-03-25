@@ -26,7 +26,7 @@ const Container = styled.div`
         width: 100%;
 
         &:hover {
-            background-color: #fff3f3;
+            background-color: unset;
         }
     }
 

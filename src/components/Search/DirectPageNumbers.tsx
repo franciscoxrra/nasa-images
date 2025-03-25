@@ -58,18 +58,16 @@ const Container = styled.div<{
 
     @media (width < ${(props) =>
             props.theme.breakpoints.width.small}) {
-        gap: 0.7rem;
+        gap: 0.5rem;
         ${(props) => css`
-            > button:nth-child(
+            > a:nth-child(
                     -n + ${props.filterForSmallBefore}
                 ),
-            > button:nth-last-child(
+            > a:nth-last-child(
                     ${props.filterForSmallAfter}
                 ),
-            > button:nth-last-child(
-                    ${props.filterForSmallAfter}
-                )
-                ~ button {
+            > a:nth-last-child(${props.filterForSmallAfter})
+                ~ a {
                 display: none;
             }
         `}

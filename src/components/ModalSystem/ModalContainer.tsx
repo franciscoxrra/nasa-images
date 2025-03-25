@@ -26,7 +26,7 @@ const ModalContent = styled.div`
 
     display: grid;
     grid-template-rows: max-content auto;
-    row-gap: max(1rem, 10%);
+    row-gap: 2rem;
     overflow-y: auto;
     padding: 0 3rem 3rem;
 

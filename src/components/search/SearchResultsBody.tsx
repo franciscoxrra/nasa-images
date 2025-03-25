@@ -74,7 +74,7 @@ const GalleryContainer = styled.div<{
 
                       & > .${imageGalleryClassName} {
                           visibility: hidden;
-                          height: 100%;
+                          height: 0;
                       }
                   }
               `
@@ -85,6 +85,9 @@ const GalleryContainer = styled.div<{
 
 const NavPages = styled.div`
     label: NavPages;
+
+    display: grid;
+    row-gap: 0.5rem;
 `
 
 interface SearchResultsBodyProps {

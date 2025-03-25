@@ -6,7 +6,6 @@ const Container = styled.button`
     label: IconButton;
 
     padding: 0;
-    aspect-ratio: 1 / 1;
     background: none;
     border: none;
     font: inherit;

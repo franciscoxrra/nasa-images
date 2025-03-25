@@ -1,33 +1,58 @@
-import { useSearchParams } from "react-router-dom"
-import { ReactNode, useCallback } from "react"
-import { pageParamName } from "../../util/paths"
+import { ReactNode, useCallback, useMemo } from "react"
+import {
+    itemParamName,
+    pageParamName
+} from "../../util/paths"
 import { LinkButton } from "../buttons/LinkButton"
-import { IconButton } from "../buttons/IconButton"
+import styled from "@emotion/styled"
 
 interface NavPageButtonProps {
     page: number
     children?: ReactNode
 }
 
+const PageButton = styled(LinkButton)`
+    label: PageButton;
+
+    display: grid;
+    aspect-ratio: 1 / 1;
+    height: ${(props) => props.theme.fonts.sizes.regular};
+    align-items: center;
+    align-content: center;
+    outline: inherit;
+
+    &:hover {
+        background: ${(props) =>
+            props.theme.colors.background.tertiary};
+        border-radius: 50%;
+    }
+`
+
 export const NavPageButton = ({
     page,
     children: buttonBody
 }: NavPageButtonProps) => {
-    const [_, setSearchParams] = useSearchParams()
+    const linkToString = useMemo(() => {
+        const searchParams = new URLSearchParams(
+            location.search
+        )
+        searchParams.set(pageParamName, `${page}`)
+        searchParams.delete(itemParamName)
+        return `?${searchParams.toString()}`
+    }, [page])
+
     const onClick = useCallback(() => {
-        setSearchParams((prev) => {
-            prev.set(pageParamName, `${page}`)
-            return prev
-        })
-    }, [page, setSearchParams])
+        window.scrollTo({ top: 0 })
+    }, [])
+
     return typeof buttonBody === "string" ||
         typeof buttonBody === "number" ? (
-        <LinkButton onClick={onClick}>
+        <PageButton to={linkToString} onClick={onClick}>
+            {buttonBody}
+        </PageButton>
+    ) : (
+        <LinkButton to={linkToString} onClick={onClick}>
             {buttonBody}
         </LinkButton>
-    ) : (
-        <IconButton onClick={onClick}>
-            {buttonBody}
-        </IconButton>
     )
 }

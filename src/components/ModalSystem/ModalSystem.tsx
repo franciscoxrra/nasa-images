@@ -28,7 +28,7 @@ const Modal = styled.div`
     label: Modal;
 
     width: 100%;
-    max-height: min(42rem, 95vw);
+    max-height: min(42rem, 95vh);
     max-width: min(42rem, 95vw);
     background-color: ${(props) =>
         props.theme.colors.background.primary};
