@@ -73,7 +73,7 @@ export const About = () => (
     <Page header={<SearchHeader />}>
         <TextSection>
             <p>
-                React & Typescript project housed{" "}
+                React & TypeScript project housed{" "}
                 <a href={githubRepoUrl} target="_blank">
                     here
                 </a>

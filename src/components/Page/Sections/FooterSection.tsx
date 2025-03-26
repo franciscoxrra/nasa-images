@@ -17,6 +17,6 @@ export const FooterSection = ({
     className
 }: FooterSectionProps) => (
     <Container className={className}>
-        Portfolio project, Made with React & Typescript
+        Portfolio project, Made with React & TypeScript
     </Container>
 )
