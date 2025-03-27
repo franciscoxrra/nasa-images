@@ -1,6 +1,6 @@
 import styled from "@emotion/styled"
 import { useRemoveHeadFromModalPipeline } from "../../reducers/actions/modal"
-import React, { useCallback } from "react"
+import React, { useCallback, useEffect } from "react"
 import { IconButton } from "../buttons/IconButton"
 
 const Container = styled.div`
@@ -72,6 +72,29 @@ export const ModalContainer = ({
     >(() => {
         removeHeadFromModalPipeline()
     }, [removeHeadFromModalPipeline])
+
+    const closeModal = useRemoveHeadFromModalPipeline()
+    useEffect(() => {
+        if (hasCloseX) {
+            const keyDownListenerAction = (
+                event: KeyboardEvent
+            ) => {
+                if (event.key === "Escape") {
+                    event.stopPropagation()
+                    closeModal()
+                }
+            }
+            document.addEventListener(
+                "keydown",
+                keyDownListenerAction
+            )
+            return () =>
+                document.removeEventListener(
+                    "keydown",
+                    keyDownListenerAction
+                )
+        }
+    }, [closeModal, hasCloseX])
 
     return (
         <Container>

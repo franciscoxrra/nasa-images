@@ -1,4 +1,8 @@
-import React, { useCallback } from "react"
+import React, {
+    useCallback,
+    useEffect,
+    useRef
+} from "react"
 import styled from "@emotion/styled"
 import { useSelector } from "react-redux"
 import { selectHeadModal } from "../../reducers/modal/modalReducer"
@@ -70,6 +74,7 @@ interface ModalSystemProps {
 export const ModalSystem = ({
     children: body
 }: ModalSystemProps) => {
+    const $contentContainer = useRef<HTMLDivElement>(null)
     const headModal = useSelector(selectHeadModal)
     const hasModal = !!headModal
 
@@ -88,6 +93,14 @@ export const ModalSystem = ({
         event.stopPropagation()
     }, [])
 
+    useEffect(() => {
+        if (hasModal && $contentContainer.current) {
+            const elem = $contentContainer.current
+            elem.setAttribute("inert", "")
+            return () => elem.removeAttribute("inert")
+        }
+    }, [hasModal])
+
     return (
         <>
             {hasModal && (
@@ -104,7 +117,9 @@ export const ModalSystem = ({
                     </ModalContainer>
                 </>
             )}
-            <ContentContainer>{body}</ContentContainer>
+            <ContentContainer ref={$contentContainer}>
+                {body}
+            </ContentContainer>
         </>
     )
 }

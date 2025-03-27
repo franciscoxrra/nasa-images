@@ -8,7 +8,8 @@ const Container = styled.div`
     label: ClearButton;
 
     display: grid;
-    align-content: center;
+    align-items: center;
+    justify-items: center;
 
     height: ${(props) => props.theme.fields.primary.height};
     width: ${(props) => props.theme.fields.primary.height};
@@ -22,11 +23,23 @@ const Container = styled.div`
     border-style: solid;
 
     & > button {
-        height: 100%;
-        width: 100%;
+        display: grid;
+        align-items: center;
+        justify-content: center;
+        height: 2rem;
+        width: 2rem;
+        border-radius: 25%;
+
+        & > div {
+            padding: 0;
+        }
 
         &:hover {
             background-color: unset;
+        }
+
+        &:focus {
+            border: #000000 solid 0.1rem;
         }
     }
 

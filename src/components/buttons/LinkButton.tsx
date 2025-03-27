@@ -8,9 +8,15 @@ export const LinkButton = styled(Link)`
     background: none;
     color: ${(props) => props.theme.colors.standard.link};
     text-decoration: underline;
-    border: none;
-    padding: 0.3rem;
+    padding: 0.2rem;
+    border: transparent solid 0.1rem;
+    border-radius: 25%;
     margin: -0.3rem;
     font: inherit;
     cursor: pointer;
+
+    &:focus {
+        padding: 0.2rem;
+        border: #000000 solid 0.1rem;
+    }
 `

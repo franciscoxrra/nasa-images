@@ -12,6 +12,7 @@
     "no-useless-escape": "warn",
     "no-var": "warn",
     "prefer-const": "warn",
+    "eqeqeq": ["warn", "always"],
     "@typescript-eslint/no-unused-vars": [
       "warn",
       {

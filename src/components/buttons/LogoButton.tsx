@@ -6,6 +6,8 @@ import { homePath } from "../../util/paths"
 
 const Container = styled(LinkButton)`
     label: LogoButton;
+
+    border-radius: 0.3rem;
 `
 
 const Logo = styled.img`

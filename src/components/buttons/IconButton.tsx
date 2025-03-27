@@ -5,6 +5,7 @@ import { PropsOf } from "@emotion/react"
 const Container = styled.button`
     label: IconButton;
 
+    aspect-ratio: 1 / 1;
     padding: 0;
     background: none;
     border: none;
@@ -20,7 +21,8 @@ const Container = styled.button`
         padding: 0.5rem;
     }
 
-    &:hover {
+    &:hover,
+    &:focus {
         text-decoration: underline;
         background-color: ${(props) =>
             props.theme.colors.background.light};

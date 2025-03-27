@@ -71,4 +71,6 @@ export const modalReducer: Reducer<
 }
 
 export const selectHeadModal = (state: State) =>
-    state.modal.pipeline[0]
+    state.modal.pipeline.length > 0
+        ? state.modal.pipeline[0]
+        : undefined

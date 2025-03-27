@@ -15,6 +15,8 @@ import {
 import { itemParamName } from "../../util/paths"
 import { getLargestImageLink } from "./utils"
 import { IconButton } from "../buttons/IconButton"
+import { useSelector } from "react-redux"
+import { selectHeadModal } from "../../reducers/modal/modalReducer"
 
 const Container = styled.div`
     label: ImageProfile;
@@ -126,6 +128,35 @@ export const ImageProfile = () => {
                 adaptFloaterHeight
             )
     }, [headerHeight, windowHeight])
+
+    const headModal = useSelector(selectHeadModal)
+    useEffect(() => {
+        const keyDownListenerAction = (
+            event: KeyboardEvent
+        ) => {
+            if (!headModal) {
+                if (event.key === "Escape") {
+                    event.stopPropagation()
+                    setSearchParams(
+                        (prev) => {
+                            prev.delete(itemParamName)
+                            return prev
+                        },
+                        { state: location.state }
+                    )
+                }
+            }
+        }
+        document.addEventListener(
+            "keydown",
+            keyDownListenerAction
+        )
+        return () =>
+            document.removeEventListener(
+                "keydown",
+                keyDownListenerAction
+            )
+    }, [headModal, location.state, setSearchParams])
 
     const { searchForExpression, imagesData, isLoading } =
         useSearchImages()

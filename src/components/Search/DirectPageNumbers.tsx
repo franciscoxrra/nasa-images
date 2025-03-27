@@ -32,6 +32,7 @@ const CurrentPage = styled.div`
     label: CurrentPage;
 
     display: grid;
+    z-index: -1;
     align-content: center;
     height: ${(props) => props.theme.fonts.sizes.regular};
     aspect-ratio: 1 / 1;
