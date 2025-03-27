@@ -22,9 +22,11 @@ const Container = styled(Header)`
     @media (width < ${(props) =>
             props.theme.breakpoints.width.small}) {
         grid-template-areas:
-            ".                          HeaderHomeButton            HeaderRightSide"
+            "HeaderHomeButton                          .            HeaderRightSide"
             "HeaderSearchFormSection    HeaderSearchFormSection     HeaderSearchFormSection";
-        grid-template-columns: 1fr minmax(auto, 100%) 1fr;
+        grid-template-columns:
+            min-content minmax(auto, 100%)
+            min-content;
     }
 `
 
