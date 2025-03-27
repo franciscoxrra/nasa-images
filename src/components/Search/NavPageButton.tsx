@@ -42,7 +42,7 @@ export const NavPageButton = ({
     }, [page])
 
     const onClick = useCallback(() => {
-        window.scrollTo({ top: 0 })
+        window.scrollTo(0, 0)
     }, [])
 
     return typeof buttonBody === "string" ||

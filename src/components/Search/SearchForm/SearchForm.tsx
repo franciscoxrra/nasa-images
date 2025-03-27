@@ -131,10 +131,11 @@ export const SearchForm = ({
     >(
         (event) => {
             event.preventDefault()
-            const state: SearchResultsLocationState = {
-                timestamp: Date.now()
-            }
             if (fieldValue !== "") {
+                const state: SearchResultsLocationState = {
+                    timestamp: Date.now()
+                }
+                window.scrollTo(0, 0)
                 navigate(getSearchPath(fieldValue), {
                     state
                 })

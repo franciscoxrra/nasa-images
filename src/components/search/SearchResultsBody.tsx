@@ -45,10 +45,14 @@ const Container = styled.div<{
             @media (width < ${props.theme.breakpoints.width
                     .small}) {
                 height: calc(
-                    100vh - ${props.headerHeight}px -
-                        ${bottomMarginSmallScreen}
+                    100vh - ${props.headerHeight}px
                 );
-                grid-template-rows: auto max-content;
+                grid-template-rows: auto;
+                margin-bottom: 0;
+
+                > div:last-child {
+                    display: none;
+                }
             }
         `}
 `
