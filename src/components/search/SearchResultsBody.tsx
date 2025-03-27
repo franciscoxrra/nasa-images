@@ -1,7 +1,11 @@
 import { ImageGallery } from "./ImageGallery"
 import { ImageProfile } from "./ImageProfile"
 import { ResultsPageSwitcher } from "./ResultsPageSwitcher"
-import React from "react"
+import React, {
+    useCallback,
+    useEffect,
+    useRef
+} from "react"
 import styled from "@emotion/styled"
 import { useSearchParams } from "react-router-dom"
 import {
@@ -13,6 +17,7 @@ import { selectSettings } from "../../reducers/settings/settingsReducer"
 import { css } from "@emotion/react"
 import { ImagesData } from "../../requesters/searchImages"
 import { usePageDetails } from "../Page/Page"
+import { smallWidthBreakpoint } from "../../theme/theme"
 
 const imageGalleryClassName = "imageGalleryClassName"
 
@@ -122,6 +127,24 @@ export const SearchResultsBody = ({
             imagesData?.totalResults /
                 settings.resultsPerPage
         )
+
+    const scrollYPosition = useRef(0)
+    const onItemClickCallback = useCallback(() => {
+        scrollYPosition.current = window.scrollY
+    }, [])
+    useEffect(() => {
+        if (hasItem) {
+            if (window.innerWidth < smallWidthBreakpoint) {
+                window.scrollTo(0, 0)
+                return () =>
+                    window.scrollTo(
+                        0,
+                        scrollYPosition.current
+                    )
+            }
+        }
+    }, [hasItem])
+
     return (
         <Container
             hasItem={hasItem}
@@ -132,7 +155,9 @@ export const SearchResultsBody = ({
             <GalleryContainer hasItem={hasItem}>
                 <ImageGallery
                     images={imagesData.images}
-                    selectedItem={item}
+                    onItemClickCallback={
+                        onItemClickCallback
+                    }
                     className={imageGalleryClassName}
                 />
                 {hasItem && <ImageProfile />}

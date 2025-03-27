@@ -1,5 +1,8 @@
 // Could come from a server
 
+export const smallWidthBreakpoint = 640
+export const mediumWidthBreakpoint = 1008
+
 export const theme = {
     colors: {
         standard: {
@@ -58,8 +61,8 @@ export const theme = {
     },
     breakpoints: {
         width: {
-            small: "640px",
-            medium: "1008px"
+            small: `${smallWidthBreakpoint}px`,
+            medium: `${mediumWidthBreakpoint}px`
         }
     },
     galleries: {

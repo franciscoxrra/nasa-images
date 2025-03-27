@@ -39,12 +39,13 @@ const NestedContainer = styled.div`
 
 interface ImageGalleryProps {
     images: Image[]
-    selectedItem: string | null
+    onItemClickCallback: () => void
     className?: string
 }
 
 export const ImageGallery = ({
     images,
+    onItemClickCallback,
     className
 }: ImageGalleryProps) => (
     <Container className={className}>
@@ -54,6 +55,9 @@ export const ImageGallery = ({
                 : images.map((image) => (
                       <ImageItem
                           image={image}
+                          onItemClickCallback={
+                              onItemClickCallback
+                          }
                           key={image.id}
                       />
                   ))}

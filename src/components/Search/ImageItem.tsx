@@ -141,9 +141,13 @@ const EntryDescription = styled.div<{ isEmpty: boolean }>`
 
 interface ImageItemProps {
     image: Image
+    onItemClickCallback: () => void
 }
 
-export const ImageItem = ({ image }: ImageItemProps) => {
+export const ImageItem = ({
+    image,
+    onItemClickCallback
+}: ImageItemProps) => {
     const location = useLocation()
     const [searchParams, setSearchParams] =
         useSearchParams()
@@ -152,6 +156,7 @@ export const ImageItem = ({ image }: ImageItemProps) => {
 
     const itemOnClick: React.MouseEventHandler<HTMLButtonElement> =
         useCallback(() => {
+            onItemClickCallback()
             setSearchParams(
                 (prev) => {
                     prev.set(itemParamName, `${image.id}`)
@@ -159,7 +164,12 @@ export const ImageItem = ({ image }: ImageItemProps) => {
                 },
                 { state: location.state }
             )
-        }, [image.id, location.state, setSearchParams])
+        }, [
+            image.id,
+            location.state,
+            onItemClickCallback,
+            setSearchParams
+        ])
 
     return (
         <ResultEntry
