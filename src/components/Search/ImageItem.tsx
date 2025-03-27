@@ -2,15 +2,16 @@ import { Image } from "../../requesters/searchImages"
 import { noDescriptionText } from "../../util/constants"
 import styled from "@emotion/styled"
 import {
+    Link,
     useLocation,
     useSearchParams
 } from "react-router-dom"
 import { itemParamName } from "../../util/paths"
 import { css } from "@emotion/react"
-import React, { useCallback } from "react"
+import React, { useMemo } from "react"
 import { getSmallestImageLink } from "./utils"
 
-const ResultEntry = styled.button<{ isSelected: boolean }>`
+const ResultEntry = styled(Link)<{ isSelected: boolean }>`
     label: ResultEntry;
 
     display: flex;
@@ -149,31 +150,23 @@ export const ImageItem = ({
     onItemClickCallback
 }: ImageItemProps) => {
     const location = useLocation()
-    const [searchParams, setSearchParams] =
-        useSearchParams()
+    const [searchParams] = useSearchParams()
     const isSelected =
         image.id === searchParams.get(itemParamName)
 
-    const itemOnClick: React.MouseEventHandler<HTMLButtonElement> =
-        useCallback(() => {
-            onItemClickCallback()
-            setSearchParams(
-                (prev) => {
-                    prev.set(itemParamName, `${image.id}`)
-                    return prev
-                },
-                { state: location.state }
-            )
-        }, [
-            image.id,
-            location.state,
-            onItemClickCallback,
-            setSearchParams
-        ])
+    const linkToString = useMemo(() => {
+        const searchParams = new URLSearchParams(
+            location.search
+        )
+        searchParams.set(itemParamName, `${image.id}`)
+        return `?${searchParams.toString()}`
+    }, [image.id, location.search])
 
     return (
         <ResultEntry
-            onClick={itemOnClick}
+            to={linkToString}
+            state={location.state}
+            onClick={onItemClickCallback}
             isSelected={isSelected}
         >
             <ItemImageSection>
