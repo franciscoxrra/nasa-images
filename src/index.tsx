@@ -32,6 +32,7 @@ import { store } from "./reducers/store"
 // TODO Manage tab navigation, reaching behind modals
 // TODO fix search header for small screens
 // TODO change font
+// TODO add dropdown to search field with suggestions, unique previous searchs and/or auto-complete
 
 const root = ReactDOM.createRoot(
     document.getElementById("space-base") as HTMLElement
