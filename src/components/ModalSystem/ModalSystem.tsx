@@ -1,14 +1,11 @@
-import React, {
-    useCallback,
-    useEffect,
-    useRef
-} from "react"
+import React, { useCallback } from "react"
 import styled from "@emotion/styled"
 import { useSelector } from "react-redux"
 import { selectHeadModal } from "../../reducers/modal/modalReducer"
 import { useRemoveHeadFromModalPipeline } from "../../reducers/actions/modal"
 import { ModalSelector } from "./ModalSelector"
 import { css, Global } from "@emotion/react"
+import { attributeFlag } from "../../util/attributes"
 
 export const scrollbarPaddingFlag = "scrollbar-padding-flag"
 
@@ -48,7 +45,7 @@ const Modal = styled.div`
     }
 `
 
-const ContentContainer = styled.div`
+const ContentContainer = styled.div<{ inert?: "" }>`
     label: ContentContainer;
 `
 
@@ -74,7 +71,6 @@ interface ModalSystemProps {
 export const ModalSystem = ({
     children: body
 }: ModalSystemProps) => {
-    const $contentContainer = useRef<HTMLDivElement>(null)
     const headModal = useSelector(selectHeadModal)
     const hasModal = !!headModal
 
@@ -93,14 +89,6 @@ export const ModalSystem = ({
         event.stopPropagation()
     }, [])
 
-    useEffect(() => {
-        if (hasModal && $contentContainer.current) {
-            const elem = $contentContainer.current
-            elem.setAttribute("inert", "")
-            return () => elem.removeAttribute("inert")
-        }
-    }, [hasModal])
-
     return (
         <>
             {hasModal && (
@@ -117,7 +105,9 @@ export const ModalSystem = ({
                     </ModalContainer>
                 </>
             )}
-            <ContentContainer ref={$contentContainer}>
+            <ContentContainer
+                inert={attributeFlag(hasModal)}
+            >
                 {body}
             </ContentContainer>
         </>

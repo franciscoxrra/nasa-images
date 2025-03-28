@@ -10,11 +10,17 @@ import { itemParamName } from "../../util/paths"
 import { css } from "@emotion/react"
 import React, { useMemo } from "react"
 import { getSmallestImageLink } from "./utils"
-import { dontForwardProps } from "../../util/styledComponents"
+import { dontForwardProps } from "../../util/attributes"
+
+interface ResultEntryProps {
+    isSelected: boolean
+}
 
 const ResultEntry = styled(Link, {
-    shouldForwardProp: dontForwardProps(["isSelected"])
-})<{ isSelected: boolean }>`
+    shouldForwardProp: dontForwardProps<ResultEntryProps>([
+        "isSelected"
+    ])
+})<ResultEntryProps>`
     label: ResultEntry;
 
     display: flex;
