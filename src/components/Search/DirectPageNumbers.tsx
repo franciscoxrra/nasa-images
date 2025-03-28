@@ -61,14 +61,12 @@ const Container = styled.div<{
             props.theme.breakpoints.width.small}) {
         gap: 0.5rem;
         ${(props) => css`
-            > a:nth-child(
+            > a:nth-of-type(
                     -n + ${props.filterForSmallBefore}
                 ),
-            > a:nth-last-child(
-                    ${props.filterForSmallAfter}
-                ),
-            > a:nth-last-child(${props.filterForSmallAfter})
-                ~ a {
+            > a:nth-last-of-type(
+                    -n + ${props.filterForSmallAfter}
+                ) {
                 display: none;
             }
         `}

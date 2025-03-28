@@ -13,7 +13,7 @@ import { ModalButtons } from "./common/ModalButtons"
 const SettingsList = styled.div`
     label: SettingsList;
 
-    & > div:nth-child(2n + 1) {
+    & > div:nth-of-type(2n + 1) {
         background-color: ${(props) =>
             props.theme.colors.background.tertiary};
     }
