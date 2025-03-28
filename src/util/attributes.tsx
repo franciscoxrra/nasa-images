@@ -3,8 +3,8 @@ export const dontForwardProps =
         attributes: Array<keyof ExtraProps>
     ) =>
     (propName: string) =>
-        !attributes.includes(
-            propName as (typeof attributes)[number]
+        attributes.every(
+            (attribute) => attribute !== propName
         )
 
 export const attributeFlag = (isFlagged: boolean) =>
